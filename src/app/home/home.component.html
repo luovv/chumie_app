@@ -1,0 +1,75 @@
+<app-nav></app-nav>
+
+<div class="main-container">
+  <div class="block-tab clearfix">
+    <div class="active block-list">
+      <div class="slide-content">
+        <app-swiper></app-swiper>
+        <app-swiper></app-swiper>
+        <app-swiper></app-swiper>
+      </div>
+      <app-card></app-card>
+    </div>
+
+    <div class="block-list">
+      <app-card></app-card>
+    </div>
+    <div class="block-list"></div>
+    <div class="block-list"></div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+<div id="side-overlay">
+  <a href="javascript:void(0)" class="side-overlay-close js-side-overlay-close"><i class="mdi mdi-window-close"></i></a>
+  <ul class="side-menu">
+    <li><a href="#">登录</a></li>
+    <li><a href="#">注册</a></li>
+    <hr class="side-menu-line">
+    <li><a href="#">通知</a></li>
+    <li><a href="#">好友</a></li>
+    <li><a href="#">活动</a></li>
+    <hr class="side-menu-line">
+    <li><a href="#">下载应用</a></li>
+  </ul>
+</div>
+<script src="/assets/js/swiper.jquery.min.js"></script>
+<script src="/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="/assets/js/menubox.js"></script>
+<script src="/assets/js/custom.js"></script>
+<script>
+  var swiper1 = new Swiper('#swiper1', {
+    slidesPerView: "auto",
+    paginationClickable: true,
+    nextButton: '#swiper1-next',
+    prevButton: '#swiper1-prev',
+  });
+  var swiper2 = new Swiper('#swiper2', {
+    slidesPerView: "auto",
+    paginationClickable: true,
+    nextButton: '#swiper2-next',
+    prevButton: '#swiper2-prev',
+  });
+  var swiper3 = new Swiper('#swiper3', {
+    slidesPerView: "auto",
+    paginationClickable: true,
+    nextButton: '#swiper3-next',
+    prevButton: '#swiper3-prev',
+  });
+
+  // tab
+  $(".block-tabs li").on("click", function() {
+    if (!$(this).hasClass("active")) {
+      var tabNum = $(this).index();
+      var nthChild = tabNum + 1;
+      $(".block-tabs li.active").removeClass("active");
+      $(this).addClass("active");
+      $(".block-tab .block-list.active").removeClass("active");
+      $(".block-tab .block-list:nth-child(" + nthChild + ")").addClass("active");
+    }
+  });
+</script>
+
+<!-- Initialize Swiper -->
+
+
