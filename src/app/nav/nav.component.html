@@ -1,59 +1,54 @@
 <div class="nav-container">
-  <div class="nav-bar">
-    <div class="logo">
-      <a href="index.html"><img src="/assets/img/logo.png"></a>
+    <div class="nav-bar">
+        <div class="logo">
+            <a href="index.html"><img src="/assets/img/logo.png"></a>
+        </div>
+        <div class="logo-small">
+            <a href="index.html"><img src="/assets/img/logo-sigle.png"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">通知</a></li>
+                <li><a href="#">好友</a></li>
+                <li><a href="#">活动</a></li>
+                <li><a class="cd-popup-trigger" href="#">登录/注册</a></li>
+                <li><a href="#"><div class="avatar"><img src="/assets/img/tourism-3.jpg" width="30" height="30"></div></a></li>
+            </ul>
+        </nav>
+        <div class="search">
+            <input class="form-control" type="text" placeholder="搜索">
+            <a class="search-btn" href="#"><i class="mdi mdi-magnify"></i></a>
+        </div>
+        <div class="menu-btn side-overlay-menu">
+            <a href="javascript:;"><i class="mdi mdi-menu"></i></a>
+        </div>
     </div>
-    <div class="logo-small">
-      <a href="index.html"><img src="/assets/img/logo-sigle.png"></a>
+    <div class="nav-tab">
+        <ul class="block-tabs">
+            <li class="active"><a href="javascript:;">FOR YOU</a></li>
+            <li><a href="javascript:;">HOMES</a></li>
+            <li><a href="javascript:;">EXPERIENCE</a></li>
+            <li><a href="javascript:;">PLACES</a></li>
+        </ul>
     </div>
-    <nav>
-      <ul>
+</div>
+<div class="cd-popup" role="alert">
+    <app-signin (switchView)="switchView()" (closeSign)="closeSign()" *ngIf="this.switch"></app-signin>
+    <app-signup (switchView)="switchView()" (closeSign)="closeSign()" *ngIf="!this.switch"></app-signup>
+</div>
+
+<div id="side-overlay">
+    <a href="javascript:void(0)" class="side-overlay-close js-side-overlay-close"><i class="mdi mdi-window-close"></i></a>
+    <ul class="side-menu">
+        <li><a href="#">登录</a></li>
+        <li><a href="#">注册</a></li>
+        <hr class="side-menu-line">
         <li><a href="#">通知</a></li>
         <li><a href="#">好友</a></li>
         <li><a href="#">活动</a></li>
-        <li><a class="cd-popup-trigger" href="#">登录/注册</a></li>
-        <li><a href="#"><div class="avatar"><img src="/assets/img/tourism-3.jpg" width="30" height="30"></div></a></li>
-      </ul>
-    </nav>
-    <div class="search">
-      <input class="form-control" type="text" placeholder="搜索">
-      <a class="search-btn" href="#"><i class="mdi mdi-magnify"></i></a>
-    </div>
-    <div class="menu-btn side-overlay-menu">
-      <a href="javascript:;"><i class="mdi mdi-menu"></i></a>
-    </div>
-  </div>
-  <div class="nav-tab">
-    <ul class="block-tabs">
-      <li class="active"><a href="javascript:;">FOR YOU</a></li>
-      <li><a href="javascript:;">HOMES</a></li>
-      <li><a href="javascript:;">EXPERIENCE</a></li>
-      <li><a href="javascript:;">PLACES</a></li>
+        <hr class="side-menu-line">
+        <li><a href="#">下载应用</a></li>
     </ul>
-  </div>
-</div>
-<div class="cd-popup" role="alert">
-  <app-signin></app-signin>
 </div>
 
-<script>
-  //open popup
-  $('.cd-popup-trigger').on('click', function(event){
-    // event.preventDefault();
-    $('.cd-popup').addClass('is-visible');
-  });
 
-  //close popup
-  $('.cd-popup').on('click', function(event){
-    if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
-      // event.preventDefault();
-      $(this).removeClass('is-visible');
-    }
-  });
-  //close popup when clicking the esc keyboard button
-  $(document).keyup(function(event){
-    if(event.which=='27'){
-      $('.cd-popup').removeClass('is-visible');
-    }
-  });
-</script>

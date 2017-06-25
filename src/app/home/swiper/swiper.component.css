@@ -194,81 +194,6 @@ ul, li {
   color: #f73057;
 }
 
-/*移动端侧边栏*/
-#side-overlay {
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  right: 0;
-  -webkit-transition: ease 0.3s;
-  -o-transition: ease 0.3s;
-  transition: ease 0.3s;
-  -webkit-transform: translateX(320px);
-  -moz-transform: translateX(320px);
-  -ms-transform: translateX(320px);
-  -o-transform: translateX(320px);
-  transform: translateX(320px);
-  bottom: 0;
-  width: 300px;
-  padding: 40px 30px;
-  background: #fff;
-  -webkit-box-shadow: 0 0 20px 0 rgba(41, 41, 41, 0.15);
-  -moz-box-shadow: 0 0 20px 0 rgba(41, 41, 41, 0.15);
-  -ms-box-shadow: 0 0 20px 0 rgba(41, 41, 41, 0.15);
-  box-shadow: 0 0 20px 0 rgba(41, 41, 41, 0.15);
-}
-#side-overlay.side-awake {
-  -webkit-transform: translateX(0px);
-  -moz-transform: translateX(0px);
-  -ms-transform: translateX(0px);
-  -o-transform: translateX(0px);
-  transform: translateX(0px);
-}
-#side-overlay .side-overlay-close {
-  position: absolute;
-  right: 5px;
-  top: 0;
-  z-index: 999;
-}
-#side-overlay .side-overlay-close i {
-  font-size: 24px;
-  color: #666;
-  padding: 13px;
-}
-#side-overlay .side-overlay-close:hover, #side-overlay .side-overlay-close:focus, #side-overlay .side-overlay-close:active {
-  outline: none;
-  text-decoration: none;
-}
-.side-overlay-menu {
-  display: none;
-}
-.side-menu {
-  margin-top: 20px;
-}
-.side-menu li a {
-  display: block;
-  padding: 10px 0;
-  width: 100%;
-  font-size: 16px;
-  text-decoration: none;
-  color: #666;
-  transition: 0.3s ease;
-  -webkit-transition: 0.3s ease;
-  -moz-transition: 0.3s ease;
-}
-.side-menu li a:active {
-  color: #f73057;
-}
-.side-menu-line {
-  margin: 10px 0;
-  border-top: 1px solid #ececec;
-}
-
-/* popup */
-
-
-
-
 
 
 
@@ -317,14 +242,7 @@ ul, li {
   .swiper-slide {
     width: 50%;
   }
-  #side-overlay {
-    -webkit-transform: translateX(74vw);
-    -moz-transform: translateX(74vw);
-    -ms-transform: translateX(74vw);
-    -o-transform: translateX(74vw);
-    transform: translateX(74vw);
-    width: 68vw;
-  }
+
 }
 @media (-webkit-min-device-pixel-ratio:2) {
   .swiper-prev, .swiper-next {
