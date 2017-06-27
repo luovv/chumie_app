@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {HttpModule, BrowserXhr} from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
@@ -15,8 +15,6 @@ import { SigninComponent } from './nav/signin/signin.component';
 import { SignupComponent } from './nav/signup/signup.component';
 import { MemberComponent } from './member/member.component';
 import {RouterModule} from "@angular/router";
-
-
 
 @NgModule({
   declarations: [

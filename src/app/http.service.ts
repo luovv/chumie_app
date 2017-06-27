@@ -3,17 +3,18 @@
  */
 
 import { Injectable } from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import {Http, Headers, RequestOptions} from '@angular/http';
 
 @Injectable()
 export class HttpService {
     // private host = 'http://127.0.0.1:8000/';
     host = 'http://www.chumi.co';
+    options = new RequestOptions({ withCredentials: true });
     constructor(private http:Http) { }
 
     postSignin(data){
         var url = this.host+'/member/login';
-        return this.http.post(url, data).map(
+        return this.http.post(url, data,this.options).map(
             res => res.json()
         );
     }
@@ -24,10 +25,23 @@ export class HttpService {
       res => res.json()
     );
   }
-
+  postLogout(){
+    var url = this.host+'/member/logout';
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
   postCheckDuplicateEmail(data){
     var url = this.host+'/member/checkEmailDuplicate';
     return this.http.post(url, data).map(
+      res => res.json()
+    );
+  }
+
+
+  getBasicInfo(){
+    var url = this.host+'/uploadUserBasicInfo/ulevel';
+    return this.http.get(url, this.options).map(
       res => res.json()
     );
   }

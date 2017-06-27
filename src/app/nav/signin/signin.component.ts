@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import {HttpService} from "../../http.service";
+import {Router} from "@angular/router";
 // import {Router} from "@angular/router";
 
 @Component({
@@ -16,23 +17,15 @@ export class SigninComponent{
     @Output() switchView = new EventEmitter();
     @Output() closeSign = new EventEmitter();
 
-    constructor(private http: HttpService) { }
+    constructor(private http: HttpService, private router:Router) { }
 
     signin() {
         this.http.postSignin(this.form).subscribe(
             data => {
-                alert(data);
                 localStorage.setItem('id_token', data.message);
                 localStorage.setItem('username', data.username);
                 this.closeSign.emit();
-                // localStorage.setItem('username', data.username);
-                // var userInfo = {
-                //     isSigned: true,
-                //     id: data.id,
-                //     username: data.username
-                // };
-                // ShareService.setUserInfo(userInfo);
-                // this.router.navigate(['home']);
+                location.reload();
             },
             error => {
                 alert(error);

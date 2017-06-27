@@ -1,5 +1,6 @@
 import {Component, Output, EventEmitter} from '@angular/core';
 import {HttpService} from "../../http.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,7 @@ export class SignupComponent{
     @Output() switchView = new EventEmitter();
     @Output() closeSign = new EventEmitter();
 
-    constructor(private http: HttpService) { }
+    constructor(private http: HttpService, private router:Router) { }
 
     signup() {
         var userLang = navigator.language;
@@ -34,13 +35,7 @@ export class SignupComponent{
                     localStorage.setItem('username', data[0].username);
                     this.closeSign.emit();
                 }
-                // var userInfo = {
-                //     isSigned: true,
-                //     id: data.id,
-                //     username: data.username
-                // };
-                // ShareService.setUserInfo(userInfo);
-                // this.router.navigate(['home']);
+                this.router.navigate(['']);
             },
             error => {
                 alert(error);
