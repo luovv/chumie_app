@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
         this.http.getBasicInfo().subscribe(
             data => {
                 if(data.email){
-                    this.img = data.userPhoto;
+                    this.img = this.http.imghost + "/" + data.userPhoto;
                     this.isSigned = true;
                 }else{
                     this.isSigned = false;
