@@ -1,0 +1,87 @@
+.main-content {
+    margin-top: 180px;
+}
+
+.user-icon-img {
+    object-fit: cover; /* Do not scale the image */
+    object-position: center; /* Center the image within the element */
+    height: 200px;
+    width: 200px;
+}
+
+.city-to-live {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.city-to-live img {
+    margin-right: 10px;
+    margin-bottom: 3px;
+}
+
+.occupation {
+    margin-top:20px;
+}
+
+.description{
+    margin-top: 10px;
+}
+
+.stats-section {
+    margin-top: 50px;
+    margin-bottom: 150px;
+}
+
+.stats-text {
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.stats-content {
+    float: right;
+}
+
+.user-name img {
+    float: right;
+    margin-top: 11px;
+}
+
+@media (min-width:550px) {
+
+    .main-content .container {
+        display: relative;
+    }
+
+    .user-main-info{
+    }
+
+    .user-icon {
+        display: inline-block;
+        position: absolute;
+    }
+
+    .user-info-section{
+        margin-left: 250px;
+        display: inline-block;
+    }
+
+    .hide-on-bg {
+        display: none;
+    }
+}
+
+@media (max-width:549px) {
+    .container {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .hide-on-sm {
+        display: none;
+    }
+
+    .user-info-section {
+        margin-top: 30px;
+    }
+}

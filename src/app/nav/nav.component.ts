@@ -14,6 +14,7 @@ export class NavComponent implements OnInit {
     switch:boolean = true;
     img:string;
     isSigned:boolean = false;
+    hideNavTab: boolean = true;
     constructor(private http: HttpService) { }
 
     ngOnInit() {
