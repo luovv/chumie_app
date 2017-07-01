@@ -1,24 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import "../../assets/js/jquery.magnific-popup.min.js";
 import "../../assets/js/menubox.js";
+import {HttpService} from "../http.service";
 declare var $: any;
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
+  providers: [HttpService]
 })
 export class NavComponent implements OnInit {
     switch:boolean = true;
-    constructor() { }
+    img:string;
+    isSigned:boolean = false;
+    constructor(private http: HttpService) { }
 
     ngOnInit() {
-
-        //open popup
-        $('.cd-popup-trigger').on('click', function(event){
-            // event.preventDefault();
-            $('.cd-popup').addClass('is-visible');
-        });
+        this.http.getBasicInfo().subscribe(
+            data => {
+                if(data.email){
+                    this.img = this.http.imghost + "/" + data.userPhoto;
+                    this.isSigned = true;
+                }else{
+                    this.isSigned = false;
+                }
+            },
+            error => {
+                alert(error);
+            }
+        );
 
         //close popup
         $('.cd-popup').on('click', function(event){
@@ -34,11 +45,24 @@ export class NavComponent implements OnInit {
             }
         });
     }
+    openSignIn(){
+        $('.cd-popup').addClass('is-visible');
+    }
     switchView(){
         this.switch = !this.switch;
     }
     closeSign(){
         $('.cd-popup').removeClass('is-visible');
+    }
+    logout(){
+        this.http.postLogout().subscribe(
+            data => {
+                this.isSigned = false;
+            },
+            error => {
+                alert(error);
+            }
+        );
     }
 
 }
