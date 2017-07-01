@@ -13,7 +13,7 @@ export class MemberComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       this.userId = params['userId'];
-      alert(this.userId);
+      //alert(this.userId);
     });
 
   }
