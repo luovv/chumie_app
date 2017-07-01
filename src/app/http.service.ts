@@ -47,6 +47,13 @@ export class HttpService {
     );
   }
 
+  getUserInfo(data){
+    var url = this.host+'/uploadUserBasicInfo/u/' + data;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
   //导航栏上用的-------------------------------
 
   //通知 有新消息需要加红点,怎么判断新消息,就是把返回的array中的第一个_id存本地起来,不一样就红点.
