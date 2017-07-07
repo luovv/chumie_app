@@ -1,6 +1,73 @@
 <app-nav></app-nav>
 
-<div class="main-content">
+<div class = "main-content">
+  <div class = "member-row">
+    <img class="user-icon-img" src="{{userPhotoUrl}}">
+
+    <div class="user-info-section">
+        <div class="user-name">
+          <h1>{{userName}}<img src="{{genderImgUrl}}" width="16" height="16"></h1>
+        </div>
+        <div class="city-to-live">
+          <img src="/assets/img/Location.png" width="16" height="16">
+          <span>{{cityToLive}}</span>
+        </div>
+
+        <div class="occupation">
+          <span>职业：{{occupation}}</span>
+        </div>
+
+        <div class="description">
+          <span>个人描述：{{description}}</span>
+        </div>
+        
+      </div>
+  </div>
+
+  <div class = "member-row stat-section">
+    <div class="stat-element">发布&nbsp;&nbsp;<span class="stats-content">{{postCount}}</span></div>
+    <div class="stat-element">我的小密圈&nbsp;&nbsp;<span class="stats-content">{{myCircle}}</span></div>
+    <div class="stat-element">关注&nbsp;&nbsp;<span class="stats-content">{{following}}</span></div>
+  </div>
+
+  <div class = "member-row my-circle-row">
+    <div class = "circle-title">我创建的小密圈</div>
+    <div *ngFor="let item of myCircleData">
+      <div class = "circle-element">
+        <div class = "circle-id">
+          {{item.channelId}}
+        </div>
+        <div class = "circle-date">
+          {{item.postDate}}
+        </div>
+        <div class = "circle-des">
+          {{item.des}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class = "member-row my-following-circle-row">
+    <div class = "circle-title">我关注的小密圈</div>
+    <div *ngFor="let item of myfollowingCircleData">
+      <div class = "circle-element">
+        <div class = "circle-id">
+          {{item.channelId}}
+        </div>
+        <div class = "circle-date">
+          {{item.postDate}}
+        </div>
+        <div class = "circle-des">
+          {{item.des}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<!--<div class="main-content">
   <div class="container">
     <div class="user-icon">
       <img class="user-icon-img" src="{{userPhotoUrl}}">
@@ -50,4 +117,4 @@
     </div>
   </div>
   
-</div>
+</div>-->

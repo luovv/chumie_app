@@ -1,10 +1,104 @@
-.main-content {
+
+@media (min-width:750px) {
+    .main-content {
+        margin-top: 150px;
+        width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .member-row {
+        position: relative;
+    }
+
+    .user-icon-img {
+        object-fit: cover;
+        object-position: center;
+        height: 250px;
+        width: 250px;
+    }
+
+    .user-info-section{
+        position: absolute;
+        left: 50%;
+        top: 30px;
+    }
+
+    .city-to-live {
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+
+    .occupation {
+        margin-top:20px;
+    }
+
+    .description{
+        margin-top: 10px;
+    }
+
+    .stat-section {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .stat-element {
+        width: 30%;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        border-radius: 12px;
+        border: 1px solid #E8E8E8;
+        padding: 20px;
+    }
+
+    .circle-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .circle-element {
+        border-radius: 12px;
+        border: 1px solid #E8E8E8;
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+
+    .circle-id {
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .circle-date {
+        color: #C0C0C0;
+        margin-top: 5px;
+    }
+
+    .circle-des {
+        margin-top: 5px;
+    }
+
+    .my-circle-row {
+        margin-bottom: 40px;
+    }
+
+    .my-following-circle-row {
+        margin-bottom: 80px;
+    }
+
+}
+
+
+/*.main-content {
     margin-top: 180px;
 }
 
 .user-icon-img {
-    object-fit: cover; /* Do not scale the image */
-    object-position: center; /* Center the image within the element */
+    object-fit: cover;
+    object-position: center;
     height: 200px;
     width: 200px;
 }
@@ -84,4 +178,4 @@
     .user-info-section {
         margin-top: 30px;
     }
-}
+}*/
