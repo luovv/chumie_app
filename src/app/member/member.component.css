@@ -1,87 +1,148 @@
-.main-content {
-    margin-top: 180px;
+.member-row {
+    position: relative;
 }
 
-.user-icon-img {
-    object-fit: cover; /* Do not scale the image */
-    object-position: center; /* Center the image within the element */
-    height: 200px;
-    width: 200px;
-}
-
-.city-to-live {
-    font-size: 16px;
+.circle-title {
+    font-size: 20px;
     font-weight: 600;
-    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-.city-to-live img {
-    margin-right: 10px;
-    margin-bottom: 3px;
+.circle-element {
+    border-radius: 12px;
+    border: 1px solid #E8E8E8;
+    padding: 20px;
+    margin-bottom: 10px;
 }
 
-.occupation {
-    margin-top:20px;
-}
-
-.description{
-    margin-top: 10px;
-}
-
-.stats-section {
-    margin-top: 50px;
-    margin-bottom: 150px;
-}
-
-.stats-text {
-    margin-bottom: 20px;
+.circle-id {
     font-size: 14px;
     font-weight: 600;
 }
 
-.stats-content {
-    float: right;
+.circle-date {
+    color: #C0C0C0;
+    margin-top: 5px;
 }
 
-.user-name img {
-    float: right;
-    margin-top: 11px;
+.circle-des {
+    margin-top: 5px;
 }
 
-@media (min-width:550px) {
+.my-circle-row {
+    margin-bottom: 40px;
+}
 
-    .main-content .container {
-        display: relative;
+.my-following-circle-row {
+    margin-bottom: 80px;
+}
+
+@media (min-width:750px) {
+    .main-content {
+        margin-top: 150px;
+        width: 750px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .user-main-info{
-    }
-
-    .user-icon {
-        display: inline-block;
-        position: absolute;
+    .user-icon-img {
+        object-fit: cover;
+        object-position: center;
+        height: 250px;
+        width: 250px;
     }
 
     .user-info-section{
-        margin-left: 250px;
-        display: inline-block;
+        position: absolute;
+        left: 50%;
+        top: 30px;
     }
 
-    .hide-on-bg {
-        display: none;
+    .city-to-live {
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+
+    .occupation {
+        margin-top:20px;
+    }
+
+    .description{
+        margin-top: 10px;
+    }
+
+    .stat-section {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .stat-element {
+        width: 30%;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        border-radius: 12px;
+        border: 1px solid #E8E8E8;
+        padding: 20px;
     }
 }
 
-@media (max-width:549px) {
-    .container {
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-    .hide-on-sm {
-        display: none;
+@media (max-width:749px) {
+    
+    .main-content {
+        margin-top: 150px;
+        width: 100%;
+        margin-left: 10vw;
+        margin-right: 10vw;
     }
 
-    .user-info-section {
-        margin-top: 30px;
+    .member-row {
+        width: 80vw;
+    }
+
+    .user-icon-img {
+        object-fit: cover;
+        object-position: center;
+        height: 80vw;
+        width: 80vw;
+    }
+
+    .user-info-section{
+        margin-bottom: 30px;
+        width: 80vw;
+    }
+
+    .city-to-live {
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+
+    .occupation {
+        margin-top:20px;
+    }
+
+    .description{
+        margin-top: 10px;
+    }
+
+    .stat-element {
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        width: 80vw;
+        border-radius: 12px;
+        border: 1px solid #E8E8E8;
+        padding: 10px;
+    }
+
+    .stats-content {
+        float: right;
+    }
+
+    .stat-section {
+        margin-bottom: 30px;
     }
 }
