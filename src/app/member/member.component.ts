@@ -25,6 +25,7 @@ export class MemberComponent implements OnInit {
 
   maleImgUrl = "/assets/img/male.png";
   femaleImgUrl = "/assets/img/female.png";
+  photoServerUrl = "http://dhjjgq45wu4ho.cloudfront.net/";
 
   constructor(private http: HttpService,private route: ActivatedRoute) { }
 
@@ -47,7 +48,7 @@ export class MemberComponent implements OnInit {
           this.postCount = +data.acTotalNumberCount;
           this.myCircle = +data.myVipChannel.length;
           this.following = +data.vipTags.length - 1;
-          this.userPhotoUrl = "http://dhjjgq45wu4ho.cloudfront.net/" + data.userPhoto;
+          this.userPhotoUrl = this.photoServerUrl + data.userPhoto;
           this.genderImgUrl = this.femaleImgUrl;
           if(data.gender == "Male") {
             this.genderImgUrl = this.maleImgUrl;

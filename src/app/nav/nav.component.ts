@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import "../../assets/js/jquery.magnific-popup.min.js";
 import "../../assets/js/menubox.js";
 import {HttpService} from "../http.service";
@@ -14,10 +14,18 @@ export class NavComponent implements OnInit {
     switch:boolean = true;
     img:string;
     isSigned:boolean = false;
-    hideNavTab: boolean = true;
+    hideNavTabClass: string;
+    hideNavTabHeightClass: string;
+    @Input() hideNavTab: boolean = false;
     constructor(private http: HttpService) { }
 
     ngOnInit() {
+        this.hideNavTabClass = "";
+        this.hideNavTabHeightClass = "";
+        if(this.hideNavTab) {
+            this.hideNavTabClass = "hide-nav-tab";
+            this.hideNavTabHeightClass = "hide-nav-tab-height";
+        }
         this.http.getBasicInfo().subscribe(
             data => {
                 if(data.email){
