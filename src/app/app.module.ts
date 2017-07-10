@@ -15,6 +15,7 @@ import { SigninComponent } from './nav/signin/signin.component';
 import { SignupComponent } from './nav/signup/signup.component';
 import { MemberComponent } from './member/member.component';
 import {RouterModule} from "@angular/router";
+import { DisplayDate } from './pipe/displayDate.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {RouterModule} from "@angular/router";
     HomeComponent,
     SigninComponent,
     SignupComponent,
-    MemberComponent
+    MemberComponent,
+    DisplayDate
   ],
   imports: [
     BrowserModule,
