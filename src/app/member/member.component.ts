@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {HttpService} from "../http.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-member',
@@ -27,7 +28,7 @@ export class MemberComponent implements OnInit {
   femaleImgUrl = "/assets/img/female.png";
   photoServerUrl = "http://dhjjgq45wu4ho.cloudfront.net/";
 
-  constructor(private http: HttpService,private route: ActivatedRoute) { }
+  constructor(private router: Router,private http: HttpService,private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.cachedId = localStorage.getItem('id_token');
@@ -75,13 +76,18 @@ export class MemberComponent implements OnInit {
     this.http.getMyFollowingCircleInfo(this.userId).subscribe(
         data => {
           this.myfollowingCircleData = data;
-          console.log(this.myfollowingCircleData);
+          //console.log(this.myfollowingCircleData);
         },
         error => {
             alert(error);
         }
     );
 
+  }
+
+  redirect(item) {
+    console.log(item._id);
+    this.router.navigate(['/circle', item._id]);
   }
 
 }
