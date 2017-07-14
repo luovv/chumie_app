@@ -305,6 +305,13 @@ uploadPost(data){
     );
   }
 
+  joinGroup(data){
+    var url = this.host + "/IM/join/group/" + data.groupid + "/groupname/" + data.groudpname;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
   //上传圈子
   //data复杂看schema
   //multipartFormData.append(
