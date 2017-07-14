@@ -2,45 +2,39 @@ import { Component, OnInit, Input } from '@angular/core';
 import "../../assets/js/jquery.magnific-popup.min.js";
 import "../../assets/js/menubox.js";
 import {HttpService} from "../http.service";
+import {GlobalService} from "../global.service";
 declare var $: any;
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css'],
-  providers: [HttpService]
+    selector: 'app-nav',
+    templateUrl: './nav.component.html',
+    styleUrls: ['./nav.component.css'],
+    providers: [HttpService]
 })
 export class NavComponent implements OnInit {
+    userInfo=GlobalService.data;
     switch:boolean = true;
     img:string;
     isSigned:boolean = false;
     hideNavTabClass: string;
     hideNavTabHeightClass: string;
     @Input() hideNavTab: boolean = false;
-    constructor(private http: HttpService) { }
+    constructor(private http: HttpService, private g:GlobalService) { }
 
     ngOnInit() {
+
+        //todo:把class控制显示改成ngIf
         this.hideNavTabClass = "";
         this.hideNavTabHeightClass = "";
         if(this.hideNavTab) {
             this.hideNavTabClass = "hide-nav-tab";
             this.hideNavTabHeightClass = "hide-nav-tab-height";
         }
-        this.http.getBasicInfo().subscribe(
-            data => {
-                if(data.email){
-                    this.img = this.http.imghost + "/" + data.userPhoto;
-                    this.isSigned = true;
-                }else{
-                    this.isSigned = false;
-                }
-            },
-            error => {
-                alert(error);
-            }
-        );
+        this.g.dataChange.subscribe((value) => {
+          this.userInfo = value;
+        });
 
-        //close popup
+        //todo:把jquery改成ng2
         $('.cd-popup').on('click', function(event){
             if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
                 // event.preventDefault();
@@ -64,14 +58,7 @@ export class NavComponent implements OnInit {
         $('.cd-popup').removeClass('is-visible');
     }
     logout(){
-        this.http.postLogout().subscribe(
-            data => {
-                this.isSigned = false;
-            },
-            error => {
-                alert(error);
-            }
-        );
+        this.g.logout();
     }
 
 }

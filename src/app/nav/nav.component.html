@@ -11,9 +11,9 @@
                 <li><a href="#">通知</a></li>
                 <li><a href="#">好友</a></li>
                 <li><a href="#">创建</a></li>
-                <li *ngIf="!this.isSigned"><a (click)="openSignIn()" href="#">登录/注册</a></li>
-                <li *ngIf="this.isSigned"><a (click)="logout()" href="#">登出</a></li>
-                <li *ngIf="this.isSigned"><a href="#"><div class="avatar"><img src="{{img}}" width="30" height="30"></div></a></li>
+                <li *ngIf="!this.userInfo.isSigned"><a (click)="openSignIn()" href="#">登录/注册</a></li>
+                <li *ngIf="this.userInfo.isSigned"><a (click)="logout()" href="#">登出</a></li>
+                <li *ngIf="this.userInfo.isSigned"><a href="#"><div class="avatar"><img src="{{this.userInfo.userImg}}" width="30" height="30"></div></a></li>
             </ul>
         </nav>
         <div class="search">

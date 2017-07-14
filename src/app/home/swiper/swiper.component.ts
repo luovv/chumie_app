@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-swiper',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./swiper.component.css']
 })
 export class SwiperComponent implements OnInit {
-
+  @Input() data;
+  @Input() title;
   constructor() { }
 
   ngOnInit() {
