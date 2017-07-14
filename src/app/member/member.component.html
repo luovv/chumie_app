@@ -33,7 +33,7 @@
   <div class = "member-row my-circle-row">
     <div class = "circle-title">我创建的小密圈</div>
     <div *ngFor="let item of myCircleData">
-      <div class = "circle-element">
+      <div class = "circle-element" (click)="redirect(item)">
         <img src="{{photoServerUrl+item.cover}}">
         <div class = "circle-id">
           {{item.channelId}}
@@ -54,7 +54,7 @@
   <div class = "member-row my-following-circle-row">
     <div class = "circle-title">我关注的小密圈</div>
     <div *ngFor="let item of myfollowingCircleData">
-      <div class = "circle-element">
+      <div class = "circle-element" (click)="redirect(item)">
         <img src="{{photoServerUrl+item.cover}}">
         <div class = "circle-id">
           {{item.channelId}}
