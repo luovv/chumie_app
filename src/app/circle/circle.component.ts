@@ -12,6 +12,18 @@ export class CircleComponent implements OnInit {
   circleId: number;
   postNum: number;
   followersNum: number;
+  icon: string;
+  channelName: string;
+  creatorName: string;
+  des: string;
+  price: number;
+  isFree: boolean;
+  methodText: string;
+  hidePayButtonClass: string;
+
+  photoServerUrl = "http://dhjjgq45wu4ho.cloudfront.net/";
+  freeDes = "这个圈子是免费公开的";
+  notFreeDes = "这个圈子是私有的， 变成一个会员， 你会每三个月自动支付组织者一次帮助举办线上线下活动";
 
   constructor(private http: HttpService,private route: ActivatedRoute) { }
 
@@ -20,6 +32,29 @@ export class CircleComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.circleId = params['circleId'];
     });
+
+    this.http.getCircleInfo(this.circleId).subscribe(
+        data => {
+          console.log(data);
+          this.icon = this.photoServerUrl + data.cover;
+          this.channelName = data.channelId;
+          this.creatorName = data.uid.username;
+          this.des = data.des;
+          this.price = +data.price;
+          this.isFree = true;
+          this.methodText = this.freeDes;
+          this.hidePayButtonClass = "hide-pay-button";
+          if(data.price > 0)
+          {
+            this.isFree = false;
+            this.methodText = this.notFreeDes;
+            this.hidePayButtonClass = "";
+          }
+        },
+        error => {
+            alert(error);
+        }
+    );
 
     this.http.getCircleAdditionalInfo(this.circleId).subscribe(
         data => {
