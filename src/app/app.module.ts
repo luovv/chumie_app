@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './nav/signin/signin.component';
 import { SignupComponent } from './nav/signup/signup.component';
 import { MemberComponent } from './member/member.component';
+import { CircleComponent } from './circle/circle.component';
 import {RouterModule} from "@angular/router";
 import { DisplayDate } from './pipe/displayDate.pipe';
 import {HttpService} from "./http.service";
@@ -29,6 +30,7 @@ import {HttpService} from "./http.service";
     SigninComponent,
     SignupComponent,
     MemberComponent,
+    CircleComponent,
     DisplayDate
   ],
   imports: [
@@ -37,7 +39,8 @@ import {HttpService} from "./http.service";
     HttpModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'member/:userId', component: MemberComponent }
+      { path: 'member/:userId', component: MemberComponent },
+      { path: 'circle/:circleId', component: CircleComponent }
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },
