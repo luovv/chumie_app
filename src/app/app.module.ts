@@ -16,6 +16,7 @@ import { SignupComponent } from './nav/signup/signup.component';
 import { MemberComponent } from './member/member.component';
 import {RouterModule} from "@angular/router";
 import { DisplayDate } from './pipe/displayDate.pipe';
+import {HttpService} from "./http.service";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { DisplayDate } from './pipe/displayDate.pipe';
       // { path: 'create', component: CreateComponent }
     ]),
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
