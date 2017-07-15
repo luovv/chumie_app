@@ -489,3 +489,10 @@ nav ul li a:hover, nav ul li a:active {
 .hide-nav-tab-height{
   height: 60px;
 }
+
+
+.nav-message-circle{
+  font-size: 9px;
+  color: #c00;
+
+}

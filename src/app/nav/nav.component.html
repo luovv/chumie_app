@@ -8,23 +8,30 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">通知</a></li>
-                <li><a href="#">好友</a></li>
-                <li><a href="#">创建</a></li>
+                <li *ngIf="this.userInfo.isSigned">
+                  <a (click)="navToMessage()" href="javascript:;">
+                    通知
+                    <i *ngIf="this.userInfo.noticeNumber>0" class="mdi mdi-checkbox-blank-circle nav-message-circle"></i>
+                  </a>
+                </li>
+                <li *ngIf="this.userInfo.isSigned"><a (click)="navToFriend()" href="javascript:;">好友</a></li>
+                <li *ngIf="this.userInfo.isSigned"><a (click)="navToCreate()" href="javascript:;">创建</a></li>
                 <li *ngIf="!this.userInfo.isSigned"><a (click)="openSignIn()" href="#">登录/注册</a></li>
                 <li *ngIf="this.userInfo.isSigned"><a (click)="logout()" href="#">登出</a></li>
                 <li *ngIf="this.userInfo.isSigned"><a href="#"><div class="avatar"><img src="{{this.userInfo.userImg}}" width="30" height="30"></div></a></li>
             </ul>
         </nav>
         <div class="search">
-            <input class="form-control" type="text" placeholder="搜索">
-            <a class="search-btn" href="#"><i class="mdi mdi-magnify"></i></a>
+            <form (ngSubmit)="search()">
+                <input class="form-control" type="text" placeholder="搜索" [(ngModel)]="searchText" name="search">
+                <a href="javascript:;" class="search-btn" (click)="search()"><i class="mdi mdi-magnify"></i></a>
+            </form>
         </div>
         <div class="menu-btn side-overlay-menu">
-            <a href="javascript:;"><i class="mdi mdi-menu"></i></a>
+            <a href="javascript:;" type="submit"><i class="mdi mdi-menu"></i></a>
         </div>
     </div>
-    <div class="nav-tab {{hideNavTabClass}}">
+    <div class="nav-tab" *ngIf="subNav">
         <ul class="block-tabs">
             <li class="active"><a href="javascript:;">FOR YOU</a></li>
             <li><a href="javascript:;">HOMES</a></li>

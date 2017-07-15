@@ -18,7 +18,7 @@ export class CardComponent implements OnInit {
   ngOnInit() {
     this.imgHost = this.http.imghost;
     this.userInfo = GlobalService.data;
-    // this.getData();
+    this.getData();
 
     this.g.dataChange.subscribe((value) => {
       console.log(value);
@@ -28,9 +28,24 @@ export class CardComponent implements OnInit {
   }
 
   getData(){
-    this.http.getFeedFromTag(0, this.userInfo.language, this.userInfo.location.lat, this.userInfo.location.long, Date.now(),this.userInfo.tags, 1).subscribe(
+    var tag;
+    if(this.userInfo.isSigned){
+      tag = 'All';
+    }else {
+      tag = 'globalhot';
+    }
+    this.http.getFeedFromTag(0, this.userInfo.language, this.userInfo.location.lat, this.userInfo.location.long, Date.now(),tag, 0).subscribe(
       data => {
         this.data = data;
+        console.log('aaasdfasdfasdf');
+        console.log(this.data);
+        for (var i = 0; i < this.data.feed.length; i++) {
+
+          if(this.data.feed[i].cover.indexOf('http')==-1){
+            this.data.feed[i].cover = this.http.imghost+this.data.feed[i].cover;
+          }
+        }
+
         console.log(data);
       },
       error => {
