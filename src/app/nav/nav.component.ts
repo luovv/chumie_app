@@ -3,6 +3,7 @@ import "../../assets/js/jquery.magnific-popup.min.js";
 import "../../assets/js/menubox.js";
 import {HttpService} from "../http.service";
 import {GlobalService} from "../global.service";
+import {Router} from "@angular/router";
 declare var $: any;
 
 @Component({
@@ -15,24 +16,15 @@ export class NavComponent implements OnInit {
     userInfo=GlobalService.data;
     switch:boolean = true;
     img:string;
-    isSigned:boolean = false;
     hideNavTabClass: string;
     hideNavTabHeightClass: string;
-    @Input() hideNavTab: boolean = false;
-    constructor(private http: HttpService, private g:GlobalService) { }
+    @Input() subNav: boolean = false;
+
+    private searchText='';
+
+    constructor(private http: HttpService, private g:GlobalService, private router:Router) { }
 
     ngOnInit() {
-
-        //todo:把class控制显示改成ngIf
-        this.hideNavTabClass = "";
-        this.hideNavTabHeightClass = "";
-        if(this.hideNavTab) {
-            this.hideNavTabClass = "hide-nav-tab";
-            this.hideNavTabHeightClass = "hide-nav-tab-height";
-        }
-        this.g.dataChange.subscribe((value) => {
-          this.userInfo = value;
-        });
 
         //todo:把jquery改成ng2
         $('.cd-popup').on('click', function(event){
@@ -47,6 +39,8 @@ export class NavComponent implements OnInit {
                 $('.cd-popup').removeClass('is-visible');
             }
         });
+
+
     }
     openSignIn(){
         $('.cd-popup').addClass('is-visible');
@@ -59,6 +53,18 @@ export class NavComponent implements OnInit {
     }
     logout(){
         this.g.logout();
+    }
+    search(){
+        this.router.navigate(['search/'+this.searchText]);
+    }
+    navToMessage(){
+      this.router.navigate(['center/message']);
+    }
+    navToFriend(){
+      this.router.navigate(['center/friend']);
+    }
+    navToCreate(){
+      this.router.navigate(['create']);
     }
 
 }

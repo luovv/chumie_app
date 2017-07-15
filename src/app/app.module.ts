@@ -15,9 +15,14 @@ import { SigninComponent } from './nav/signin/signin.component';
 import { SignupComponent } from './nav/signup/signup.component';
 import { MemberComponent } from './member/member.component';
 import { CircleComponent } from './circle/circle.component';
-import {RouterModule} from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { DisplayDate } from './pipe/displayDate.pipe';
-import {HttpService} from "./http.service";
+import { HttpService } from "./http.service";
+import { SearchComponent } from './search/search.component';
+import { CenterComponent } from './center/center.component';
+import { MessageComponent } from "./center/message/message.component";
+import { FriendComponent } from './center/friend/friend.component';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,12 @@ import {HttpService} from "./http.service";
     SignupComponent,
     MemberComponent,
     CircleComponent,
-    DisplayDate
+    DisplayDate,
+    SearchComponent,
+    MessageComponent,
+    CenterComponent,
+    FriendComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +50,11 @@ import {HttpService} from "./http.service";
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'member/:userId', component: MemberComponent },
-      { path: 'circle/:circleId', component: CircleComponent }
+      { path: 'circle/:circleId', component: CircleComponent },
+      { path: 'search/:searchText', component: SearchComponent },
+      { path: 'center/message', component: MessageComponent },
+      { path: 'center/friend', component: FriendComponent },
+      { path: 'create', component: CreateComponent },
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },

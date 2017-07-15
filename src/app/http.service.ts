@@ -166,6 +166,7 @@ export class HttpService {
   // count客户端访问接口次数
   getFeedFromTag(pageIndex, language, lat, log, currentTime,currentTag, count){
     var url = this.host + "/Activity/getAllActivitiesAndAds/"+pageIndex+"/latitude/"+lat+"/longitude/"+log+"/timezone/"+currentTime+"/l/"+language+"/t/"+currentTag+"/count/"+count;
+    console.log(url);
     return this.http.get(url, this.options).map(
       res => res.json()
     );

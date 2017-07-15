@@ -13,8 +13,10 @@ export class GlobalService{
     userImg: '',
     userId:'',
     email:'',
-    tags:['all'],
+    isVip:false,
+    // tags:['all'],
     language:'English',
+    noticeNumber:0,
     location:{
       lat:0,
       long:0,
@@ -25,33 +27,39 @@ export class GlobalService{
   constructor(private http: HttpService) { }
 
   getUserInfo(){
-    var uid = localStorage.getItem('id_token');
-    if(uid) {
-      this.http.getUserInfo(uid).subscribe(
-        data => {
-          if (data.email) {
-            GlobalService.data.isSigned = true;
-            GlobalService.data.userImg = this.http.imghost + "/" + data.userPhoto;
-            GlobalService.data.email = data.email;
-            GlobalService.data.tags = data.tags;
-            GlobalService.data.language = data.language;
-            navigator.geolocation.getCurrentPosition(function (position) {
-              GlobalService.data.location.lat = position.coords.latitude;
-              GlobalService.data.location.long = position.coords.longitude;
-              console.log(position.coords.longitude);
-            });
+    GlobalService.data.userId = localStorage.getItem('id_token');
+    navigator.geolocation.getCurrentPosition((position) =>{
+      GlobalService.data.location.lat = position.coords.latitude;
+      GlobalService.data.location.long = position.coords.longitude;
 
-          } else {
-            GlobalService.data.isSigned = false;
-          }
+      this.http.getBasicInfo().subscribe(
+        data => {
           console.log(data);
-          this.dataChange.next(GlobalService.data);
+          if(data.length==1){
+            GlobalService.data.isSigned = false;
+          }else {
+            if (data.email) {
+              GlobalService.data.isSigned = true;
+              GlobalService.data.userImg = this.http.imghost + data.userPhoto;
+              GlobalService.data.email = data.email;
+              GlobalService.data.isVip = data.certificate;
+              GlobalService.data.noticeNumber = data.notifi_numberLeft;
+              // GlobalService.data.tags = data.tags;
+              GlobalService.data.language = data.Systemlanguage;
+
+              //
+            } else {
+              GlobalService.data.isSigned = false;
+            }
+            console.log(data);
+            this.dataChange.next(GlobalService.data);
+          }
         },
         error => {
           console.log(error);
         }
       );
-    }
+    });
   }
 
   logout(){
