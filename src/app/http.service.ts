@@ -9,7 +9,7 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 export class HttpService {
     // private host = 'http://127.0.0.1:8000/';
     host = 'http://www.chumi.co';
-    imghost = 'http://dhjjgq45wu4ho.cloudfront.net';
+    imghost = 'http://dhjjgq45wu4ho.cloudfront.net/';
     options = new RequestOptions({ withCredentials: true });
     constructor(private http:Http) { }
 
@@ -49,6 +49,41 @@ export class HttpService {
 
   getUserInfo(data){
     var url = this.host+'/uploadUserBasicInfo/u/' + data;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  getMyCircleInfo(data){
+    var url = this.host+'/uploadCircle/myXiaomiquan/' + data;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  getMyFollowingCircleInfo(data){
+    var url = this.host+'/uploadCircle/myfollowingXiaomiquan/' + data;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  getCircleAdditionalInfo(data) {
+    var url = this.host+'/uploadCircle/dataCircle/' + data;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  getCircleInfo(data) {
+    var url = this.host+'/uploadCircle/circleInfo/' + data;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  getRecommendCircle() {
+    var url = this.host+'/uploadCircle/RecommendCircles/';
     return this.http.get(url, this.options).map(
       res => res.json()
     );
@@ -115,7 +150,7 @@ export class HttpService {
   //get the all events from main page
   // 0 默认 经纬度lat log 如果没有值
   // language需要为 "English" 或 "Chinese" 或 "English Chinese" 此处不确定你会不会自动encode 检查一下.
-  getEventsFromMain(language, lat, log){
+  getExplore(language, lat, log){
     var url = this.host + "/Activity/getExplore/"+language+"/lat/"+lat+"/log/"+log;
     return this.http.get(url, this.options).map(
       res => res.json()
@@ -131,6 +166,7 @@ export class HttpService {
   // count客户端访问接口次数
   getFeedFromTag(pageIndex, language, lat, log, currentTime,currentTag, count){
     var url = this.host + "/Activity/getAllActivitiesAndAds/"+pageIndex+"/latitude/"+lat+"/longitude/"+log+"/timezone/"+currentTime+"/l/"+language+"/t/"+currentTag+"/count/"+count;
+    console.log(url);
     return this.http.get(url, this.options).map(
       res => res.json()
     );

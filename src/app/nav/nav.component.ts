@@ -1,38 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import "../../assets/js/jquery.magnific-popup.min.js";
 import "../../assets/js/menubox.js";
 import {HttpService} from "../http.service";
+import {GlobalService} from "../global.service";
+import {Router} from "@angular/router";
 declare var $: any;
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css'],
-  providers: [HttpService]
+    selector: 'app-nav',
+    templateUrl: './nav.component.html',
+    styleUrls: ['./nav.component.css'],
+    providers: [HttpService]
 })
 export class NavComponent implements OnInit {
+    userInfo=GlobalService.data;
     switch:boolean = true;
     img:string;
-    isSigned:boolean = false;
-    hideNavTab: boolean = true;
-    constructor(private http: HttpService) { }
+    hideNavTabClass: string;
+    hideNavTabHeightClass: string;
+    @Input() subNav: boolean = false;
+
+    private searchText='';
+
+    constructor(private http: HttpService, private g:GlobalService, private router:Router) { }
 
     ngOnInit() {
-        this.http.getBasicInfo().subscribe(
-            data => {
-                if(data.email){
-                    this.img = this.http.imghost + "/" + data.userPhoto;
-                    this.isSigned = true;
-                }else{
-                    this.isSigned = false;
-                }
-            },
-            error => {
-                alert(error);
-            }
-        );
 
-        //close popup
+        //todo:把jquery改成ng2
         $('.cd-popup').on('click', function(event){
             if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
                 // event.preventDefault();
@@ -45,6 +39,8 @@ export class NavComponent implements OnInit {
                 $('.cd-popup').removeClass('is-visible');
             }
         });
+
+
     }
     openSignIn(){
         $('.cd-popup').addClass('is-visible');
@@ -56,14 +52,19 @@ export class NavComponent implements OnInit {
         $('.cd-popup').removeClass('is-visible');
     }
     logout(){
-        this.http.postLogout().subscribe(
-            data => {
-                this.isSigned = false;
-            },
-            error => {
-                alert(error);
-            }
-        );
+        this.g.logout();
+    }
+    search(){
+        this.router.navigate(['search/'+this.searchText]);
+    }
+    navToMessage(){
+      this.router.navigate(['center/message']);
+    }
+    navToFriend(){
+      this.router.navigate(['center/friend']);
+    }
+    navToCreate(){
+      this.router.navigate(['create']);
     }
 
 }

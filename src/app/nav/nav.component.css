@@ -483,3 +483,16 @@ nav ul li a:hover, nav ul li a:active {
   display: inline-block;
   line-height: 2;
 }
+.hide-nav-tab{
+  display: none;
+}
+.hide-nav-tab-height{
+  height: 60px;
+}
+
+
+.nav-message-circle{
+  font-size: 9px;
+  color: #c00;
+
+}

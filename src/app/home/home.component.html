@@ -1,14 +1,15 @@
-<app-nav></app-nav>
+<app-nav [subNav]="true"></app-nav>
 
 <div class="main-container">
   <div class="block-tab clearfix">
     <div class="active block-list">
       <div class="slide-content">
-        <app-swiper></app-swiper>
-        <app-swiper></app-swiper>
-        <app-swiper></app-swiper>
+        <app-swiper [title]="'Local Events'" [data]="swiperData['local']" *ngIf="display('local')"></app-swiper>
+        <app-swiper [title]="'My Events'" [data]="swiperData['myEvents']" *ngIf="display('myEvents')"></app-swiper>
+        <app-swiper [title]="'Popular Events'" [data]="swiperData['popular']" *ngIf="display('popular')"></app-swiper>
+        <app-swiper [title]="'Upcoming Events'" [data]="swiperData['upcoming']" *ngIf="display('upcoming')"></app-swiper>
+        <app-swiper [title]="'Circles'" [data]="swiperData['circles']" *ngIf="display('circles')"></app-swiper>
       </div>
-      <app-card></app-card>
     </div>
 
     <div class="block-list">

@@ -1,6 +1,7 @@
 import {Component, Output, EventEmitter} from '@angular/core';
 import {HttpService} from "../../http.service";
 import {Router} from "@angular/router";
+import {GlobalService} from "../../global.service";
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,7 @@ export class SignupComponent{
     @Output() switchView = new EventEmitter();
     @Output() closeSign = new EventEmitter();
 
-    constructor(private http: HttpService, private router:Router) { }
+    constructor(private http: HttpService, private router:Router, private g:GlobalService) { }
 
     signup() {
         var userLang = navigator.language;
@@ -25,14 +26,15 @@ export class SignupComponent{
             this.form['Systemlanguage']='English';
         }
 
-        alert(userLang);
+        //todo:error Message
+        //todo:不跳转
         this.http.postSignup(this.form).subscribe(
             data => {
                 if(data[0].status=='error'){
                     this.errorMsg=data[0].message;
                 }else {
                     localStorage.setItem('id_token', data[0].message);
-                    localStorage.setItem('username', data[0].username);
+                    this.g.getUserInfo();
                     this.closeSign.emit();
                 }
                 this.router.navigate(['']);
