@@ -16,8 +16,6 @@ export class NavComponent implements OnInit {
     userInfo=GlobalService.data;
     switch:boolean = true;
     img:string;
-    hideNavTabClass: string;
-    hideNavTabHeightClass: string;
     @Input() subNav: boolean = false;
 
     private searchText='';
@@ -29,7 +27,6 @@ export class NavComponent implements OnInit {
         //todo:把jquery改成ng2
         $('.cd-popup').on('click', function(event){
             if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
-                // event.preventDefault();
                 $(this).removeClass('is-visible');
             }
         });
