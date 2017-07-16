@@ -1,3 +1,11 @@
-<p>
-  chat works!
-</p>
+<app-nav></app-nav>
+<div class="container chat">
+  <div class="row chat-box">
+    <div class="col col-sm-3 convlist-box">
+        <button (click)="changeTargetId()">change target id</button>
+    </div>
+    <div class="col col-sm-9">
+      <app-chat-window [targetId]="targetId" ></app-chat-window>
+    </div>
+  </div>
+</div>

@@ -25,6 +25,7 @@ import { FriendComponent } from './center/friend/friend.component';
 import { CreateComponent } from './create/create.component';
 
 import { ChatComponent } from './chat/chat.component';
+import { ChatWindowComponent } from './chat/chat-window/chat-window.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ChatComponent } from './chat/chat.component';
     CenterComponent,
     FriendComponent,
     CreateComponent,
-    ChatComponent
+    ChatComponent,
+    ChatWindowComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ import { ChatComponent } from './chat/chat.component';
       { path: 'search/:searchText', component: SearchComponent },
       { path: 'center/message', component: MessageComponent },
       { path: 'center/friend', component: FriendComponent },
-      { path: 'create', component: CreateComponent }
+      { path: 'create', component: CreateComponent },
+      { path: 'chat', component: ChatComponent }
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },

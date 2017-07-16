@@ -1,0 +1,14 @@
+.chat{
+  margin-top: 100px;
+  height:600px;
+  border: 1px solid #ccc;
+}
+
+.convlist-box{
+  border-right:1px solid #ccc;
+  height: 100%;
+  overflow: scroll;
+}
+.chat-box{
+  height: 100%;
+}

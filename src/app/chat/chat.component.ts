@@ -15,43 +15,61 @@ declare var RongIMLib: any;
 })
 export class ChatComponent implements OnInit {
 
-  private rongApiKey: any; // Get this from RongCloud web console, default 'pkfcgjstfbxv8'
+  private rongApiKey = 'c9kqb3rdki5pj'; // Get this from RongCloud web console, default 'pkfcgjstfbxv8'
   private rongTokenStr: any;
+  private instance:any;
+  private targetId = '123';
 
   constructor(private http: HttpService, private router: Router) {}
 
   // Get RongCloud ApiKey
-  getRongApiKey(): void {
-    this.rongApiKey = 'c9kqb3rdki5pj';
-  }
+  // getRongApiKey(): void {
+  //   this.rongApiKey = 'c9kqb3rdki5pj';
+  // }
 
   ngOnInit() {
     // fetch from node.js backend to get RongCloud token
-    this.http.getRongCloudToken()
-        .subscribe(
-            data => {
-              localStorage.setItem('rongCloud_token', data[0].message.toString());
-            },
-            error => {
-              alert(error);
-            });
-
     this.rongTokenStr = localStorage.getItem('rongCloud_token');
-    this.getRongApiKey();
-
-    // debug staff
-    console.log('RongCloud Token is: ' + this.rongTokenStr);
-    console.log('RongCloud Api key is: ' + this.rongApiKey);
-
-    this.initRongIM();
+    if(this.rongTokenStr=='') {
+      this.http.getRongCloudToken().subscribe(
+        data => {
+          localStorage.setItem('rongCloud_token', data[0].message.toString());
+          this.rongTokenStr = data[0].message.toString();
+          this.initRongIM();
+        },
+        error => {
+          alert(error);
+        }
+      );
+    }else{
+      this.initRongIM();
+    }
   }
 
+  getConversationList(){
+    // let userInfo = {
+    //   appKey:this.rongApiKey,
+    //   token:this.rongTokenStr
+    // };
+    // init(userInfo,{
+    //   Success: id => {
+    //     alert(id);
+    //   }
+    // });
+    // this.instance.getConversationList({
+    //   onSuccess: function (conversations) {
+    //     console.log(conversations);
+        // transConversations(conversations, function (translatedConversations) {
+        //   //处理完成后，渲染会话列表
+        //   renderConversationView(translatedConversations,instance);
+        // })
+      // }
+    // }, null);
+  }
   // Init RongIMlib
   initRongIM(): void {
     let RongIMClient = RongIMLib.RongIMClient;
-
     RongIMClient.init(this.rongApiKey);
-
     RongIMClient.setConnectionStatusListener({
       onChanged: function (status) {
         switch (status) {
@@ -122,9 +140,11 @@ export class ChatComponent implements OnInit {
     });
 
     RongIMClient.connect(this.rongTokenStr, {
-      onSuccess: function(userId) {
+      onSuccess: userId => {
         console.log('connection success, userId:' + userId);
-        sendText();
+        this.instance = RongIMClient.getInstance();
+        // sendText();
+        this.getConversationList();
       },
       onTokenIncorrect: function() {
         console.log('token invilide');
@@ -199,7 +219,9 @@ export class ChatComponent implements OnInit {
   //
   //
   // }
-
+  changeTargetId(){
+    this.targetId='456';
+  }
 
 
 }
