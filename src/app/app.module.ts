@@ -16,6 +16,8 @@ import { SignupComponent } from './nav/signup/signup.component';
 import { MemberComponent } from './member/member.component';
 import {RouterModule} from "@angular/router";
 
+import { ChatComponent } from './chat/chat.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,8 @@ import {RouterModule} from "@angular/router";
     HomeComponent,
     SigninComponent,
     SignupComponent,
-    MemberComponent
+    MemberComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import {RouterModule} from "@angular/router";
     HttpModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'member/:userId', component: MemberComponent }
+      { path: 'member/:userId', component: MemberComponent },
+      { path: 'chat', component: ChatComponent}
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },
