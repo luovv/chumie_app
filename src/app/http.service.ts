@@ -409,6 +409,15 @@ uploadPost(data){
     );
   }
 
+  // Fetch RongCloudToken
+  getRongCloudToken() {
+    var url = this.host + "/IM/getToken";
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+
   //
 
 

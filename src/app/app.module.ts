@@ -24,6 +24,8 @@ import { MessageComponent } from "./center/message/message.component";
 import { FriendComponent } from './center/friend/friend.component';
 import { CreateComponent } from './create/create.component';
 
+import { ChatComponent } from './chat/chat.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,8 @@ import { CreateComponent } from './create/create.component';
     MessageComponent,
     CenterComponent,
     FriendComponent,
-    CreateComponent
+    CreateComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -50,11 +53,12 @@ import { CreateComponent } from './create/create.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'member/:userId', component: MemberComponent },
+      { path: 'chat', component: ChatComponent},
       { path: 'circle/:circleId', component: CircleComponent },
       { path: 'search/:searchText', component: SearchComponent },
       { path: 'center/message', component: MessageComponent },
       { path: 'center/friend', component: FriendComponent },
-      { path: 'create', component: CreateComponent },
+      { path: 'create', component: CreateComponent }
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },
