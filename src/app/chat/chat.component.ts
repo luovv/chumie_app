@@ -70,7 +70,7 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     // fetch from node.js backend to get RongCloud token
     this.rongTokenStr = localStorage.getItem('rongCloud_token');
-    if(this.rongTokenStr=='') {
+    if(this.rongTokenStr==null) {
       this.http.getRongCloudToken().subscribe(
         data => {
           localStorage.setItem('rongCloud_token', data[0].message.toString());
