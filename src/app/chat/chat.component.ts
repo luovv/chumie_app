@@ -18,7 +18,44 @@ export class ChatComponent implements OnInit {
   private rongApiKey = 'c9kqb3rdki5pj'; // Get this from RongCloud web console, default 'pkfcgjstfbxv8'
   private rongTokenStr: any;
   private instance:any;
-  private targetId = '123';
+
+  //todo: 这是左边list需要的信息，目前是hardcode的，你只要动态改变这个值就可以了
+  private userList = [
+    {
+      userId: '1111111',
+      avatar:'http://img02.tooopen.com/images/20150706/tooopen_sy_133095179948.jpg',
+      username:'小A',
+      lastMessage:'你好，这是一条测试信息1111',
+      datetime:'2017-7-7',
+      activeUser: true
+    },
+    {
+      userId: '2222222',
+      avatar:'http://img.taopic.com/uploads/allimg/110319/9127-1103191IJ493.jpg',
+      username:'小B',
+      lastMessage:'你好，这是一条测试信息2222',
+      datetime:'2017-7-8',
+      activeUser: false
+    }
+  ];
+
+  //todo: 这是右边聊天框里的信息，目前是hardcode的，你只要动态改变这个值就可以了
+  private messages=[
+    {
+      userId: '1111111',
+      avatar: 'http://img02.tooopen.com/images/20150706/tooopen_sy_133095179948.jpg',
+      isMyInput: false,
+      datetime: '2017-7-8',
+      message: '你好，这是一条测试信息1111'
+    },
+    {
+      userId: '222222222',
+      avatar: 'http://img.taopic.com/uploads/allimg/110319/9127-1103191IJ493.jpg',
+      isMyInput: true,
+      datetime: '2017-7-8',
+      message: '你好，这是一条测试信息2222'
+    }
+  ];
 
   constructor(private http: HttpService, private router: Router) {}
 
@@ -26,7 +63,10 @@ export class ChatComponent implements OnInit {
   // getRongApiKey(): void {
   //   this.rongApiKey = 'c9kqb3rdki5pj';
   // }
-
+  changeUser(userId){
+    //todo:用户点击左边list里的用户时触发的方法，你需要改变右边窗口里的信息
+    alert('userid: '+userId);
+  }
   ngOnInit() {
     // fetch from node.js backend to get RongCloud token
     this.rongTokenStr = localStorage.getItem('rongCloud_token');
@@ -44,27 +84,6 @@ export class ChatComponent implements OnInit {
     }else{
       this.initRongIM();
     }
-  }
-
-  getConversationList(){
-    // let userInfo = {
-    //   appKey:this.rongApiKey,
-    //   token:this.rongTokenStr
-    // };
-    // init(userInfo,{
-    //   Success: id => {
-    //     alert(id);
-    //   }
-    // });
-    // this.instance.getConversationList({
-    //   onSuccess: function (conversations) {
-    //     console.log(conversations);
-        // transConversations(conversations, function (translatedConversations) {
-        //   //处理完成后，渲染会话列表
-        //   renderConversationView(translatedConversations,instance);
-        // })
-      // }
-    // }, null);
   }
   // Init RongIMlib
   initRongIM(): void {
@@ -88,6 +107,7 @@ export class ChatComponent implements OnInit {
 
     RongIMClient.setOnReceiveMessageListener({
       onReceived: function (message) {
+        console.log(message);
         switch (message.messageType) {
           case RongIMClient.MessageType.TextMessage:
             // message.content.content => 消息内容
@@ -143,8 +163,7 @@ export class ChatComponent implements OnInit {
       onSuccess: userId => {
         console.log('connection success, userId:' + userId);
         this.instance = RongIMClient.getInstance();
-        // sendText();
-        this.getConversationList();
+        sendText();
       },
       onTokenIncorrect: function() {
         console.log('token invilide');
@@ -219,9 +238,20 @@ export class ChatComponent implements OnInit {
   //
   //
   // }
-  changeTargetId(){
-    this.targetId='456';
-  }
-
-
 }
+
+// [
+//   {
+//     userId:string,
+//     username:string,
+//     avatar:string,
+//     messages: [
+//       {
+//         type:string,
+//         text:string,
+//         isRead:boolean,
+//         datetime:string
+//       }
+//     ]
+//   }
+// ]

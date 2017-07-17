@@ -1,0 +1,14 @@
+<div *ngFor="let i of userList">
+  <div class="chat-list" (click)="clickChangeUser(i)" [style.background-color]="isActiveUser(i)">
+    <div class="chat-list-left">
+      <div class="chat-list-avatar">
+        <img src="{{i?.avatar}}">
+      </div>
+    </div>
+    <div class="chat-list-right">
+      <div class="chat-list-username">{{i?.username}}</div>
+      <div class="chat-list-message">{{i?.lastMessage}}</div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>

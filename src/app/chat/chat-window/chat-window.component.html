@@ -1,5 +1,21 @@
-<p>
-  chat-window works!
-  <br>
-  targetId: {{targetId}}
-</p>
+<div class="chat-window-display">
+  <div *ngFor="let i of messages">
+    <div class="chat-window-messages" *ngIf="!i.isMyInput">
+      <div class="chat-window-avatar left">
+        <img src="{{i.avatar}}">
+      </div>
+      <div class="chat-window-text left white">{{i.message}}</div>
+      <div class="clear"></div>
+    </div>
+    <div class="chat-window-messages" *ngIf="i.isMyInput">
+      <div class="chat-window-avatar right">
+        <img src="{{i.avatar}}">
+      </div>
+      <div class="chat-window-text right blue">{{i.message}}</div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<div class="chat-window-input">
+  <textarea></textarea>
+</div>

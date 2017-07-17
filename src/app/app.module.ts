@@ -26,6 +26,7 @@ import { CreateComponent } from './create/create.component';
 
 import { ChatComponent } from './chat/chat.component';
 import { ChatWindowComponent } from './chat/chat-window/chat-window.component';
+import { ChatListComponent } from './chat/chat-list/chat-list.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ChatWindowComponent } from './chat/chat-window/chat-window.component';
     FriendComponent,
     CreateComponent,
     ChatComponent,
-    ChatWindowComponent
+    ChatWindowComponent,
+    ChatListComponent
   ],
   imports: [
     BrowserModule,
