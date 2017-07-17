@@ -6,6 +6,7 @@
 }
 .chat-window-messages{
   min-height: 40px;
+  margin: 10px;
 }
 .chat-window-input{
   height: 150px;
@@ -31,7 +32,13 @@
   max-width:300px;
   margin: 0 10px;
 }
+.chat-window-input textarea{
+  border: none;
+  outline: none;
+  padding: 10px;
+  resize: none;
 
+}
 .clear{
   clear: both;
 }

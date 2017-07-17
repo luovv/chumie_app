@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, OnChanges} from '@angular/core';
+import {Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-chat-window',
@@ -7,9 +7,16 @@ import {Component, OnInit, Input, OnChanges} from '@angular/core';
 })
 export class ChatWindowComponent implements OnInit{
   @Input() messages = [];
+  @Output() sendMessage = new EventEmitter();
+  private myMessage="";
   constructor() { }
 
   ngOnInit() {
   }
-
+  pressKey(key){
+    if(key.key=='Enter'){
+      this.sendMessage.emit(this.myMessage);
+      this.myMessage="";
+    }
+  }
 }
