@@ -1,0 +1,21 @@
+.chat-box{
+  margin-top: 130px;
+  height:600px;
+  border: 1px solid #ddd;
+  width: 1002px;
+}
+.chat-left{
+  float: left;
+  border-right:1px solid #ddd;
+  height: 100%;
+  overflow: scroll;
+  width:250px;
+}
+.chat-right{
+  float: left;
+  width:750px;
+}
+
+.clear{
+  clear: both;
+}
