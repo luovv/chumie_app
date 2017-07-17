@@ -27,6 +27,9 @@ import { CreateComponent } from './create/create.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatWindowComponent } from './chat/chat-window/chat-window.component';
 import { ChatListComponent } from './chat/chat-list/chat-list.component';
+import { SearchFeedComponent } from './search/search-feed/search-feed.component';
+import { SearchUserComponent } from './search/search-user/search-user.component';
+import { SearchCircleComponent } from './search/search-circle/search-circle.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
     CreateComponent,
     ChatComponent,
     ChatWindowComponent,
-    ChatListComponent
+    ChatListComponent,
+    SearchFeedComponent,
+    SearchUserComponent,
+    SearchCircleComponent
   ],
   imports: [
     BrowserModule,
