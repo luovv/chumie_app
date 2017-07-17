@@ -5,7 +5,7 @@
         <app-chat-list [userList]="userList" (changeUser)="changeUser($event)"></app-chat-list>
     </div>
     <div class="chat-right">
-      <app-chat-window [messages]="messages" ></app-chat-window>
+      <app-chat-window [messages]="messages" (sendMessage)="sendMessage($event)"></app-chat-window>
     </div>
     <div class="clear"></div>
   </div>

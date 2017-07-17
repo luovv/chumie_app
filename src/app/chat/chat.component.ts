@@ -67,6 +67,18 @@ export class ChatComponent implements OnInit {
     //todo:用户点击左边list里的用户时触发的方法，你需要改变右边窗口里的信息
     alert('userid: '+userId);
   }
+  sendMessage(message){
+    //todo:发消息，push那里是添加到当前窗口里的示例，除了message都是hardcode的
+    alert('message: '+message);
+    this.messages.push({
+      userId: '1111111',
+      avatar: 'http://img.taopic.com/uploads/allimg/110319/9127-1103191IJ493.jpg',
+      isMyInput: true,
+      datetime: '2017-7-8',
+      message: message
+    });
+  }
+
   ngOnInit() {
     // fetch from node.js backend to get RongCloud token
     this.rongTokenStr = localStorage.getItem('rongCloud_token');

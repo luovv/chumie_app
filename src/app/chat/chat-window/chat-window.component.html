@@ -17,5 +17,7 @@
   </div>
 </div>
 <div class="chat-window-input">
-  <textarea></textarea>
+  <form>
+    <textarea [(ngModel)]="myMessage" (keydown)="pressKey($event)" name="myMessage"></textarea>
+  </form>
 </div>
