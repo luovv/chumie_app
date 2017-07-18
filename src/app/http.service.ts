@@ -379,8 +379,8 @@ uploadPost(data){
 
   //search post
   //data是搜索的词
-  searchPost(data){
-    var url = this.host + "/Activity/search/"+data+"/index/100000";
+  searchPost(data,index){
+    var url = this.host + "/Activity/search/"+data+"/index/"+index;
     return this.http.get(url, this.options).map(
       res => res.json()
     );
