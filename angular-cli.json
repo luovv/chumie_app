@@ -18,10 +18,12 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/social-share.js/dist/css/share.min.css"
       ],
       "scripts": [
-        "./assets/js/RongIMLib-2.2.5.min.js"
+        "./assets/js/RongIMLib-2.2.5.min.js",
+        "../node_modules/social-share.js/dist/js/social-share.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

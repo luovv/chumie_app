@@ -58,7 +58,7 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
       { path: '', component: HomeComponent },
       { path: 'member/:userId', component: MemberComponent },
       { path: 'chat', component: ChatComponent},
-      { path: 'circle/:circleId', component: CircleComponent },
+      { path: 'circle/:circleId', component: CircleComponent},
       { path: 'search/:searchText', component: SearchComponent },
       { path: 'center/message', component: MessageComponent },
       { path: 'center/friend', component: FriendComponent },
@@ -68,7 +68,7 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },
       // { path: 'create', component: CreateComponent }
-    ]),
+    ])
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]
