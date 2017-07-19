@@ -3,6 +3,9 @@ import { ActivatedRoute, Params } from "@angular/router";
 import { HttpService } from "../http.service";
 import { Title } from "@angular/platform-browser";
 
+
+declare var run: any;
+
 @Component({
   selector: 'app-circle',
   templateUrl: './circle.component.html',
@@ -21,6 +24,7 @@ export class CircleComponent implements OnInit {
   isFree: boolean;
   methodText: string;
   hidePayButtonClass: string;
+  value=false;
 
   photoServerUrl = "http://dhjjgq45wu4ho.cloudfront.net/";
   freeDes = "这个圈子是免费公开的";
@@ -53,6 +57,8 @@ export class CircleComponent implements OnInit {
             this.methodText = this.notFreeDes;
             this.hidePayButtonClass = "";
           }
+          alert(this.channelName);
+          new run();
         },
         error => {
             alert(error);
