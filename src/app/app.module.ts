@@ -30,6 +30,7 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { SearchFeedComponent } from './search/search-feed/search-feed.component';
 import { SearchUserComponent } from './search/search-user/search-user.component';
 import { SearchCircleComponent } from './search/search-circle/search-circle.component';
+//import { ShareComponent } from './circle/share/share.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { SearchCircleComponent } from './search/search-circle/search-circle.comp
     ChatListComponent,
     SearchFeedComponent,
     SearchUserComponent,
-    SearchCircleComponent
+    SearchCircleComponent,
+    //ShareComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,7 @@ import { SearchCircleComponent } from './search/search-circle/search-circle.comp
       { path: '', component: HomeComponent },
       { path: 'member/:userId', component: MemberComponent },
       { path: 'chat', component: ChatComponent},
-      { path: 'circle/:circleId', component: CircleComponent },
+      { path: 'circle/:circleId', component: CircleComponent},
       { path: 'search/:searchText', component: SearchComponent },
       { path: 'center/message', component: MessageComponent },
       { path: 'center/friend', component: FriendComponent },
@@ -74,7 +76,7 @@ import { SearchCircleComponent } from './search/search-circle/search-circle.comp
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },
       // { path: 'create', component: CreateComponent }
-    ]),
+    ])
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

@@ -14,7 +14,25 @@
     </div>
 
     <div class = "member-row">
-        <div class="share-button">把圈子分享到社交网络</div>
+        <div class="share-button" data-toggle="modal" data-target="#showShare">把圈子分享到社交网络</div>
+        <div class="modal fade" id="showShare" role="dialog">
+            <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <h4 class="modal-title">分享小密圈</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="social-share" [attr.data-title]="shareTitle" [attr.data-description]="des"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+            </div>
+        </div>
     </div>
 
     <div class = "member-row">
@@ -43,3 +61,4 @@
         <div class="share-button">支付 CA${{price}} 成会员</div>
     </div>
 </div>
+
