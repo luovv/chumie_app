@@ -18,7 +18,7 @@
             <span class="activity-title">{{item?.title}}</span>
           </div>
           <div class="activity-time">
-            <span>{{item?.postDate}}</span>
+            <span>{{ item?.postDate | date:'medium' }}</span>
             <a class="love-btn" href="javascript:;"><i class="mdi mdi-heart-outline"></i></a>
           </div>
         </div>

@@ -29,7 +29,7 @@ nav ul li a:hover, nav ul li a:active {
 }
 
 .search-tab {
-  height: 40px;
+  height: 100px;
   padding: 0 24px;
   margin-top:100px;
   background-color: #fff;
@@ -38,6 +38,8 @@ nav ul li a:hover, nav ul li a:active {
 .search-tab ul li {
   display: inline-block;
   margin-right: 24px;
+  margin-top: 50px;
+  font-size: 25px;
 }
 .search-tab ul li.active {
   border-bottom: 2px solid #f73057;

@@ -19,4 +19,14 @@ export class SearchFeedComponent implements OnInit {
     }
     return url;
   }
+
+  getPhoto(url){
+
+    if(url == ""){
+      url = "user.png";
+    }
+      url=this.http.imghost+url;
+
+    return url;
+  }
 }

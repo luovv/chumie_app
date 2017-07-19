@@ -17,4 +17,15 @@ export class SearchUserComponent implements OnInit {
   navToMember(id){
     this.router.navigate(['member/'+id]);
   }
+
+  getPhoto(url){
+
+    if(url == ""){
+      url = "user.png";
+    }
+    url=this.http.imghost+url;
+
+    return url;
+  }
+
 }

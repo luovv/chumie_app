@@ -78,7 +78,7 @@ ul, li {
   box-shadow: none;
   border-radius: 30px;
   height: 36px;
-  font-weight: 600;
+  font-weight: 100;
   width: 180px;
 }
 .search .form-control:focus {
@@ -94,7 +94,7 @@ ul, li {
   color: #7a7d84;
 }
 .search-btn i {
-  font-size: 24px;
+  font-size: 18px;
 }
 .nav-tab {
   height: 40px;
@@ -152,7 +152,7 @@ nav ul li a {
   text-decoration: none;
   padding: 0 16px;
   white-space: nowrap;
-  font-weight: 600;
+  font-weight: 100;
   color: #484848;
   transition: 0.3s ease;
   -webkit-transition: 0.3s ease;
@@ -186,7 +186,7 @@ nav ul li a:hover, nav ul li a:active {
 }
 .menu-btn a i {
   padding: 13px;
-  font-size: 24px;
+  font-size: 20px;
 }
 .block-tab .block-list.active {
   display: block;

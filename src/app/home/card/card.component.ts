@@ -43,6 +43,11 @@ export class CardComponent implements OnInit {
 
           if(this.data.feed[i].cover.indexOf('http')==-1){
             this.data.feed[i].cover = this.http.imghost+this.data.feed[i].cover;
+            if(this.data.feed[i]._creator.userPhoto == ""){
+              this.data.feed[i]._creator.userPhoto = "user.png";
+            }
+            this.data.feed[i]._creator.userPhoto = this.http.imghost+this.data.feed[i]._creator.userPhoto;
+
           }
         }
 
