@@ -23,7 +23,8 @@
       ],
       "scripts": [
         "./assets/js/RongIMLib-2.2.5.min.js",
-        "../node_modules/social-share.js/dist/js/social-share.min.js"
+        "./assets/js/social-share.js",
+        "./assets/js/qrcode.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

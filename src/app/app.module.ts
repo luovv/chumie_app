@@ -30,7 +30,7 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { SearchFeedComponent } from './search/search-feed/search-feed.component';
 import { SearchUserComponent } from './search/search-user/search-user.component';
 import { SearchCircleComponent } from './search/search-circle/search-circle.component';
-import { ShareComponent } from './circle/share/share.component';
+//import { ShareComponent } from './circle/share/share.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,7 @@ import { ShareComponent } from './circle/share/share.component';
     SearchFeedComponent,
     SearchUserComponent,
     SearchCircleComponent,
-    ShareComponent
+    //ShareComponent
   ],
   imports: [
     BrowserModule,

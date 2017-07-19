@@ -87,7 +87,7 @@ export class MemberComponent implements OnInit {
 
   redirect(item) {
     console.log(item._id);
-    this.router.navigate(['/circle', item._id]);
+    this.router.navigate(['/circle', item._id]).then(() => location.reload());
   }
 
 }

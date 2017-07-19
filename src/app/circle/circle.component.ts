@@ -57,7 +57,7 @@ export class CircleComponent implements OnInit {
             this.methodText = this.notFreeDes;
             this.hidePayButtonClass = "";
           }
-          alert(this.channelName);
+          //alert(this.channelName);
           new run();
         },
         error => {
