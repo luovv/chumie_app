@@ -33,9 +33,9 @@
     </div>
     <div class="nav-tab" *ngIf="subNav">
         <ul class="block-tabs">
-            <li class="active"><a href="javascript:;">所有</a></li>
-          <li><a href="javascript:;">活动</a></li>
-            <li><a href="javascript:;">圈子</a></li>
+            <li class="active"><a (click)="navToAllTypes()" href="javascript:;">所有</a></li>
+          <li><a (click)="navToEvents()" href="javascript:;">活动</a></li>
+            <li><a (click)="navToCircles()" href="javascript:;">圈子</a></li>
         </ul>
     </div>
 </div>

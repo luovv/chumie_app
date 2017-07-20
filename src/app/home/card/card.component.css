@@ -43,6 +43,8 @@
     height: 40px;
 }
 .card-avatar img {
+    object-fit: cover;
+    object-position: center;
     max-width: 100%;
     min-height: 40px;
     border-radius: 50%;

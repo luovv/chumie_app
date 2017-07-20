@@ -6,8 +6,8 @@
     <div class="card" *ngFor="let i of data?.feed">
       <div class="card-top">
         <div class="card-user">
-          <a class="card-avatar" href="#"><img src="{{i._creator.userPhoto}}" width="30" height="30"></a>
-          <a class="card-username" href="#"><span>{{i._creator.username}}</span></a>
+          <a class="card-avatar" (click)="redirectMember(i)" href="javascript:;"><img src="{{i._creator.userPhoto}}" width="30" height="30"></a>
+          <a class="card-username" (click)="redirectMember(i)" href="javascript:;"><span>{{i._creator.username}}</span></a>
         </div>
         <div class="card-time">Post on {{ i.postDate | date }}</div>
         <div class="card-body">

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../../http.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, NavigationExtras} from "@angular/router";
 import {GlobalService} from "../../global.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -13,7 +14,7 @@ export class CardComponent implements OnInit {
   userInfo:any;
   data:any;
   imgHost:string;
-  constructor(private http: HttpService,private route: ActivatedRoute, private g:GlobalService) { }
+  constructor(private http: HttpService,private route: ActivatedRoute,private router: Router, private g:GlobalService) { }
 
   ngOnInit() {
     this.imgHost = this.http.imghost;
@@ -43,12 +44,13 @@ export class CardComponent implements OnInit {
 
           if(this.data.feed[i].cover.indexOf('http')==-1){
             this.data.feed[i].cover = this.http.imghost+this.data.feed[i].cover;
-            if(this.data.feed[i]._creator.userPhoto == ""){
-              this.data.feed[i]._creator.userPhoto = "user.png";
-            }
-            this.data.feed[i]._creator.userPhoto = this.http.imghost+this.data.feed[i]._creator.userPhoto;
 
           }
+
+          if(this.data.feed[i]._creator.userPhoto == ""){
+            this.data.feed[i]._creator.userPhoto = "user.png";
+          }
+          this.data.feed[i]._creator.userPhoto = this.http.imghost+this.data.feed[i]._creator.userPhoto;
         }
 
         console.log(data);
@@ -57,6 +59,12 @@ export class CardComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  redirectMember(item) {
+
+    this.router.navigate(['/member', item._creator._id]).then(() => location.reload());
+
   }
 
 }
