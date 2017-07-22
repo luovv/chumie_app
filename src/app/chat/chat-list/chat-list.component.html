@@ -2,12 +2,12 @@
   <div class="chat-list" (click)="clickChangeUser(i)" [style.background-color]="isActiveUser(i)">
     <div class="chat-list-left">
       <div class="chat-list-avatar">
-        <img src="{{i?.avatar}}">
+        <img src="{{i?.content.user.icon}}">
       </div>
     </div>
     <div class="chat-list-right">
-      <div class="chat-list-username">{{i?.username}}</div>
-      <div class="chat-list-message">{{i?.lastMessage}}</div>
+      <div class="chat-list-username">{{i?.content.user.name}}</div>
+      <div class="chat-list-message">{{i?.content.content}}</div>
     </div>
     <div class="clear"></div>
   </div>

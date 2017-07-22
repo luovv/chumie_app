@@ -12,6 +12,7 @@ export class GlobalService{
     isSigned: false,
     userImg: '',
     userId:'',
+    username:'',
     email:'',
     isVip:false,
     // tags:['all'],
@@ -39,13 +40,13 @@ export class GlobalService{
 
     this.http.getBasicInfo().subscribe(
       data => {
-        console.log(data);
         if(data.length==1){
           GlobalService.data.isSigned = false;
         }else {
           if (data.email) {
             GlobalService.data.isSigned = true;
             GlobalService.data.userImg = this.http.imghost + data.userPhoto;
+            GlobalService.data.username = data.username;
             GlobalService.data.email = data.email;
             GlobalService.data.isVip = data.certificate;
             GlobalService.data.noticeNumber = data.notifi_numberLeft;
@@ -56,7 +57,6 @@ export class GlobalService{
           } else {
             GlobalService.data.isSigned = false;
           }
-          console.log(data);
           this.dataChange.next(GlobalService.data);
         }
       },

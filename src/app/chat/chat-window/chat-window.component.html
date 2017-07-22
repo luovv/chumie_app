@@ -1,17 +1,17 @@
 <div class="chat-window-display">
   <div *ngFor="let i of messages">
-    <div class="chat-window-messages" *ngIf="!i.isMyInput">
+    <div class="chat-window-messages" *ngIf="i.messageDirection==2">
       <div class="chat-window-avatar left">
-        <img src="{{i.avatar}}">
+        <img src="{{i.content.user.icon}}">
       </div>
-      <div class="chat-window-text left white">{{i.message}}</div>
+      <div class="chat-window-text left white">{{i.content.content}}</div>
       <div class="clear"></div>
     </div>
-    <div class="chat-window-messages" *ngIf="i.isMyInput">
+    <div class="chat-window-messages" *ngIf="i.messageDirection==1">
       <div class="chat-window-avatar right">
-        <img src="{{i.avatar}}">
+        <img src="{{i.content.user.icon}}">
       </div>
-      <div class="chat-window-text right blue">{{i.message}}</div>
+      <div class="chat-window-text right blue">{{i.content.content}}</div>
       <div class="clear"></div>
     </div>
   </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
 import '../../assets/js/RongIMLib-2.2.5.min.js';
+import {GlobalService} from "../global.service";
 //import '../../assets/js/protobuf-2.1.5.min.js';
 declare var RongIMLib: any;
 //declare var protobuf: any;
@@ -20,42 +21,11 @@ export class ChatComponent implements OnInit {
   private instance:any;
 
   //todo: 这是左边list需要的信息，目前是hardcode的，你只要动态改变这个值就可以了
-  private userList = [
-    {
-      userId: '1111111',
-      avatar:'http://img02.tooopen.com/images/20150706/tooopen_sy_133095179948.jpg',
-      username:'小A',
-      lastMessage:'你好，这是一条测试信息1111',
-      datetime:'2017-7-7',
-      activeUser: true
-    },
-    {
-      userId: '2222222',
-      avatar:'http://img.taopic.com/uploads/allimg/110319/9127-1103191IJ493.jpg',
-      username:'小B',
-      lastMessage:'你好，这是一条测试信息2222',
-      datetime:'2017-7-8',
-      activeUser: false
-    }
-  ];
-
+  private userList = [];
+  private targetId='';
+  private myId = GlobalService.data.userId;
   //todo: 这是右边聊天框里的信息，目前是hardcode的，你只要动态改变这个值就可以了
-  private messages=[
-    {
-      userId: '1111111',
-      avatar: 'http://img02.tooopen.com/images/20150706/tooopen_sy_133095179948.jpg',
-      isMyInput: false,
-      datetime: '2017-7-8',
-      message: '你好，这是一条测试信息1111'
-    },
-    {
-      userId: '222222222',
-      avatar: 'http://img.taopic.com/uploads/allimg/110319/9127-1103191IJ493.jpg',
-      isMyInput: true,
-      datetime: '2017-7-8',
-      message: '你好，这是一条测试信息2222'
-    }
-  ];
+  private messages=[];
 
   constructor(private http: HttpService, private router: Router) {}
 
@@ -63,23 +33,78 @@ export class ChatComponent implements OnInit {
   // getRongApiKey(): void {
   //   this.rongApiKey = 'c9kqb3rdki5pj';
   // }
+  getUserList(){
+    let msgs = this.getMessages();
+    let id;
+    console.log(msgs);
+    this.userList=[];
+    if(msgs.length>0){
+      this.targetId = msgs[msgs.length - 1].content.user.id;
+    }else{
+      this.targetId='';
+    }
+    this.getCurrentMessages();
+    let userSet = new Set();
+    for(let i=msgs.length-1;i>=0;i--){
+      if(msgs[i].messageDirection==1){
+        id = msgs[i].targetId;
+      }else if(msgs[i].messageDirection==2){
+        id = msgs[i].senderUserId;
+      }
+      if (!userSet.has(id)) {
+        userSet.add(id);
+        this.userList.push(msgs[i]);
+      }
+    }
+  }
+  getCurrentMessages(){
+    let msgs = this.getMessages();
+    let id;
+    this.messages=[];
+    for(let i=0;i<msgs.length;i++){
+      if(msgs[i].messageDirection==1){
+        id = msgs[i].targetId;
+      }else if(msgs[i].messageDirection==2){
+        id = msgs[i].senderUserId;
+      }
+      if(id==this.targetId) {
+        this.messages.push(msgs[i]);
+      }
+    }
+  }
+
   changeUser(userId){
     //todo:用户点击左边list里的用户时触发的方法，你需要改变右边窗口里的信息
-    alert('userid: '+userId);
+    this.targetId = userId;
+    console.log(userId);
+    this.getCurrentMessages();
   }
   sendMessage(message){
-    //todo:发消息，push那里是添加到当前窗口里的示例，除了message都是hardcode的
-    alert('message: '+message);
-    this.messages.push({
-      userId: '1111111',
-      avatar: 'http://img.taopic.com/uploads/allimg/110319/9127-1103191IJ493.jpg',
-      isMyInput: true,
-      datetime: '2017-7-8',
-      message: message
+    let msg = new RongIMLib.TextMessage({
+      content:message,
+      user : {
+        "id" : this.myId,
+        "name": GlobalService.data.username,
+        "icon": GlobalService.data.userImg
+      },
+    });
+    let instance = RongIMLib.RongIMClient.getInstance();
+    console.log(GlobalService.data.userId);
+    console.log(this.targetId);
+    instance.sendMessage(RongIMLib.ConversationType.PRIVATE, this.targetId, msg, {
+      onSuccess: message => {
+        console.log(message);
+        this.setMessages(message,true);
+      },
+      onError: (errorCode, message) => {
+        console.log(message);
+        console.log(errorCode);
+      }
     });
   }
 
   ngOnInit() {
+    this.getUserList();
     // fetch from node.js backend to get RongCloud token
     this.rongTokenStr = localStorage.getItem('rongCloud_token');
     if(this.rongTokenStr==null) {
@@ -98,7 +123,7 @@ export class ChatComponent implements OnInit {
     }
   }
   // Init RongIMlib
-  initRongIM(): void {
+  initRongIM() {
     let RongIMClient = RongIMLib.RongIMClient;
     RongIMClient.init(this.rongApiKey);
     RongIMClient.setConnectionStatusListener({
@@ -118,56 +143,10 @@ export class ChatComponent implements OnInit {
     });
 
     RongIMClient.setOnReceiveMessageListener({
-      onReceived: function (message) {
-        console.log(message);
-        switch (message.messageType) {
-          case RongIMClient.MessageType.TextMessage:
-            // message.content.content => 消息内容
-            console.log('Get a new message: ' +  message.content.content);
-            break;
-          case RongIMClient.MessageType.VoiceMessage:
-            // 对声音进行预加载
-            // message.content.content 格式为 AMR 格式的 base64 码
-            break;
-          case RongIMClient.MessageType.ImageMessage:
-            // message.content.content => 图片缩略图 base64。
-            // message.content.imageUri => 原图 URL。
-            break;
-          case RongIMClient.MessageType.DiscussionNotificationMessage:
-            // message.content.extension => 讨论组中的人员。
-            break;
-          case RongIMClient.MessageType.LocationMessage:
-            // message.content.latiude => 纬度。
-            // message.content.longitude => 经度。
-            // message.content.content => 位置图片 base64。
-            break;
-          case RongIMClient.MessageType.RichContentMessage:
-            // message.content.content => 文本消息内容。
-            // message.content.imageUri => 图片 base64。
-            // message.content.url => 原图 URL。
-            break;
-          case RongIMClient.MessageType.InformationNotificationMessage:
-            // do something...
-            break;
-          case RongIMClient.MessageType.ContactNotificationMessage:
-            // do something...
-            break;
-          case RongIMClient.MessageType.ProfileNotificationMessage:
-            // do something...
-            break;
-          case RongIMClient.MessageType.CommandNotificationMessage:
-            // do something...
-            break;
-          case RongIMClient.MessageType.CommandMessage:
-            // do something...
-            break;
-          case RongIMClient.MessageType.UnknownMessage:
-            // do something...
-            break;
-          default:
-            // do something...
-            break;
-        }
+      onReceived: message => {
+        this.setMessages(message,false);
+        this.getUserList();
+        this.getCurrentMessages();
       }
     });
 
@@ -195,61 +174,33 @@ export class ChatComponent implements OnInit {
     });
 
     let sendText = function () {
-      let content = {
-        content:"Hello, This test message from Angular 2 web client! ",
-        user : {
-          "userId" : '56a196aa1c29a74f74ccdf91',
-          'name' : 'kdjdkk'
-        },
-        extra: {}
-      };
 
-      let msg: any = new RongIMLib.TextMessage(content);
-      let conversationtype = RongIMLib.ConversationType.PRIVATE; // 私聊
-      let targetId = '56a196aa1c29a74f74ccdf91';
-      let instance = RongIMClient.getInstance();
-
-      instance.sendMessage(conversationtype, targetId, msg, {
-        onSuccess: function (message) {
-          console.log("发送文字消息成功");
-
-        },
-        onError: function (errorCode, message) {
-          console.log('发送文字 failed!!!' + message);
-          console.log(errorCode);
-        }
-      });
     }
+  }
+  setMessages(message,isMyInput){
+    message.isMyInput=isMyInput;
 
-
+    let msgStr = localStorage.getItem(GlobalService.data.userId+"_msg");
+    let msgObj;
+    if(!msgStr){
+      msgObj=[];
+    }else{
+      msgObj = JSON.parse(msgStr);
+    }
+    msgObj.push(message);
+    localStorage.setItem(GlobalService.data.userId+"_msg",JSON.stringify(msgObj));
+    this.messages.push(message);
   }
 
-  // sendTextMessage(instance: any): void {
-  //   let content = {
-  //     content:"Hello, This test message from Angular 2 web client! ",
-  //     user : {
-  //       "userId" : "56a196aa1c29a74f74ccdf91",
-  //       "name" : "Michael"
-  //     },
-  //     extra:{
-  //       "name":"name",
-  //       "age" : 12
-  //     }
-  //   };
-  //
-  //   let msg = RongIMLib.TextMessage(content);
-  //   instance.sendMessage(RongIMLib.ConversationType.PRIVATE, content.user.userId, content.content, {
-  //     onSuccess: function (message) {
-  //       console.log("发送文字消息成功");
-  //
-  //     },
-  //     onError: function (errorCode,message) {
-  //      console.log('发送文字 failed!!!');
-  //     }
-  //   });
-  //
-  //
-  // }
+  getMessages(){
+    let msgs = localStorage.getItem(GlobalService.data.userId+"_msg");
+    if(!msgs){
+      msgs='[]';
+    }
+    console.log(JSON.parse(msgs));
+    return JSON.parse(msgs);
+  }
+
 }
 
 // [
