@@ -39,7 +39,12 @@ export class ChatComponent implements OnInit {
     console.log(msgs);
     this.userList=[];
     if(msgs.length>0){
-      this.targetId = msgs[msgs.length - 1].content.user.id;
+      let lastMsg = msgs[msgs.length - 1];
+      if(lastMsg.messageDirection==1){
+        this.targetId = lastMsg.targetId;
+      }else if(lastMsg.messageDirection==2){
+        this.targetId = lastMsg.senderUserId;
+      }
     }else{
       this.targetId='';
     }
@@ -48,8 +53,10 @@ export class ChatComponent implements OnInit {
     for(let i=msgs.length-1;i>=0;i--){
       if(msgs[i].messageDirection==1){
         id = msgs[i].targetId;
+        console.log(id);
       }else if(msgs[i].messageDirection==2){
         id = msgs[i].senderUserId;
+        console.log(id);
       }
       if (!userSet.has(id)) {
         userSet.add(id);
