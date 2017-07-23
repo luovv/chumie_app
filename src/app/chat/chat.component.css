@@ -4,6 +4,29 @@
   border: 1px solid #ddd;
   width: 1002px;
 }
+.chat-side{
+  float:left;
+  width:100px;
+  border-right:1px solid #ddd;
+  height: 100%;
+  background-color: #222;
+}
+.chat-side-img{
+  padding: 19px;
+}
+.chat-side-img img{
+  width: 60px;
+  height: 60px;
+}
+.chat-side-tab{
+  padding:7px;
+  color:#e1e1e1;
+  text-align: center;
+  cursor: pointer;
+}
+.chat-side-tab:hover{
+  color: #fff;
+}
 .chat-left{
   float: left;
   border-right:1px solid #ddd;
@@ -13,7 +36,14 @@
 }
 .chat-right{
   float: left;
-  width:750px;
+  width:650px;
+}
+
+.chat-main{
+  height: 100%;
+}
+.chat-friend{
+  height: 100%;
 }
 
 .clear{

@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Subject} from "rxjs";
+import {HttpService} from "../../http.service";
 
 @Component({
   selector: 'app-chat-list',
@@ -9,10 +10,11 @@ import {Subject} from "rxjs";
 export class ChatListComponent implements OnInit {
   @Input() userList = [];
   @Output() changeUser = new EventEmitter();
-  constructor() { }
+  private imghost:string;
+  constructor(private http:HttpService) { }
 
   ngOnInit() {
-
+    this.imghost=this.http.imghost;
   }
   isActiveUser(i){
     if(i.activeUser){
@@ -27,6 +29,6 @@ export class ChatListComponent implements OnInit {
       this.userList[i].activeUser=false;
     }
     i.activeUser=true;
-    this.changeUser.emit(i.content.user.id);
+    this.changeUser.emit(i.target.id);
   }
 }

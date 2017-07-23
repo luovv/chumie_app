@@ -7,6 +7,7 @@ import {Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angula
 })
 export class ChatWindowComponent implements OnInit{
   @Input() messages = [];
+  @Input() target = {};
   @Output() sendMessage = new EventEmitter();
   private myMessage="";
   constructor() { }
