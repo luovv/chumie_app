@@ -15,6 +15,14 @@
   border-bottom: 1px solid #eee;
   cursor: pointer;
 }
+.cfl-head{
+  height: 40px;
+  padding: 10px;
+  font-size: 14px;
+  color: #666;
+  background-color: #eee;
+  border-bottom: 1px solid#ddd;
+}
 .chat-list-left{
   float: left;
   width: 45px;
@@ -71,4 +79,11 @@
 .cf-icon img{
   width: 100px;
   height: 100px;
+}
+.cf-button{
+  padding:20px;
+  text-align: center;
+}
+.cf-button button{
+  margin: 10px;
 }

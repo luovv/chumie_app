@@ -52,8 +52,8 @@ export class ChatComponent implements OnInit {
       }
     }
   }
-  changeUser(userId){
-    this.target.id = userId;
+  changeUser(target){
+    this.target = target;
     this.updateMessageWindow();
   }
 

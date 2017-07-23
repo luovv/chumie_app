@@ -4,6 +4,14 @@
   padding: 10px;
   overflow: scroll;
 }
+.cw-head {
+  height: 40px;
+  padding: 10px;
+  font-style: 14px;
+  color:#666;
+  background-color: #eee;
+  border-bottom: 1px solid #ddd;
+}
 .chat-window-messages{
   min-height: 40px;
   margin: 10px;

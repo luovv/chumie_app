@@ -29,6 +29,6 @@ export class ChatListComponent implements OnInit {
       this.userList[i].activeUser=false;
     }
     i.activeUser=true;
-    this.changeUser.emit(i.target.id);
+    this.changeUser.emit(i.target);
   }
 }
