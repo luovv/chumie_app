@@ -30,6 +30,8 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { SearchFeedComponent } from './search/search-feed/search-feed.component';
 import { SearchUserComponent } from './search/search-user/search-user.component';
 import { SearchCircleComponent } from './search/search-circle/search-circle.component';
+import { TickettestComponent } from './tickettest/tickettest.component';
+import { MergeArrayPipe } from './pipe/merge-array.pipe';
 //import { ShareComponent } from './circle/share/share.component';
 
 @NgModule({
@@ -56,6 +58,8 @@ import { SearchCircleComponent } from './search/search-circle/search-circle.comp
     SearchFeedComponent,
     SearchUserComponent,
     SearchCircleComponent,
+    TickettestComponent,
+    MergeArrayPipe,
     //ShareComponent
   ],
   imports: [
@@ -71,7 +75,8 @@ import { SearchCircleComponent } from './search/search-circle/search-circle.comp
       { path: 'center/message', component: MessageComponent },
       { path: 'center/friend', component: FriendComponent },
       { path: 'create', component: CreateComponent },
-      { path: 'chat', component: ChatComponent }
+      { path: 'chat', component: ChatComponent },
+      { path: 'ticketTest', component: TickettestComponent }
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },
@@ -79,6 +84,6 @@ import { SearchCircleComponent } from './search/search-circle/search-circle.comp
     ])
   ],
   providers: [HttpService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

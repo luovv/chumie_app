@@ -1,0 +1,28 @@
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#buyTicket">买票</button>
+
+<!-- Modal -->
+<div id="buyTicket" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">选择票种</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div *ngFor="let name of ticketNames; let i = index">
+            <div class="ticket-card hvr-shutter-out-horizontal" data-dismiss="modal">
+              <div class="ticket-card-name">{{name}}</div>
+              <div class="ticket-card-price">${{ticketPrices[i]}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
