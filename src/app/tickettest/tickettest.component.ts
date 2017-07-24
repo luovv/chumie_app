@@ -45,26 +45,27 @@ export class TickettestComponent implements OnInit {
     );
   }
 
-  checkInArray(key) {
-    return this.selectedSeats.indexOf(key) > -1;
-  }
+  // checkInArray(key) {
+  //   return this.selectedSeats.indexOf(key) > -1;
+  // }
 
   clickTicket(key) {
     this.selectedSeatList = this.seats[key];
-    this.selectedSeats = [];
+    //this.selectedSeats = [];
   }
 
   buyTicket(key) {
-    if(this.selectedSeatList[key] == 0) {
-      var index = this.selectedSeats.indexOf(key);
-      if(index > -1) {
-        this.selectedSeats.splice(index,1);
-      }
-      else {
-        this.selectedSeats.push(key);
-      }
-      console.log(this.selectedSeats);
-    }
+    // if(this.selectedSeatList[key] == 0) {
+    //   var index = this.selectedSeats.indexOf(key);
+    //   if(index > -1) {
+    //     this.selectedSeats.splice(index,1);
+    //   }
+    //   else {
+    //     this.selectedSeats.push(key);
+    //   }
+    //   console.log(this.selectedSeats);
+    // }
+
   }
 
 }
