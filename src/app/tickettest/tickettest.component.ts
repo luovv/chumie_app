@@ -12,7 +12,8 @@ export class TickettestComponent implements OnInit {
   ticketPrices: number[];
   ticketQuantities: number[];
   seats: any[];
-  selectedSeat: number[];
+  selectedSeatList: number[];
+  selectedSeats: number[] = [];
 
   eventName = "event title";
 
@@ -33,7 +34,7 @@ export class TickettestComponent implements OnInit {
           this.ticketPrices = data.price;
           this.ticketQuantities = data.quantity;
           this.seats = data.seats;
-          this.selectedSeat = this.seats[0];
+          this.selectedSeatList = this.seats[0];
 
           console.log(this.seats);
           
@@ -44,8 +45,26 @@ export class TickettestComponent implements OnInit {
     );
   }
 
-  clickTicket(index) {
-    this.selectedSeat = this.seats[index];
+  checkInArray(key) {
+    return this.selectedSeats.indexOf(key) > -1;
+  }
+
+  clickTicket(key) {
+    this.selectedSeatList = this.seats[key];
+    this.selectedSeats = [];
+  }
+
+  buyTicket(key) {
+    if(this.selectedSeatList[key] == 0) {
+      var index = this.selectedSeats.indexOf(key);
+      if(index > -1) {
+        this.selectedSeats.splice(index,1);
+      }
+      else {
+        this.selectedSeats.push(key);
+      }
+      console.log(this.selectedSeats);
+    }
   }
 
 }

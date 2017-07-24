@@ -116,3 +116,7 @@
 .disable-seat {
     color: #e1e1e1;
 }
+
+.selected-seat {
+    background: #2098D1;
+}

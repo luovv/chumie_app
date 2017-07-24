@@ -37,7 +37,7 @@
       </div>
       <div class="modal-body">
         <div class="seat-row">
-            <div *ngFor="let seat of selectedSeat; let i = index" [ngClass]="{'disable-seat': seat!=0, 'hvr-shutter-out-horizontal': seat==0}" class="seat-card">
+            <div *ngFor="let seat of selectedSeatList; let i = index" (click)="buyTicket(i)" [ngClass]="{'disable-seat': seat!=0, 'hvr-shutter-out-horizontal': seat==0, 'selected-seat': checkInArray(i)}" class="seat-card">
               <div class="seat-index">{{i+1}}</div>
             </div>
         </div>
