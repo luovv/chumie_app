@@ -10,9 +10,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit{
   constructor(private g:GlobalService, private translate:TranslateService){
-    this.translate.addLangs(['en', 'cn']);
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
+    translate.setDefaultLang('en');
   }
   ngOnInit() {
     this.g.getUserInfo();
