@@ -14,7 +14,7 @@
                     <i *ngIf="this.userInfo.noticeNumber>0" class="mdi mdi-checkbox-blank-circle nav-message-circle"></i>
                   </a>
                 </li>
-                <li *ngIf="this.userInfo.isSigned"><a (click)="navToFriend()" href="javascript:;">好友</a></li>
+                <li *ngIf="this.userInfo.isSigned"><a (click)="navToFriend()" href="javascript:;">{{'friend'|translate}}</a></li>
                 <li *ngIf="this.userInfo.isSigned"><a (click)="navToCreate()" href="javascript:;">创建</a></li>
                 <li *ngIf="!this.userInfo.isSigned"><a (click)="openSignIn()" href="#">登录/注册</a></li>
                 <li *ngIf="this.userInfo.isSigned"><a (click)="logout()" href="#">登出</a></li>

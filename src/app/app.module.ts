@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {HttpModule, BrowserXhr} from '@angular/http';
+import {HttpModule, BrowserXhr, Http} from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
@@ -31,7 +31,12 @@ import { SearchFeedComponent } from './search/search-feed/search-feed.component'
 import { SearchUserComponent } from './search/search-user/search-user.component';
 import { SearchCircleComponent } from './search/search-circle/search-circle.component';
 import { ChatFriendComponent } from './chat/chat-friend/chat-friend.component';
+import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 //import { ShareComponent } from './circle/share/share.component';
+export function HttpLoaderFactory(http: Http) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -64,6 +69,13 @@ import { ChatFriendComponent } from './chat/chat-friend/chat-friend.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    TranslateModule.forRoot({
+      loader:{
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps:[Http]
+      }
+    }),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'member/:userId', component: MemberComponent },
@@ -74,10 +86,6 @@ import { ChatFriendComponent } from './chat/chat-friend/chat-friend.component';
       { path: 'center/friend', component: FriendComponent },
       { path: 'create', component: CreateComponent },
       { path: 'chat', component: ChatComponent }
-      // { path: 'home/:search', component: HomeComponent },
-      // { path: 'user/:userId/:albumId', component: UserComponent },
-      // { path: 'user/:userId', component: UserComponent },
-      // { path: 'create', component: CreateComponent }
     ])
   ],
   providers: [HttpService],
