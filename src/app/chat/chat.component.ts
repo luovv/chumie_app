@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
-import { Router } from '@angular/router';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import '../../assets/js/RongIMLib-2.2.5.min.js';
 import {GlobalService} from "../global.service";
 //import '../../assets/js/protobuf-2.1.5.min.js';
@@ -19,6 +19,7 @@ export class ChatComponent implements OnInit {
   private rongApiKey = 'c9kqb3rdki5pj';
   private rongTokenStr: any;
   private instance:any;
+  private isMobile = false;
 
   private isChat = true;
 
@@ -37,7 +38,7 @@ export class ChatComponent implements OnInit {
     icon: GlobalService.data.userImg
   };
 
-  constructor(private http: HttpService, private router: Router, private g:GlobalService) {}
+  constructor(private http: HttpService, private router: Router, private g:GlobalService, private route: ActivatedRoute) {}
 
   updateConvList(){
     let m = this.getMessages();
@@ -75,6 +76,43 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    let agent = window.navigator.userAgent;
+    this.route.params.forEach((params: Params) => {
+      this.target.id = params['userId'];
+      this.updateMessageWindow();
+      if(params['groupId']){
+        this.http.getActivityById(params['groupId']).subscribe(
+          data => {
+            console.log(data);
+            let info={
+              groupid:params['groupId'],
+              groupname:data.title
+            };
+            this.http.joinGroup(info).subscribe(
+              result => {
+                this.target={
+                  id:params['groupId'],
+                  name:data.title,
+                  icon:''
+                };
+                this.updateMessageWindow();
+              },
+              error => {
+                alert(error);
+              }
+            );
+          },
+          error => {
+            alert(error);
+          }
+        );
+      }
+    });
+
+    if(agent.toLowerCase().includes('iphone') || agent.toLowerCase().includes('android')){
+      this.isMobile = true
+    }
+
     this.g.dataChange.subscribe((value) => {
       this.my = {
         id:value.userId,

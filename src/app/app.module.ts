@@ -33,6 +33,7 @@ import { SearchCircleComponent } from './search/search-circle/search-circle.comp
 import { ChatFriendComponent } from './chat/chat-friend/chat-friend.component';
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { ChatMobileComponent } from './chat/chat-mobile/chat-mobile.component';
 //import { ShareComponent } from './circle/share/share.component';
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -63,6 +64,7 @@ export function HttpLoaderFactory(http: Http) {
     SearchUserComponent,
     SearchCircleComponent,
     ChatFriendComponent,
+    ChatMobileComponent,
     //ShareComponent
   ],
   imports: [
@@ -85,7 +87,9 @@ export function HttpLoaderFactory(http: Http) {
       { path: 'center/message', component: MessageComponent },
       { path: 'center/friend', component: FriendComponent },
       { path: 'create', component: CreateComponent },
-      { path: 'chat', component: ChatComponent }
+      { path: 'chat', component: ChatComponent },
+      { path: 'chat/:userId', component: ChatComponent },
+      { path: 'chat/group/:groupId', component: ChatComponent }
     ])
   ],
   providers: [HttpService],

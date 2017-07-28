@@ -1,11 +1,11 @@
-import {Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, AfterViewChecked} from '@angular/core';
 
 @Component({
   selector: 'app-chat-window',
   templateUrl: './chat-window.component.html',
   styleUrls: ['./chat-window.component.css']
 })
-export class ChatWindowComponent implements OnInit{
+export class ChatWindowComponent implements OnInit, AfterViewChecked{
   @Input() messages = [];
   @Input() target = {};
   @Output() sendMessage = new EventEmitter();
@@ -66,7 +66,13 @@ export class ChatWindowComponent implements OnInit{
     if(key.key=='Enter'){
       this.sendMessage.emit(this.myMessage);
       this.myMessage="";
+      this.scrollDown();
     }
   }
-
+  ngAfterViewChecked(){
+    this.scrollDown();
+  }
+  scrollDown(){
+    document.getElementById('window').scrollTop=document.getElementById('window').scrollHeight;
+  }
 }

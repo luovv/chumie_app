@@ -1,7 +1,7 @@
 <div class="cw-head">
   {{target?.name}}
 </div>
-<div class="chat-window-display">
+<div class="chat-window-display" id="window">
   <div class="chat-window-msgs">
     <div *ngFor="let i of messages">
       <div class="chat-window-messages" *ngIf="i.messageDirection==2">

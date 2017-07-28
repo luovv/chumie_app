@@ -328,7 +328,14 @@ uploadPost(data){
   }
 
   joinGroup(data){
-    var url = this.host + "/IM/join/group/" + data.groupid + "/groupname/" + data.groudpname;
+    var url = this.host + "/IM/group/join/groupid/" + data.groupid + "/groupname/" + data.groupname;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  getActivityById(data){
+    var url = this.host + "/Activity/acFullInfo/" + data;
     return this.http.get(url, this.options).map(
       res => res.json()
     );
