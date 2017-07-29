@@ -32,6 +32,7 @@ import { SearchUserComponent } from './search/search-user/search-user.component'
 import { SearchCircleComponent } from './search/search-circle/search-circle.component';
 import { TickettestComponent } from './tickettest/tickettest.component';
 import { MergeArrayPipe } from './pipe/merge-array.pipe';
+import { PostComponent } from './post/post.component';
 //import { ShareComponent } from './circle/share/share.component';
 
 @NgModule({
@@ -60,6 +61,7 @@ import { MergeArrayPipe } from './pipe/merge-array.pipe';
     SearchCircleComponent,
     TickettestComponent,
     MergeArrayPipe,
+    PostComponent,
     //ShareComponent
   ],
   imports: [
@@ -76,7 +78,8 @@ import { MergeArrayPipe } from './pipe/merge-array.pipe';
       { path: 'center/friend', component: FriendComponent },
       { path: 'create', component: CreateComponent },
       { path: 'chat', component: ChatComponent },
-      { path: 'ticketTest', component: TickettestComponent }
+      { path: 'ticketTest', component: TickettestComponent },
+      { path: 'post/:postId', component: PostComponent }
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },
