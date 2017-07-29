@@ -64,7 +64,9 @@ export class ChatComponent implements OnInit {
       user : this.my,
     });
     let instance = RongIMLib.RongIMClient.getInstance();
-    instance.sendMessage(RongIMLib.ConversationType.PRIVATE, this.target.id, msg, {
+    //instance.sendMessage(RongIMLib.ConversationType.PRIVATE, this.target.id, msg, {
+    //private chat
+    instance.sendMessage(RongIMLib.ConversationType.GROUP, this.target.id, msg, {
       onSuccess: message => {
         this.setMessages(message,this.target);
       },
