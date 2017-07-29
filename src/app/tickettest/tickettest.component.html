@@ -63,25 +63,21 @@
           <form>
             <div class="group">
               <label>
-                <span>用户名：</span>
-                <input name="user-name" class="field" placeholder="Username" />
-              </label>
-              <label>
                 <span>电子邮箱：</span>
-                <input name="user-email" class="field" placeholder="Email" type="email" />
+                <input (keyup)="onKeyEmail($event)" name="user-email" class="field" placeholder="Email" type="email" />
               </label>
             </div>
             <div class="group">
               <label>
                 <span>持卡人姓名:</span>
-                <input name="cardholder-name" class="field" placeholder="Cardholder Name" />
+                <input (keyup)="onKeyUsername($event)" name="cardholder-name" class="field" placeholder="Cardholder Name" />
               </label>
               <label>
                 <span>卡号:</span>
                 <div id="card-element" class="field"></div>
               </label>
             </div>
-            <button type="submit">支付 $25</button>
+            <button type="submit">确认支付</button>
             <div class="outcome">
               <div class="error" role="alert"></div>
               <div class="success">
