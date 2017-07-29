@@ -31,75 +31,75 @@
     <div class="member-row stat-element">关注&nbsp;&nbsp;<span class="stats-content">{{following}}</span></div>
   </div>
 
-  <div class ="member-row my-circle-row">
-    <div class = "circle-title">我创建的小密圈</div>
-    <div *ngFor="let item of myCircleData">
-      <div class="card" (click)="redirect(item)">
-        <a href="#.">
-          <div class="card-image">
-            <img src="{{photoServerUrl+item.cover}}"
-                 alt="Orange" />
-          </div>
-          <div class="card-body">
-            <div class="card-date">
-              <time>
-                {{item.postDate | displayDate}}
-              </time>
-            </div>
-            <div class="card-title">
-              <h3>
-                {{item.channelId}}
-              </h3>
-            </div>
-            <div class="card-exceprt">
-              <p>
-                {{item.des}}
-              </p>
-            </div>
-            <div class="card-date">
-              <time>
-                进圈价格: CA${{item.price}}
-              </time>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
+  <!--<div class ="member-row my-circle-row">-->
+    <!--<div class = "circle-title">我创建的小密圈</div>-->
+    <!--<div *ngFor="let item of myCircleData">-->
+      <!--<div class="card" (click)="redirect(item)">-->
+        <!--<a href="#.">-->
+          <!--<div class="card-image">-->
+            <!--<img src="{{photoServerUrl+item.cover}}"-->
+                 <!--alt="Orange" />-->
+          <!--</div>-->
+          <!--<div class="card-body">-->
+            <!--<div class="card-date">-->
+              <!--<time>-->
+                <!--{{item.postDate | displayDate}}-->
+              <!--</time>-->
+            <!--</div>-->
+            <!--<div class="card-title">-->
+              <!--<h3>-->
+                <!--{{item.channelId}}-->
+              <!--</h3>-->
+            <!--</div>-->
+            <!--<div class="card-exceprt">-->
+              <!--<p>-->
+                <!--{{item.des}}-->
+              <!--</p>-->
+            <!--</div>-->
+            <!--<div class="card-date">-->
+              <!--<time>-->
+                <!--进圈价格: CA${{item.price}}-->
+              <!--</time>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</a>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <div class = "member-row my-following-circle-row">
-    <div class = "circle-title">我关注的小密圈</div>
-    <div *ngFor="let item of myfollowingCircleData">
-      <div class="card" (click)="redirect(item)">
-        <a href="#.">
-          <div class="card-image">
-            <img src="{{photoServerUrl+item.cover}}"
-                 alt="Orange" />
-          </div>
-          <div class="card-body">
-            <div class="card-date">
-              <time>
-                {{item.postDate | displayDate}}
-              </time>
-            </div>
-            <div class="card-title">
-              <h3>
-                {{item.channelId}}
-              </h3>
-            </div>
-            <div class="card-exceprt">
-              <p>
-                {{item.des}}
-              </p>
-            </div>
-            <div class="card-date">
-              <time>
-                进圈价格: CA${{item.price}}
-              </time>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
+  <!--<div class = "member-row my-following-circle-row">-->
+    <!--<div class = "circle-title">我关注的小密圈</div>-->
+    <!--<div *ngFor="let item of myfollowingCircleData">-->
+      <!--<div class="card" (click)="redirect(item)">-->
+        <!--<a href="#.">-->
+          <!--<div class="card-image">-->
+            <!--<img src="{{photoServerUrl+item.cover}}"-->
+                 <!--alt="Orange" />-->
+          <!--</div>-->
+          <!--<div class="card-body">-->
+            <!--<div class="card-date">-->
+              <!--<time>-->
+                <!--{{item.postDate | displayDate}}-->
+              <!--</time>-->
+            <!--</div>-->
+            <!--<div class="card-title">-->
+              <!--<h3>-->
+                <!--{{item.channelId}}-->
+              <!--</h3>-->
+            <!--</div>-->
+            <!--<div class="card-exceprt">-->
+              <!--<p>-->
+                <!--{{item.des}}-->
+              <!--</p>-->
+            <!--</div>-->
+            <!--<div class="card-date">-->
+              <!--<time>-->
+                <!--进圈价格: CA${{item.price}}-->
+              <!--</time>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</a>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 </div>

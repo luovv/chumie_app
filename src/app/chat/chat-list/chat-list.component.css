@@ -1,3 +1,12 @@
+.cl-head{
+  height: 40px;
+  padding: 10px;
+  font-size: 14px;
+  color: #666;
+  background-color: #eee;
+  border-bottom: 1px solid#ddd;
+}
+
 .chat-list{
   padding:7px;
   height: 80px;

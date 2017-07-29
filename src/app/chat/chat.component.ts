@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
-import { Router } from '@angular/router';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import '../../assets/js/RongIMLib-2.2.5.min.js';
 import {GlobalService} from "../global.service";
 //import '../../assets/js/protobuf-2.1.5.min.js';
@@ -16,92 +16,59 @@ declare var RongIMLib: any;
 })
 export class ChatComponent implements OnInit {
 
-  private rongApiKey = 'c9kqb3rdki5pj'; // Get this from RongCloud web console, default 'pkfcgjstfbxv8'
+  private rongApiKey = 'c9kqb3rdki5pj';
   private rongTokenStr: any;
   private instance:any;
+  private isMobile = false;
 
-  //todo: 这是左边list需要的信息，目前是hardcode的，你只要动态改变这个值就可以了
+  private isChat = true;
+
   private userList = [];
-  private targetId='';
-  private myId = GlobalService.data.userId;
-  //todo: 这是右边聊天框里的信息，目前是hardcode的，你只要动态改变这个值就可以了
-  private messages=[];
+  private messages = [];
+  private friendList = [];
 
-  constructor(private http: HttpService, private router: Router) {}
+  private target = {
+    id:'',
+    name:'',
+    icon:''
+  };
+  private my = {
+    id: GlobalService.data.userId,
+    name: GlobalService.data.username,
+    icon: GlobalService.data.userImg
+  };
 
-  // Get RongCloud ApiKey
-  // getRongApiKey(): void {
-  //   this.rongApiKey = 'c9kqb3rdki5pj';
-  // }
-  getUserList(){
-    let msgs = this.getMessages();
-    let id;
-    console.log(msgs);
-    this.userList=[];
-    if(msgs.length>0){
-      let lastMsg = msgs[msgs.length - 1];
-      if(lastMsg.messageDirection==1){
-        this.targetId = lastMsg.targetId;
-      }else if(lastMsg.messageDirection==2){
-        this.targetId = lastMsg.senderUserId;
-      }
-    }else{
-      this.targetId='';
-    }
-    this.getCurrentMessages();
-    let userSet = new Set();
-    for(let i=msgs.length-1;i>=0;i--){
-      if(msgs[i].messageDirection==1){
-        id = msgs[i].targetId;
-        console.log(id);
-      }else if(msgs[i].messageDirection==2){
-        id = msgs[i].senderUserId;
-        console.log(id);
-      }
-      if (!userSet.has(id)) {
-        userSet.add(id);
-        this.userList.push(msgs[i]);
-      }
-    }
+  constructor(private http: HttpService, private router: Router, private g:GlobalService, private route: ActivatedRoute) {}
+
+  updateConvList(){
+    let m = this.getMessages();
+    this.userList = m.slice().reverse();
   }
-  getCurrentMessages(){
-    let msgs = this.getMessages();
-    let id;
+  updateMessageWindow(){
+    let m = this.getMessages();
     this.messages=[];
-    for(let i=0;i<msgs.length;i++){
-      if(msgs[i].messageDirection==1){
-        id = msgs[i].targetId;
-      }else if(msgs[i].messageDirection==2){
-        id = msgs[i].senderUserId;
-      }
-      if(id==this.targetId) {
-        this.messages.push(msgs[i]);
+    for(let i=0;i<m.length;i++){
+      if(m[i].target.id==this.target.id){
+        this.messages = m[i].messages;
       }
     }
   }
-
-  changeUser(userId){
-    //todo:用户点击左边list里的用户时触发的方法，你需要改变右边窗口里的信息
-    this.targetId = userId;
-    console.log(userId);
-    this.getCurrentMessages();
+  changeUser(target){
+    this.target = target;
+    this.updateMessageWindow();
   }
+
   sendMessage(message){
     let msg = new RongIMLib.TextMessage({
       content:message,
-      user : {
-        "id" : this.myId,
-        "name": GlobalService.data.username,
-        "icon": GlobalService.data.userImg
-      },
+      user : this.my,
     });
     let instance = RongIMLib.RongIMClient.getInstance();
-    console.log(GlobalService.data.userId);
-    console.log(this.targetId);
-    instance.sendMessage(RongIMLib.ConversationType.PRIVATE, this.targetId, msg, {
+    //instance.sendMessage(RongIMLib.ConversationType.PRIVATE, this.target.id, msg, {
+    //private chat
+    instance.sendMessage(RongIMLib.ConversationType.GROUP, this.target.id, msg, {
       onSuccess: message => {
-        console.log(message);
-        this.setMessages(message,true);
+        this.setMessages(message,this.target);
       },
       onError: (errorCode, message) => {
         console.log(message);
@@ -111,7 +78,52 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUserList();
+    let agent = window.navigator.userAgent;
+    this.route.params.forEach((params: Params) => {
+      this.target.id = params['userId'];
+      this.updateMessageWindow();
+      if(params['groupId']){
+        this.http.getActivityById(params['groupId']).subscribe(
+          data => {
+            console.log(data);
+            let info={
+              groupid:params['groupId'],
+              groupname:data.title
+            };
+            this.http.joinGroup(info).subscribe(
+              result => {
+                this.target={
+                  id:params['groupId'],
+                  name:data.title,
+                  icon:''
+                };
+                this.updateMessageWindow();
+              },
+              error => {
+                alert(error);
+              }
+            );
+          },
+          error => {
+            alert(error);
+          }
+        );
+      }
+    });
+
+    if(agent.toLowerCase().includes('iphone') || agent.toLowerCase().includes('android')){
+      this.isMobile = true
+    }
+
+    this.g.dataChange.subscribe((value) => {
+      this.my = {
+        id:value.userId,
+        name:value.username,
+        icon:value.userImg
+      };
+    });
+
+    this.updateConvList();
     // fetch from node.js backend to get RongCloud token
     this.rongTokenStr = localStorage.getItem('rongCloud_token');
     if(this.rongTokenStr==null) {
@@ -151,9 +163,7 @@ export class ChatComponent implements OnInit {
 
     RongIMClient.setOnReceiveMessageListener({
       onReceived: message => {
-        this.setMessages(message,false);
-        this.getUserList();
-        this.getCurrentMessages();
+        this.setMessages(message,message.content.user);
       }
     });
 
@@ -161,7 +171,6 @@ export class ChatComponent implements OnInit {
       onSuccess: userId => {
         console.log('connection success, userId:' + userId);
         this.instance = RongIMClient.getInstance();
-        sendText();
       },
       onTokenIncorrect: function() {
         console.log('token invilide');
@@ -180,23 +189,42 @@ export class ChatComponent implements OnInit {
       }
     });
 
-    let sendText = function () {
-
-    }
+    this.http.getFriends().subscribe(
+      data => {
+        this.friendList=data;
+        console.log(data);
+      },
+      error => {
+        alert(error);
+      }
+    );
   }
-  setMessages(message,isMyInput){
-    message.isMyInput=isMyInput;
-
+  setMessages(message,t){
     let msgStr = localStorage.getItem(GlobalService.data.userId+"_msg");
-    let msgObj;
-    if(!msgStr){
-      msgObj=[];
-    }else{
-      msgObj = JSON.parse(msgStr);
+    let msgObj=((!msgStr) ? []:JSON.parse(msgStr));
+    let flag=false;
+    for(let i=0;i<msgObj.length;i++){
+      if(msgObj[i].target.id==t.id){
+        if(message) {
+          msgObj[i].messages.push(message);
+        }
+        flag=true;
+      }
     }
-    msgObj.push(message);
+    if(message){
+      message=[message];
+    }else{
+      message=[];
+    }
+    if(!flag){
+      msgObj.push({
+        target:t,
+        messages:message
+      })
+    }
     localStorage.setItem(GlobalService.data.userId+"_msg",JSON.stringify(msgObj));
-    this.messages.push(message);
+    this.updateConvList();
+    this.updateMessageWindow();
   }
 
   getMessages(){
@@ -204,24 +232,24 @@ export class ChatComponent implements OnInit {
     if(!msgs){
       msgs='[]';
     }
-    console.log(JSON.parse(msgs));
     return JSON.parse(msgs);
   }
+  clickFriend(){
+    this.isChat = false;
+  }
 
+  clickChat(){
+    this.isChat = true;
+  }
+
+  triggerMessage(user){
+    let t = {
+      id:user._id,
+      name:user.username,
+      icon:user.userPhoto
+    };
+    this.target = t;
+    this.setMessages(null,t);
+    this.isChat = true;
+  }
 }
-
-// [
-//   {
-//     userId:string,
-//     username:string,
-//     avatar:string,
-//     messages: [
-//       {
-//         type:string,
-//         text:string,
-//         isRead:boolean,
-//         datetime:string
-//       }
-//     ]
-//   }
-// ]

@@ -4,6 +4,7 @@ import "../../assets/js/menubox.js";
 import {HttpService} from "../http.service";
 import {GlobalService} from "../global.service";
 import {Router} from "@angular/router";
+
 declare var $: any;
 
 @Component({
@@ -20,7 +21,7 @@ export class NavComponent implements OnInit {
 
     private searchText='';
 
-    constructor(private http: HttpService, private g:GlobalService, private router:Router) { }
+    constructor(private http: HttpService, private g:GlobalService, private router:Router) {}
 
     ngOnInit() {
 
