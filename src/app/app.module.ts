@@ -30,6 +30,10 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { SearchFeedComponent } from './search/search-feed/search-feed.component';
 import { SearchUserComponent } from './search/search-user/search-user.component';
 import { SearchCircleComponent } from './search/search-circle/search-circle.component';
+
+import { TickettestComponent } from './tickettest/tickettest.component';
+import { MergeArrayPipe } from './pipe/merge-array.pipe';
+import { PostComponent } from './post/post.component';
 import { ChatFriendComponent } from './chat/chat-friend/chat-friend.component';
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
@@ -63,6 +67,9 @@ export function HttpLoaderFactory(http: Http) {
     SearchFeedComponent,
     SearchUserComponent,
     SearchCircleComponent,
+    TickettestComponent,
+    MergeArrayPipe,
+    PostComponent,
     ChatFriendComponent,
     ChatMobileComponent,
     //ShareComponent
@@ -88,11 +95,13 @@ export function HttpLoaderFactory(http: Http) {
       { path: 'center/friend', component: FriendComponent },
       { path: 'create', component: CreateComponent },
       { path: 'chat', component: ChatComponent },
+      { path: 'ticketTest', component: TickettestComponent },
+      { path: 'post/:postId', component: PostComponent },
       { path: 'chat/:userId', component: ChatComponent },
       { path: 'chat/group/:groupId', component: ChatComponent }
     ])
   ],
   providers: [HttpService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
