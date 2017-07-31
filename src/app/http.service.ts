@@ -8,7 +8,7 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 @Injectable()
 export class HttpService {
     // private host = 'http://127.0.0.1:8000/';
-    host = 'http://www.chumi.co';
+    host = 'https://www.chumi.co';
     imghost = 'http://dhjjgq45wu4ho.cloudfront.net/';
     options = new RequestOptions({ withCredentials: true });
     constructor(private http:Http) { }
@@ -85,6 +85,20 @@ export class HttpService {
   getRecommendCircle() {
     var url = this.host+'/uploadCircle/RecommendCircles/';
     return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  getTicketInfo(data) {
+    var url = this.host+'/stripePlan/ticket/' + data;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  chargeCard(data) {
+    var url = this.host+'/stripePlan/chargeFromWeb';
+    return this.http.post(url, data, this.options).map(
       res => res.json()
     );
   }
@@ -328,7 +342,14 @@ uploadPost(data){
   }
 
   joinGroup(data){
-    var url = this.host + "/IM/join/group/" + data.groupid + "/groupname/" + data.groudpname;
+    var url = this.host + "/IM/group/join/groupid/" + data.groupid + "/groupname/" + data.groupname;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  getActivityById(data){
+    var url = this.host + "/Activity/acFullInfo/" + data;
     return this.http.get(url, this.options).map(
       res => res.json()
     );

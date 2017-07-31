@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {HttpModule, BrowserXhr} from '@angular/http';
+import {HttpModule, BrowserXhr, Http} from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
@@ -30,10 +30,20 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { SearchFeedComponent } from './search/search-feed/search-feed.component';
 import { SearchUserComponent } from './search/search-user/search-user.component';
 import { SearchCircleComponent } from './search/search-circle/search-circle.component';
+
+import { TickettestComponent } from './tickettest/tickettest.component';
+import { MergeArrayPipe } from './pipe/merge-array.pipe';
+import { PostComponent } from './post/post.component';
 import { ChatFriendComponent } from './chat/chat-friend/chat-friend.component';
 import { GroupComponent } from './group/group.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { ChatMobileComponent } from './chat/chat-mobile/chat-mobile.component';
 //import { ShareComponent } from './circle/share/share.component';
+export function HttpLoaderFactory(http: Http) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -59,15 +69,29 @@ import { InvoiceComponent } from './invoice/invoice.component';
     SearchFeedComponent,
     SearchUserComponent,
     SearchCircleComponent,
+    TickettestComponent,
+    MergeArrayPipe,
+    PostComponent,
     ChatFriendComponent,
+<<<<<<< HEAD
     GroupComponent,
     InvoiceComponent,
+=======
+    ChatMobileComponent,
+>>>>>>> b9c64ce615d302da94eff9d0b93ef875d2e3e78a
     //ShareComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    TranslateModule.forRoot({
+      loader:{
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps:[Http]
+      }
+    }),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'member/:userId', component: MemberComponent },
@@ -79,14 +103,18 @@ import { InvoiceComponent } from './invoice/invoice.component';
       { path: 'center/friend', component: FriendComponent },
       { path: 'create', component: CreateComponent },
       { path: 'chat', component: ChatComponent },
-      { path: 'invoice', component: InvoiceComponent }
+      { path: 'invoice', component: InvoiceComponent },
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },
       // { path: 'create', component: CreateComponent }
+      { path: 'ticketTest', component: TickettestComponent },
+      { path: 'post/:postId', component: PostComponent },
+      { path: 'chat/:userId', component: ChatComponent },
+      { path: 'chat/group/:groupId', component: ChatComponent }
     ])
   ],
   providers: [HttpService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
