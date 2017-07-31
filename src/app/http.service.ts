@@ -8,7 +8,7 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 @Injectable()
 export class HttpService {
     // private host = 'http://127.0.0.1:8000/';
-    host = 'http://www.chumi.co';
+    host = 'https://www.chumi.co';
     imghost = 'http://dhjjgq45wu4ho.cloudfront.net/';
     options = new RequestOptions({ withCredentials: true });
     constructor(private http:Http) { }

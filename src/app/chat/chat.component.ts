@@ -80,6 +80,8 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     let agent = window.navigator.userAgent;
     this.route.params.forEach((params: Params) => {
+      alert(params['userId']);
+      alert(params['groupId']);
       this.target.id = params['userId'];
       this.updateMessageWindow();
       if(params['groupId']){
