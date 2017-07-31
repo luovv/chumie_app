@@ -1,0 +1,73 @@
+<div class="container" style="background-color: #558c89; max-width:800px;">
+  <div class="row" style="background-color: #558c89">
+
+    <div class="col-xs-12 col-md-12 col-sm-12">
+      <h3 style="color: whitesmoke" >{{message1}}</h3>
+      <h3 style="color: whitesmoke" >{{message2}}</h3>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="card col-xs-12 col-md-12 col-sm-12  text-center">
+      <h5 style="color: whitesmoke">{{num}}  attendants are waiting for you</h5>
+    </div>
+
+    <div class="text-center">
+      <a href="#" class="btn btn-success btn-lg">Join</a>
+      <br/>
+      <br/>
+    </div>
+
+    <div class="invoice-box" style="background-color: whitesmoke">
+      <table cellpadding="0" cellspacing="0">
+        <tr class="heading">
+          <td>
+            Invoice Date
+          </td>
+
+          <td>
+            Due Date
+          </td>
+        </tr>
+
+        <tr class="details">
+          <td>
+            {{date| date: 'dd-MM-yyyy'}}
+          </td>
+
+          <td>
+            {{date| date: 'dd-MM-yyyy'}}
+          </td>
+        </tr>
+
+      </table>
+      <table cellpadding="0" cellspacing="0">
+        <tr class="heading">
+          <td>
+            Item
+          </td>
+
+          <td>
+            Total Price
+          </td>
+        </tr>
+
+        <tr class="details">
+          <td>
+            {{title}}
+          </td>
+
+          <td>
+            {{amount_due| currency: 'CAD'}}
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+  </div>
+
+</div>

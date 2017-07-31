@@ -31,6 +31,8 @@ import { SearchFeedComponent } from './search/search-feed/search-feed.component'
 import { SearchUserComponent } from './search/search-user/search-user.component';
 import { SearchCircleComponent } from './search/search-circle/search-circle.component';
 import { ChatFriendComponent } from './chat/chat-friend/chat-friend.component';
+import { GroupComponent } from './group/group.component';
+import { InvoiceComponent } from './invoice/invoice.component';
 //import { ShareComponent } from './circle/share/share.component';
 
 @NgModule({
@@ -58,6 +60,8 @@ import { ChatFriendComponent } from './chat/chat-friend/chat-friend.component';
     SearchUserComponent,
     SearchCircleComponent,
     ChatFriendComponent,
+    GroupComponent,
+    InvoiceComponent,
     //ShareComponent
   ],
   imports: [
@@ -67,13 +71,15 @@ import { ChatFriendComponent } from './chat/chat-friend/chat-friend.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'member/:userId', component: MemberComponent },
+      { path: 'group/:groupId', component: GroupComponent },
       { path: 'chat', component: ChatComponent},
       { path: 'circle/:circleId', component: CircleComponent},
       { path: 'search/:searchText', component: SearchComponent },
       { path: 'center/message', component: MessageComponent },
       { path: 'center/friend', component: FriendComponent },
       { path: 'create', component: CreateComponent },
-      { path: 'chat', component: ChatComponent }
+      { path: 'chat', component: ChatComponent },
+      { path: 'invoice', component: InvoiceComponent }
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },

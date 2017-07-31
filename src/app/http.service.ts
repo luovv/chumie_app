@@ -425,7 +425,22 @@ uploadPost(data){
   }
 
 
-  //
+  // Fetch Group Info by id
+  getGroupInfo(groupId) {
+    var url = this.host + "/IM/group/user/query/groupAllInfo/"+groupId;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  // Fetch Invoice by id
+  getInvoice(invoiceId) {
+    var url = this.host + '/stripePlan/getInvoice/' + invoiceId;
+    console.log(url);
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
 
 
     //
