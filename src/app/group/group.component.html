@@ -23,7 +23,7 @@
       <li *ngFor="let user of groupUsers; let i = index" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="list-style-type: none;">
 
         <div class="row"><img src="{{http.imghost}}{{user.avatarImg}}"
-                              onError="this.src='./assets/images/errorImg.jpg';" style="width: 85%; heitht: auto" ></div>
+                              onError="this.src='./assets/img/errorImg.jpg';" style="width: 85%; heitht: " ></div>
         <div class="row"><span>{{user.userName}}</span></div>
       </li>
     </ul>

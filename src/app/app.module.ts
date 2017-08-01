@@ -73,12 +73,9 @@ export function HttpLoaderFactory(http: Http) {
     MergeArrayPipe,
     PostComponent,
     ChatFriendComponent,
-<<<<<<< HEAD
     GroupComponent,
     InvoiceComponent,
-=======
-    ChatMobileComponent,
->>>>>>> b9c64ce615d302da94eff9d0b93ef875d2e3e78a
+    ChatMobileComponent
     //ShareComponent
   ],
   imports: [

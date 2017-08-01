@@ -17,6 +17,7 @@ export class InvoiceComponent implements OnInit {
   private amount_due: number;
   private payTo: string;
   private title: string;
+  private groupId: string;
 
   private num: number;
   // const message on top
@@ -34,6 +35,7 @@ export class InvoiceComponent implements OnInit {
         this.title = data.invoice.title;
         this.amount_due = data.invoice.amount_due;
         this.num = data.num;
+        this.groupId = data.invoice._id;
         console.log(this.num);
         console.log(this.payer);
       },
