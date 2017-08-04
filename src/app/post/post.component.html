@@ -1,56 +1,50 @@
+<app-nav hideNavTab = true></app-nav>
+
 <div class="main-container">
   <div class="card-content no-tab">
     <div class="container">
       <div class="activity-head">
         <div class="title-head">
-          <h1>强对流天气预警难在哪儿</h1>
+          <h1>{{title}}</h1>
         </div>
         <div class="author">
-          <a class="author-img" href="#"><img src="img/avatar.png"></a>
+          <a class="author-img" href="#"><img src="{{creatorIcon}}"></a>
           <div class="author-info">
-            <span class="authorname">JAMES DOE</span>
+            <span class="authorname">{{creatorName}}</span>
             <a href="javascript:;" class="btn-follow"><i class="mdi mdi-plus"></i> 关注</a>
             <a href="javascript:;" class="btn-follow following"><i class="mdi mdi-check"></i> 已关注</a>
             <div class="authormeta">
-              <span class="publish-time">时间 2017.07.05</span>
-              <span class="views-count">浏览 502</span>
-              <span class="comments-count">评论 23</span>
-              <span class="likes-count">喜欢 123</span>
+              <span class="publish-time">时间 {{postDate | displayDate}}</span>
+              <span class="views-count">浏览 {{views}}</span>
+              <span class="comments-count">评论 {{commentsCount}}</span>
+              <span class="likes-count">喜欢 {{liksCount}}</span>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="event-start-time">
+        <h1> 活动开始时间：{{eventStartTime | displayDate}}  </h1>
+      </div>
+
+      <div class="event-start-time">
+        <h1> {{priceText}} </h1>
+      </div>
+
       <div class="activity-body">
-        <a class="img-post" href="javascript:;"><img src="img/tourism-1.jpg"></a>
+        <a class="img-post" href="javascript:;"><img src="{{cover}}"></a>
         <div class="article-post">
-          <p>国家气象中心强天气预报中心主任张小玲解释道，冰雹、雷雨大风、龙卷风等都属于强对流天气，这种天气普遍持续时间比较短，降水强度大，“例如下得急、雨点儿特别大的暴雨天气。”</p>
-          <p>为什么一到夏天，强对流天气就强势登场？“从强对流天气的命名就能看出，它需要的能量比一般天气更强。温度越高、湿度越大，空气中所包含的能量就越大，因此夏季发生强对流天气的概率更高。”张小玲表示，虽然从全国来看，夏季是强对流天气最高发、最集中的时段，但并不意味着我国每个地区都会在夏季迎来强对流的高峰期。以华南地区为例，三四月份经常下冰雹，但到盛夏反而少了。“强对流天气一定要有充足的能量才能发生。但并不是温度升高就一定发生，它更需要冷暖空气剧烈交汇。相当于两军作战，双方势均力敌、打得焦灼，战况才会激烈。”</p>
-          <p>强对流天气不仅能量大，影响也大。对流性、突发性的短时间强降水，可能造成城市内涝，引发山洪等地质灾害；下击暴流（强下沉气流）会造成向下的大风，影响航空安全；大风会造成高空坠物，对公众和高空作业者造成威胁；冰雹会砸坏屋顶，还会造成农作物减产、绝收；强雷电可能直接致人伤亡，还会破坏电力系统。“一旦出现强对流天气，要及时预警，赶紧防御躲避，保护生命财产安全。”张小玲说。</p>
-          <p><strong>强对流天气不容易被发现。即便发出预警，有时也很难打出足够的提前量</strong></p>
-          <p>张小玲表示，强对流天气的预警是国际上难度最大的预报难题，比其他天气的预报准确率低。这与其自身特点有关，强对流天气往往非常剧烈，时间和空间的尺度都很小——时间短，一两个小时内就发生、发展、结束；区域小，以北京市为例，可能海淀区在下冰雹刮大风，而朝阳区就没事。正因为发生快、个头小，所以强对流天气不容易被发现。即便发出预警，有时也很难打出足够的提前量，甚至提前半个小时预警已实属不易。</p>
+          <p>{{content}}</p>
         </div>
         <div class="img-box clearfix">
-          <div class="col-md-3">
-            <a href="#"><img src="img/tourism-3.jpg"></a>
-          </div>
-          <div class="col-md-3">
-            <a href="#"><img src="img/tourism-4.jpg"></a>
-          </div>
-          <div class="col-md-3">
-            <a href="#"><img src="img/tourism-5.jpg"></a>
-          </div>
-          <div class="col-md-3">
-            <a href="#"><img src="img/tourism-6.jpg"></a>
+
+          <div *ngFor="let image of images" class="col-md-3">
+            <a href="#"><img src="{{photoServerUrl + image}}"></a>
           </div>
         </div>
         <div class="tags clearfix">
           <ul>
-            <li><a href="#">dota2</a></li>
-            <li><a href="#">dota2</a></li>
-            <li><a href="#">dota2</a></li>
-            <li><a href="#">dota2</a></li>
-            <li><a href="#">dota2</a></li>
-            <li><a href="#">dota2</a></li>
+            <li *ngFor="let tag of tags"><a href="#">{{tag}}</a></li>
           </ul>
         </div>
       </div>
@@ -66,40 +60,56 @@
       </div>
       <div class="signedup">
         <div class="setop">
-          <span>30人报名</span>
+          <!--span>30人报名</span-->
         </div>
         <div class="clearfix">
-          <ul class="people-list">
-            <li>
-              <a href="#"><img src="img/avatar.png"></a>
-            </li>
-            <li>
-              <a href="#"><img src="img/avatar.png"></a>
-            </li>
-            <li>
-              <a href="#"><img src="img/avatar.png"></a>
-            </li>
-            <li>
-              <a href="#"><img src="img/avatar.png"></a>
-            </li>
-            <li>
-              <a href="#"><img src="img/avatar.png"></a>
-            </li>
-            <li>
-              <a href="#"><img src="img/avatar.png"></a>
-            </li>
-            <li>
-              <a href="#"><img src="img/avatar.png"></a>
-            </li>
-            <li>
-              <a href="#"><img src="img/more.png"></a>
-            </li>
-          </ul>
-          <div class="signup">
-            <a href="#" data-toggle="modal" data-target="#buyTicket">
+          
+          <div class="signup" *ngIf="!isFree">
+            <a href="#" data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()">
               <span>立即报名</span>
               <i class="mdi mdi-arrow-right"></i>
             </a>
+          </div>
+
+          <div class="signup" *ngIf="isFree">
+            <a href="#" data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()">
+              <span>免费参加</span>
+              <i class="mdi mdi-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- Modal -->
+          <div id="joinFree" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">填写个人信息</h4>
+                </div>
+                <div class="modal-body modal-backgroud">
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label for="inputEmailFree" class="control-label">电子邮箱：</label>
+                      <div class="">
+                        <input type="email" (keyup)="onKeyEmail($event)" class="form-control" id="inputEmailFree" placeholder="Email">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputUsernameFree" class="control-label">用户名: </label>
+                      <div class="">
+                        <input type="text" (keyup)="onKeyUsername($event)" class="form-control" id="inputUsernameFree" placeholder="Username">
+                      </div>
+                    </div>
+                    
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-default" (click)="submitJoinFree()">提交</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Modal -->
@@ -196,30 +206,33 @@
             </div>
           </div>
 
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="comment-list">
         <div class="setop">
-          <span>40条评论</span>
+          <span>{{commentsCount}}条评论</span>
         </div>
         <div class="comment-body">
           <form class="reviews">
-            <a class="comment-avatar" href="#"><img src="img/avatar.png"></a>
+            <!--a class="comment-avatar" href="#"><img src="img/avatar.png"></a-->
             <textarea placeholder="请写下你的评论..."></textarea>
             <div class="send-group">
               <a class="cancel-btn" href="#">取消</a>
               <a class="send-btn" href="#">发送</a>
             </div>
           </form>
-          <div class="comments">
+          <div class="comments" *ngFor="let comment of comments">
+            <a class="comment-avatar" href="#"><img src="{{photoServerUrl + comment.photo}}"></a>
+            <div class="comment-details">
+              <a href="#" class="co-hd">{{comment.Name}}</a>
+              <div class="co-bd">{{comment.content}}</div>
+              <div class="co-ft">
+                <span>{{comment.postDate | displayDate}}</span>
+                <button><i class="mdi mdi-message-outline"></i> 回复</button>
+              </div>
+            </div>
+          </div>
+          <!--div class="comments">
             <a class="comment-avatar" href="#"><img src="img/avatar.png"></a>
             <div class="comment-details">
               <a href="#" class="co-hd">七个总比八哥好</a>
@@ -341,7 +354,7 @@
             <button class="page-btn">10</button>
             <button class="page-next page-btn">下一页</button>
           </div>
-        </div>
+        </div-->
       </div>
     </div>
   </div>
