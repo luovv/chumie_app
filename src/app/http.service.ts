@@ -103,6 +103,28 @@ export class HttpService {
     );
   }
 
+  getEventInfo(data) {
+    var url = this.host+'/Activity/acFullInfo/' + data;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  getComments(data) {
+    var url = this.host+'/Activity/getComments/' + data;
+    return this.http.get(url, this.options).map(
+      res => res.json()
+    );
+  }
+
+  joinEventFree(data) {
+    var url = this.host+'/stripePlan/registerEventsFromWeb';
+    return this.http.post(url, data, this.options).map(
+      res => res.json()
+    );
+  }
+
+
   //导航栏上用的-------------------------------
 
   //通知 有新消息需要加红点,怎么判断新消息,就是把返回的array中的第一个_id存本地起来,不一样就红点.

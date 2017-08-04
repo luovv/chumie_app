@@ -11,7 +11,28 @@ declare var Stripe: any;
 })
 export class PostComponent implements OnInit {
 
+  //events
+  content: string;
+  postDate: string;
+  title: string;
+  creatorName: any;
+  creatorIcon: string;
+  cover: string;
+  views: number;
+  images: string[];
+  tags: string[];
+  comments: any[];
+  commentsCount: number;
+  liksCount: number;
+  eventStartTime: string;
+  price: number;
+  priceText: string;
+  isFree: boolean;
+
+  //payment
+
   form = {username:'', group:'', price:-1, orginalPrice:-1, seatIndex:-1, stripeEmail:'', stripeToken: '', Systemlanguage: ''};
+  freeForm = {stripeEmail: '', Systemlanguage: '', username: ''};
 
   ticketNames: string[];
   ticketPrices: number[];
@@ -27,7 +48,9 @@ export class PostComponent implements OnInit {
 
   eventId: string;
 
-  eventName = "event title";
+  photoServerUrl = "http://dhjjgq45wu4ho.cloudfront.net/";
+
+  //eventName = "event title";
 
   constructor(private http: HttpService, private route: ActivatedRoute) { }
 
@@ -36,6 +59,52 @@ export class PostComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.eventId = params['postId'];
     });
+
+    this.http.getEventInfo(this.eventId).subscribe(
+        data => {
+          this.content = data.content;
+          this.postDate = data.postDate;
+          this.title = data.title;
+          this.creatorIcon = this.photoServerUrl + data._creator.userPhoto;
+          this.cover = this.photoServerUrl + data.cover;
+          this.views = data.viewers;
+
+          this.creatorName = data._creator.username;
+          this.images = data.image;
+          this.tags = data.tags;
+
+          this.liksCount = data.likes.length;
+          this.eventStartTime = data.DeadTime;
+          this.price = data.price;
+
+          if (this.price > 0) {
+            this.priceText = "参与价格： $" + this.price;
+            this.isFree = false;
+          } else {
+            this.priceText = "本活动免费";
+            this.isFree = true;
+          }
+
+          console.log(data);
+          console.log(this.images);
+          
+        },
+        error => {
+            alert(error);
+        }
+    );
+
+    this.http.getComments(this.eventId).subscribe(
+        data => {
+          this.comments = data;
+          this.commentsCount = data.length;
+          console.log(data);
+          
+        },
+        error => {
+            alert(error);
+        }
+    );
 
     if(navigator.language == "zh-CN") {
       this.userLanguage = "Chinese";
@@ -124,21 +193,7 @@ export class PostComponent implements OnInit {
       stripe.createToken(card, extraDetails).then(setOutcome);
     });
 
-    this.http.getTicketInfo(this.eventId).subscribe(
-        data => {
-          this.ticketNames = data.name;
-          this.ticketPrices = data.price;
-          this.ticketQuantities = data.quantity;
-          this.seats = data.seats;
-          this.selectedSeatList = this.seats[0];
 
-          console.log(this.ticketPrices);
-          
-        },
-        error => {
-            alert(error);
-        }
-    );
   }
 
   clickTicket(key) {
@@ -160,6 +215,46 @@ export class PostComponent implements OnInit {
 
   onKeyUsername(event: any) { // without type info
     this.username = event.target.value;
+  }
+
+  joinEvent() {
+    this.http.getTicketInfo(this.eventId).subscribe(
+        data => {
+          this.ticketNames = data.name;
+          this.ticketPrices = data.price;
+          this.ticketQuantities = data.quantity;
+          this.seats = data.seats;
+          this.selectedSeatList = this.seats[0];
+
+          console.log(this.ticketPrices);
+          
+        },
+        error => {
+            alert(error);
+        }
+      );
+  }
+
+  joinEventFree(){
+
+  }
+
+  submitJoinFree() {
+    this.freeForm['username'] = this.username;
+    this.freeForm['stripeEmail'] = this.userEmail;
+    this.freeForm['Systemlanguage'] = this.userLanguage;
+
+    console.log(this.freeForm);
+
+    this.http.joinEventFree(this.freeForm).subscribe(
+            data => {
+                console.log(data);
+                alert(data);
+            },
+            error => {
+                alert(error);
+            }
+        );
   }
 
 }
