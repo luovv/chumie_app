@@ -101,7 +101,6 @@ export function HttpLoaderFactory(http: Http) {
       { path: 'center/message', component: MessageComponent },
       { path: 'center/friend', component: FriendComponent },
       { path: 'create', component: CreateComponent },
-      { path: 'chat', component: ChatComponent },
       { path: 'invoice', component: InvoiceComponent },
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
@@ -110,7 +109,7 @@ export function HttpLoaderFactory(http: Http) {
       { path: 'ticketTest', component: TickettestComponent },
       { path: 'post/:postId', component: PostComponent },
       { path: 'chat/:userId', component: ChatComponent },
-      { path: 'chat/group/:groupId', component: ChatComponent },
+      { path: 'chat/group/:groupId', component: ChatWindowComponent },
       { path: 'groupchat', component: GroupchatComponent}
     ])
   ],

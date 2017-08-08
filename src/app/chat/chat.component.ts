@@ -58,7 +58,27 @@ export class ChatComponent implements OnInit {
     this.updateMessageWindow();
   }
 
-  sendMessage(message){
+  // testSendGroupMessage(message) {
+  //   // set content
+  //   let msg = new RongIMLib.TextMessage({
+  //     content:message,
+  //     user : this.my,
+  //   });
+  //
+  //   let instance = RongIMLib.RongIMClient.getInstance();
+  //   instance.sendMessage(3,'596c2ed653db18ff704783b7', msg, {
+  //     onSuccess: message => {
+  //       console.log('Send message on group'+ message.content);
+  //     },
+  //     onError: (errorCode, message) => {
+  //       console.log('send group message failed!');
+  //       console.log(errorCode);
+  //     }
+  //
+  //   });
+  // }
+
+  sendMessage(message) {
     let msg = new RongIMLib.TextMessage({
       content:message,
       user : this.my,
@@ -68,13 +88,23 @@ export class ChatComponent implements OnInit {
     //private chat
     instance.sendMessage(RongIMLib.ConversationType.GROUP, this.target.id, msg, {
       onSuccess: message => {
-        this.setMessages(message,this.target);
+        this.setMessages(message, this.target);
+        console.log(message.content);
       },
       onError: (errorCode, message) => {
-        console.log(message);
+        console.log(message.content);
         console.log(errorCode);
       }
     });
+    // instance.sendMessage(RongIMLib.ConversationType.GROUP, "596c2ed653db18ff704783b7", msg, {
+    //   onSuccess: message => {
+    //     this.setMessages(message,"596c2ed653db18ff704783b7");
+    //   },
+    //   onError: (errorCode, message) => {
+    //     console.log(message);
+    //     console.log(errorCode);
+    //   }
+    // });
   }
 
   ngOnInit() {
@@ -103,6 +133,7 @@ export class ChatComponent implements OnInit {
               },
               error => {
                 alert(error);
+                console.log('Add to group failed'+error);
               }
             );
           },
@@ -114,7 +145,7 @@ export class ChatComponent implements OnInit {
     });
 
     if(agent.toLowerCase().includes('iphone') || agent.toLowerCase().includes('android')){
-      this.isMobile = true
+      this.isMobile = true;
     }
 
     this.g.dataChange.subscribe((value) => {
@@ -142,6 +173,9 @@ export class ChatComponent implements OnInit {
     }else{
       this.initRongIM();
     }
+
+
+
   }
   // Init RongIMlib
   initRongIM() {
@@ -173,6 +207,19 @@ export class ChatComponent implements OnInit {
       onSuccess: userId => {
         console.log('connection success, userId:' + userId);
         this.instance = RongIMClient.getInstance();
+        // this.instance.sendMessage(3,'58d485f570fe95565487d9e0', new RongIMLib.TextMessage({
+        //   content:"Angular says hi",
+        //   user : this.my,
+        // }), {
+        //   onSuccess: message => {
+        //     console.log('Send message on group success!');
+        //   },
+        //   onError: (errorCode, message) => {
+        //     console.log('send group message failed!');
+        //     console.log(errorCode);
+        //   }
+        //
+        // });
       },
       onTokenIncorrect: function() {
         console.log('token invilide');
@@ -206,7 +253,7 @@ export class ChatComponent implements OnInit {
     let msgObj=((!msgStr) ? []:JSON.parse(msgStr));
     let flag=false;
     for(let i=0;i<msgObj.length;i++){
-      if(msgObj[i].target.id==t.id){
+      if(msgObj[i].target.id){
         if(message) {
           msgObj[i].messages.push(message);
         }
