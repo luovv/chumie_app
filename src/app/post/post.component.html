@@ -8,11 +8,11 @@
           <h1>{{title}}</h1>
         </div>
         <div class="author">
-          <a class="author-img" href="#"><img src="{{creatorIcon}}"></a>
+          <a class="author-img"><img src="{{creatorIcon}}" onError="this.src='./assets/img/group01.png'"/></a>
           <div class="author-info">
             <span class="authorname">{{creatorName}}</span>
-            <a href="javascript:;" class="btn-follow"><i class="mdi mdi-plus"></i> 关注</a>
-            <a href="javascript:;" class="btn-follow following"><i class="mdi mdi-check"></i> 已关注</a>
+            <!--a href="javascript:;" class="btn-follow"><i class="mdi mdi-plus"></i> 关注</a>
+            <a href="javascript:;" class="btn-follow following"><i class="mdi mdi-check"></i> 已关注</a-->
             <div class="authormeta">
               <span class="publish-time">时间 {{postDate | displayDate}}</span>
               <span class="views-count">浏览 {{views}}</span>
@@ -32,19 +32,19 @@
       </div>
 
       <div class="activity-body">
-        <a class="img-post" href="javascript:;"><img src="{{cover}}"></a>
+        <a class="img-post"><img src="{{cover}}"/></a>
         <div class="article-post">
           <p>{{content}}</p>
         </div>
         <div class="img-box clearfix">
 
-          <div *ngFor="let image of images" class="col-md-3">
-            <a href="#"><img src="{{photoServerUrl + image}}"></a>
+          <div *ngFor="let image of images" class="sub-images">
+            <a><img src="{{photoServerUrl + image}}"/></a>
           </div>
         </div>
         <div class="tags clearfix">
           <ul>
-            <li *ngFor="let tag of tags"><a href="#">{{tag}}</a></li>
+            <li *ngFor="let tag of tags"><a>{{tag}}</a></li>
           </ul>
         </div>
       </div>
@@ -53,9 +53,9 @@
         <button class="loveit-btn active"><i class="mdi mdi-heart"></i>喜欢</button>
         <span class="share-t">分享：</span>
         <ul class="share">
-          <li><a class="wechat" href="#"><i class="mdi mdi-wechat" style="font-size: 23px"></i></a></li>
-          <li><a class="facebook" href="#"><i class="mdi mdi-facebook"></i></a></li>
-          <li><a class="twitter" href="#"><i class="mdi mdi-twitter"></i></a></li>
+          <li><a class="wechat"><i class="mdi mdi-wechat" style="font-size: 23px"></i></a></li>
+          <li><a class="facebook"><i class="mdi mdi-facebook"></i></a></li>
+          <li><a class="twitter"><i class="mdi mdi-twitter"></i></a></li>
         </ul>
       </div>
       <div class="signedup">
@@ -65,14 +65,14 @@
         <div class="clearfix">
           
           <div class="signup" *ngIf="!isFree">
-            <a href="#" data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()">
+            <a data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()">
               <span>立即报名</span>
               <i class="mdi mdi-arrow-right"></i>
             </a>
           </div>
 
           <div class="signup" *ngIf="isFree">
-            <a href="#" data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()">
+            <a data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()">
               <span>免费参加</span>
               <i class="mdi mdi-arrow-right"></i>
             </a>
@@ -213,18 +213,18 @@
           <span>{{commentsCount}}条评论</span>
         </div>
         <div class="comment-body">
-          <form class="reviews">
-            <!--a class="comment-avatar" href="#"><img src="img/avatar.png"></a-->
+          <!--form class="reviews">
+            <a class="comment-avatar" href="#"><img src="img/avatar.png"></a>
             <textarea placeholder="请写下你的评论..."></textarea>
             <div class="send-group">
-              <a class="cancel-btn" href="#">取消</a>
-              <a class="send-btn" href="#">发送</a>
+              <a class="cancel-btn">取消</a>
+              <a class="send-btn">发送</a>
             </div>
-          </form>
+          </form-->
           <div class="comments" *ngFor="let comment of comments">
-            <a class="comment-avatar" href="#"><img src="{{photoServerUrl + comment.photo}}"></a>
+            <a class="comment-avatar"><img src="{{photoServerUrl + comment.photo}}" onError="this.src='./assets/img/group01.png'"></a>
             <div class="comment-details">
-              <a href="#" class="co-hd">{{comment.Name}}</a>
+              <a class="co-hd">{{comment.Name}}</a>
               <div class="co-bd">{{comment.content}}</div>
               <div class="co-ft">
                 <span>{{comment.postDate | displayDate}}</span>
@@ -361,6 +361,12 @@
 </div>
 
 <div class="fixed-height"></div>
-<div class="go-activity">
-  <a class="go-activity-btn" href="#">立即报名</a>
+<div class="go-activity" *ngIf="!isFree">
+  <a class="go-activity-btn" data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()"><span>立即报名</span>
+  <i class="mdi mdi-arrow-right"></i></a>
+</div>
+
+<div class="go-activity" *ngIf="isFree">
+  <a class="go-activity-btn" data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()"><span>免费参加</span>
+  <i class="mdi mdi-arrow-right"></i></a>
 </div>
