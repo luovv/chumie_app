@@ -16,7 +16,7 @@
   margin-top: 30px;
 }
 .author{
-  margin: 30px 0 40px;
+  margin: 40px 0 40px;
 }
 .author .author-img{
   width: 60px;
@@ -584,7 +584,7 @@
   }
   .author{
     text-align: center;
-    margin: 20px 0;
+    margin: 60px 0;
   }
   .author-info{
     display: block;
@@ -901,4 +901,29 @@
 .stripe-form .success .token {
   font-weight: 500;
   font-size: 13px;
+}
+
+@media (min-width: 700px){
+  .container {
+    width: 700px;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 540px) and (max-width: 699px){
+  .container {
+    width: 540px;
+    max-width: 100%;
+  }
+}
+
+.sub-images {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 160px;
+    display: inline-block;
+}
+
+.sub-images img {
+  width: 100%;
 }

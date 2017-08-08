@@ -6,7 +6,14 @@
         <div class="logo-small">
             <a href="index.html"><img src="/assets/img/logo-sigle.png"></a>
         </div>
-        <nav>
+        <nav class="nav-right">
+            <ul>
+                <li>
+                    <a href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www">下载应用</a>
+                </li>
+            </ul>
+        </nav>
+        <!--nav>
             <ul>
                 <li *ngIf="this.userInfo.isSigned">
                   <a (click)="navToMessage()" href="javascript:;">
@@ -18,10 +25,10 @@
                 <li *ngIf="this.userInfo.isSigned"><a (click)="navToCreate()" href="javascript:;">创建</a></li>
                 <li *ngIf="!this.userInfo.isSigned"><a (click)="openSignIn()" href="#">登录/注册</a></li>
                 <li *ngIf="this.userInfo.isSigned"><a (click)="logout()" href="#">登出</a></li>
-                <li *ngIf="this.userInfo.isSigned"><a href="#"><div class="avatar"><img src="{{this.userInfo.userImg}}" width="30" height="30"></div></a></li>
+                <li *ngIf="this.userInfo.isSigned"><a href="#"><div class="avatar"><img src="{{this.userInfo.userImg}}" onError="this.src='./assets/img/group01.png'" width="30" height="30"></div></a></li>
             </ul>
-        </nav>
-        <div class="search">
+        </nav-->
+        <!--div class="search">
             <form (ngSubmit)="search()">
                 <input class="form-control" type="text" placeholder="搜索" [(ngModel)]="searchText" name="search">
                 <a href="javascript:;" class="search-btn" (click)="search()"><i class="mdi mdi-magnify"></i></a>
@@ -29,7 +36,7 @@
         </div>
         <div class="menu-btn side-overlay-menu">
             <a href="javascript:;" type="submit"><i class="mdi mdi-menu"></i></a>
-        </div>
+        </div-->
     </div>
     <div class="nav-tab" *ngIf="subNav">
         <ul class="block-tabs">
@@ -44,7 +51,7 @@
     <app-signup (switchView)="switchView()" (closeSign)="closeSign()" *ngIf="!this.switch"></app-signup>
 </div>
 
-<div id="side-overlay">
+<!--div id="side-overlay">
     <a href="javascript:void(0)" class="side-overlay-close js-side-overlay-close"><i class="mdi mdi-window-close"></i></a>
     <ul class="side-menu">
         <li><a href="#">登录</a></li>
@@ -56,6 +63,6 @@
         <hr class="side-menu-line">
         <li><a href="#">下载应用</a></li>
     </ul>
-</div>
+</div-->
 
 

@@ -71,6 +71,9 @@ export class PostComponent implements OnInit {
 
           this.creatorName = data._creator.username;
           this.images = data.image;
+          if (this.images.length > 8) {
+            this.images = this.images.slice(0, 8);
+          }
           this.tags = data.tags;
 
           this.liksCount = data.likes.length;
