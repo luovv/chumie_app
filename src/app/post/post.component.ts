@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from "../http.service";
-import { ActivatedRoute, Params } from "@angular/router";
+import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 
 declare var Stripe: any;
 
@@ -52,7 +52,7 @@ export class PostComponent implements OnInit {
 
   //eventName = "event title";
 
-  constructor(private http: HttpService, private route: ActivatedRoute) { }
+  constructor(private http: HttpService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -90,7 +90,7 @@ export class PostComponent implements OnInit {
 
           console.log(data);
           console.log(this.images);
-          
+
         },
         error => {
             alert(error);
@@ -102,7 +102,7 @@ export class PostComponent implements OnInit {
           this.comments = data;
           this.commentsCount = data.length;
           console.log(data);
-          
+
         },
         error => {
             alert(error);
@@ -230,7 +230,7 @@ export class PostComponent implements OnInit {
           this.selectedSeatList = this.seats[0];
 
           console.log(this.ticketPrices);
-          
+
         },
         error => {
             alert(error);
@@ -252,7 +252,11 @@ export class PostComponent implements OnInit {
     this.http.joinEventFree(this.freeForm).subscribe(
             data => {
                 console.log(data);
-                alert(data);
+                //alert(data);
+                console.log(data);
+                let groupId = this.eventId;
+                this.router.navigateByUrl(`/group/${this.eventId}`);
+                // this.router.navigate(['group/:groupId/{{groupId}}']);
             },
             error => {
                 alert(error);
