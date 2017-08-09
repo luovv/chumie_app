@@ -144,6 +144,8 @@ export class PostComponent implements OnInit {
       successElement.classList.remove('visible');
       errorElement.classList.remove('visible');
 
+      console.log(result);
+
       if (result.token) {
         // Use the token to create a charge or a customer
         // https://stripe.com/docs/charges
@@ -164,7 +166,7 @@ export class PostComponent implements OnInit {
         this.form['stripeToken'] = result.token.id;
         this.form['Systemlanguage'] = this.userLanguage;
 
-        console.log(this.form);
+        console.log("card form:" + this.form);
 
         this.http.chargeCard(this.form).subscribe(
             data => {
@@ -186,9 +188,9 @@ export class PostComponent implements OnInit {
       setOutcome(event);
     });
 
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.querySelector('.payform').addEventListener('submit', function(e) {
       e.preventDefault();
-      var theform = document.querySelector('form');
+      var theform = document.querySelector('.payform');
       var extraDetails = {
         name: (<HTMLInputElement>theform.querySelector('input[name=cardholder-name]')).value,
         useremail: (<HTMLInputElement>theform.querySelector('input[name=user-email]')).value,
