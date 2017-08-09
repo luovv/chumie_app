@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit {
   private rongApiKey = 'c9kqb3rdki5pj';
   private rongTokenStr: any;
   private instance:any;
-  private isMobile = false;
+  private isMobile = true;
 
   private isChat = true;
 
