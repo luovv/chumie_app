@@ -116,7 +116,7 @@ export class PostComponent implements OnInit {
       this.userLanguage = "English";
     }
 
-    var stripe = Stripe('pk_test_rOjv2jSQZRDSKTgc6pTan9jJ');
+    var stripe = Stripe('pk_live_fv6E5eo1rKZdm2F22cBJTRIF');
     var elements = stripe.elements();
 
     var card = elements.create('card', {
@@ -147,7 +147,6 @@ export class PostComponent implements OnInit {
       if (result.token) {
         // Use the token to create a charge or a customer
         // https://stripe.com/docs/charges
-        console.log(result.token);
         // successElement.querySelector('.token').textContent = result.token.id;
         // successElement.classList.add('visible');
 
@@ -164,12 +163,11 @@ export class PostComponent implements OnInit {
         this.form['stripeToken'] = result.token.id;
         this.form['Systemlanguage'] = this.userLanguage;
 
-        console.log(this.form);
-
         this.http.chargeCard(this.form).subscribe(
             data => {
                 console.log(data);
                 console.log(data.invoiceId);
+                //支付成功跳转
             },
             error => {
                 alert(error);
@@ -186,9 +184,9 @@ export class PostComponent implements OnInit {
       setOutcome(event);
     });
 
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.querySelector('.payform').addEventListener('submit', function(e) {
       e.preventDefault();
-      var theform = document.querySelector('form');
+      var theform = document.querySelector('.payform');
       var extraDetails = {
         name: (<HTMLInputElement>theform.querySelector('input[name=cardholder-name]')).value,
         useremail: (<HTMLInputElement>theform.querySelector('input[name=user-email]')).value,
@@ -203,13 +201,11 @@ export class PostComponent implements OnInit {
     this.selectedSeatList = this.seats[key];
     this.selectedListIndex = key;
     //this.selectedSeats = [];
-    console.log(this.selectedListIndex);
   }
 
   buyTicket(key) {
 
     this.selectedSeat = key;
-    console.log(this.selectedSeat);
   }
 
   onKeyEmail(event: any) { // without type info
@@ -228,9 +224,7 @@ export class PostComponent implements OnInit {
           this.ticketQuantities = data.quantity;
           this.seats = data.seats;
           this.selectedSeatList = this.seats[0];
-
           console.log(this.ticketPrices);
-
         },
         error => {
             alert(error);
@@ -247,16 +241,11 @@ export class PostComponent implements OnInit {
     this.freeForm['stripeEmail'] = this.userEmail;
     this.freeForm['Systemlanguage'] = this.userLanguage;
 
-    console.log(this.freeForm);
-
     this.http.joinEventFree(this.freeForm).subscribe(
             data => {
                 console.log(data);
-                //alert(data);
-                console.log(data);
                 let groupId = this.eventId;
                 this.router.navigateByUrl(`/group/${this.eventId}`);
-                // this.router.navigate(['group/:groupId/{{groupId}}']);
             },
             error => {
                 alert(error);
