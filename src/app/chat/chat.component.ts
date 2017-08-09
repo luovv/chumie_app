@@ -110,8 +110,8 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     let agent = window.navigator.userAgent;
     this.route.params.forEach((params: Params) => {
-      alert(params['userId']);
-      alert(params['groupId']);
+      // alert(params['userId']);
+      // alert(params['groupId']);
       this.target.id = params['userId'];
       this.updateMessageWindow();
       if(params['groupId']){
@@ -132,13 +132,14 @@ export class ChatComponent implements OnInit {
                 this.updateMessageWindow();
               },
               error => {
-                alert(error);
+                // alert(error);
                 console.log('Add to group failed'+error);
               }
             );
           },
           error => {
-            alert(error);
+            // alert(error);
+            console.log(error);
           }
         );
       }
@@ -167,7 +168,8 @@ export class ChatComponent implements OnInit {
           this.initRongIM();
         },
         error => {
-          alert(error);
+          // alert(error);
+          console.error(error);
         }
       );
     }else{
@@ -244,7 +246,8 @@ export class ChatComponent implements OnInit {
         console.log(data);
       },
       error => {
-        alert(error);
+        // alert(error);
+        console.error(error);
       }
     );
   }
