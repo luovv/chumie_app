@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router, Params} from '@angular/router';
 import { HttpService } from "../http.service";
 
 @Component({
@@ -11,16 +11,20 @@ import { HttpService } from "../http.service";
 export class GroupComponent implements OnInit {
 
   private imghost = this.http.imghost;
-  groupId = '58d485f570fe95565487d9e0'; // hardcode for now
+  groupId = ''; //'58d485f570fe95565487d9e0'; // hardcode for now
   groupTitle = '';
   groupData: any = {};
   userList: any = [];
   groupUsers: any[] = [];
 
-  constructor(private router: Router, private http: HttpService, route: ActivatedRoute) { }
+  constructor(private router: Router, private http: HttpService, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
+
+    this.route.params.forEach((params: Params) => {
+      this.groupId = params['groupId'];
+    });
 
     // Get Group data from backend
     this.http.getGroupInfo(this.groupId).subscribe(
