@@ -29,6 +29,9 @@ export class PostComponent implements OnInit {
   priceText: string;
   isFree: boolean;
 
+  // join group
+  private groupData = { groupid: '', groupname: ''};
+
   //payment
 
   form = {username:'', group:'', price:-1, orginalPrice:-1, seatIndex:-1, stripeEmail:'', stripeToken: '', Systemlanguage: ''};
@@ -198,6 +201,9 @@ export class PostComponent implements OnInit {
       stripe.createToken(card, extraDetails).then(setOutcome);
     });
 
+    this.groupData.groupid = this.eventId;
+    this.groupData.groupname = this.title;
+
 
   }
 
@@ -244,6 +250,17 @@ export class PostComponent implements OnInit {
     $('.modal').modal('hide');
   }
 
+  joinGroup() {
+    this.http.joinGroup(this.groupData).subscribe(
+      data => {
+        console.log('join group successfully!');
+      },
+      error => {
+        console.log('Join group error');
+      }
+    );
+  }
+
   submitJoinFree() {
     this.freeForm['username'] = this.username;
     this.freeForm['stripeEmail'] = this.userEmail;
@@ -253,11 +270,12 @@ export class PostComponent implements OnInit {
             data => {
                 console.log(data);
                 this.closeAllModal();
-                let groupId = this.eventId;
-                this.router.navigateByUrl(`/group/${this.eventId}`);
+                this.joinGroup();
+                this.router.navigateByUrl(`/chat/group/${this.eventId}`);
             },
             error => {
-                alert(error);
+                // alert(error);
+                console.error('Error:' + error);
             }
         );
   }
