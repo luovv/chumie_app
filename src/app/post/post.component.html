@@ -4,9 +4,6 @@
   <div class="card-content no-tab">
     <div class="container">
       <div class="activity-head">
-        <div class="title-head">
-          <h1>{{title}}</h1>
-        </div>
         <div class="author">
           <a class="author-img"><img src="{{creatorIcon}}" onError="this.src='./assets/img/group01.png'"/></a>
           <div class="author-info">
@@ -21,14 +18,14 @@
             </div>
           </div>
         </div>
+
+        <div class="title-head">
+          <h1>{{title}}</h1>
+        </div>
       </div>
 
       <div class="event-start-time">
-        <h1> 活动开始时间：{{eventStartTime | displayDate}}  </h1>
-      </div>
-
-      <div class="event-start-time">
-        <h1> {{priceText}} </h1>
+        <h3> {{priceText}} </h3>
       </div>
 
       <div class="activity-body">
@@ -36,6 +33,11 @@
         <div class="article-post">
           <p>{{content}}</p>
         </div>
+
+        <div class="event-start-time">
+          <h1> 活动开始时间：{{eventStartTime | displayDate}}  </h1>
+        </div>
+
         <div class="img-box clearfix">
 
           <div *ngFor="let image of images" class="sub-images">
@@ -49,8 +51,8 @@
         </div>
       </div>
       <div class="loveit">
-        <button class="loveit-btn"><i class="mdi mdi-heart-outline"></i>喜欢</button>
-        <button class="loveit-btn active"><i class="mdi mdi-heart"></i>喜欢</button>
+        <!--button class="loveit-btn"><i class="mdi mdi-heart-outline"></i>喜欢</button>
+        <button class="loveit-btn active"><i class="mdi mdi-heart"></i>喜欢</button-->
         <span class="share-t">分享：</span>
         <ul class="share">
           <li><a class="wechat"><i class="mdi mdi-wechat" style="font-size: 23px"></i></a></li>
@@ -90,7 +92,7 @@
                 <div class="modal-body modal-backgroud">
                   <form class="form-horizontal">
                     <div class="form-group">
-                      <label for="inputEmailFree" class="control-label">电子邮箱：</label>
+                      <label  for="inputEmailFree" class="control-label">电子邮箱：</label>
                       <div class="">
                         <input type="email" (keyup)="onKeyEmail($event)" class="form-control" id="inputEmailFree" placeholder="Email">
                       </div>
@@ -175,17 +177,17 @@
                     <form class="payform">
                       <div class="group">
                         <label>
-                          <span>电子邮箱：</span>
+                          <span class="hide-on-mobile">电子邮箱：</span>
                           <input (keyup)="onKeyEmail($event)" name="user-email" class="field" placeholder="Email" type="email" />
                         </label>
                       </div>
                       <div class="group">
                         <label>
-                          <span>持卡人姓名:</span>
+                          <span class="hide-on-mobile">持卡人姓名:</span>
                           <input (keyup)="onKeyUsername($event)" name="cardholder-name" class="field" placeholder="Cardholder Name" />
                         </label>
                         <label>
-                          <span>卡号:</span>
+                          <span class="hide-on-mobile">卡号:</span>
                           <div id="card-element" class="field"></div>
                         </label>
                       </div>
@@ -200,6 +202,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
+                  <!--button type="button" class="btn btn-default" (click)="closeAllModal()">关闭全部</button-->
                   <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
               </div>

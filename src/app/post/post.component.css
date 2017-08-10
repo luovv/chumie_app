@@ -17,6 +17,7 @@
 }
 .author{
   margin: 40px 0 40px;
+  margin-top: 100px;
 }
 .author .author-img{
   width: 60px;
@@ -926,4 +927,55 @@
 
 .sub-images img {
   width: 100%;
+}
+
+@media (max-width: 480px){
+  .ticket-card {
+    width: 80vw;
+  }
+
+  .seat-card {
+    width: 14vw;
+    height: 14vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+
+  .seat-row {
+    width: 80vw;
+  }
+
+  .modal-dialog {
+    margin-top: 60px;
+  }
+
+  .stripe-form form{
+    width: 80vw;
+  }
+
+  .stripe-form .field{
+    width: 100%;
+  }
+
+  .stripe-form label{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+
+  #joinFree input {
+    width: 78vw;
+  }
+
+  .modal-backgroud {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
+
+.title-head {
+  text-align: center;
 }

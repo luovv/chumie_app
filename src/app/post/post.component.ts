@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpService } from "../http.service";
 import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 
 declare var Stripe: any;
+declare var $: any;
 
 @Component({
   selector: 'app-post',
@@ -10,7 +11,6 @@ declare var Stripe: any;
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
   //events
   content: string;
   postDate: string;
@@ -58,6 +58,8 @@ export class PostComponent implements OnInit {
 
     this.route.params.forEach((params: Params) => {
       this.eventId = params['postId'];
+
+      console.log("id: " + this.eventId);
     });
 
     this.http.getEventInfo(this.eventId).subscribe(
@@ -168,6 +170,8 @@ export class PostComponent implements OnInit {
                 console.log(data);
                 console.log(data.invoiceId);
                 //支付成功跳转
+
+                this.closeAllModal();
             },
             error => {
                 alert(error);
@@ -236,6 +240,10 @@ export class PostComponent implements OnInit {
 
   }
 
+  closeAllModal() {
+    $('.modal').modal('hide');
+  }
+
   submitJoinFree() {
     this.freeForm['username'] = this.username;
     this.freeForm['stripeEmail'] = this.userEmail;
@@ -244,6 +252,7 @@ export class PostComponent implements OnInit {
     this.http.joinEventFree(this.freeForm).subscribe(
             data => {
                 console.log(data);
+                this.closeAllModal();
                 let groupId = this.eventId;
                 this.router.navigateByUrl(`/group/${this.eventId}`);
             },
