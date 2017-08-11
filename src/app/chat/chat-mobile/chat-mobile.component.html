@@ -1,4 +1,4 @@
-<div class="container" style="max-width: 600px">
+<app-nav></app-nav>
   <div class="chat-window-display" id="window">
       <div class="chat-window-msgs">
         <div *ngFor="let i of messages">
@@ -22,9 +22,9 @@
         </div>
       </div>
   </div>
-  <div class="chat-window-input" style="max-width: 560px">
+  <div class="chat-window-input">
     <form>
       <textarea [(ngModel)]="myMessage" (keydown)="pressKey($event)" name="myMessage"></textarea>
     </form>
   </div>
-</div>
+

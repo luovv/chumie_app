@@ -13,6 +13,6 @@ export class AppComponent implements OnInit{
     translate.setDefaultLang('en');
   }
   ngOnInit() {
-    this.g.getUserInfo();
+    // this.g.getUserInfo();
   }
 }

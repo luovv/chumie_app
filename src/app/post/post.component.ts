@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpService } from "../http.service";
+import { GlobalService } from '../global.service'
 import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 
 declare var Stripe: any;
@@ -55,7 +56,7 @@ export class PostComponent implements OnInit {
 
   //eventName = "event title";
 
-  constructor(private http: HttpService, private route: ActivatedRoute, private router: Router) { }
+  constructor( private g: GlobalService, private http: HttpService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -269,9 +270,13 @@ export class PostComponent implements OnInit {
     this.http.joinEventFree(this.freeForm).subscribe(
             data => {
                 console.log(data);
+                let userId = data.userId;
+                localStorage.setItem('id_token', userId);
                 this.closeAllModal();
+                this.g.getUserInfo();
+                GlobalService.data.userId = data.userId;
                 this.joinGroup();
-                this.router.navigateByUrl(`/chat/group/${this.eventId}`);
+                this.router.navigateByUrl(`/chat/user/${userId}/group/${this.eventId}`);
             },
             error => {
                 // alert(error);

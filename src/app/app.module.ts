@@ -109,7 +109,7 @@ export function HttpLoaderFactory(http: Http) {
       { path: 'ticketTest', component: TickettestComponent },
       { path: 'post/:postId', component: PostComponent },
       { path: 'chat/:userId', component: ChatComponent },
-      { path: 'chat/group/:groupId', component: ChatWindowComponent },
+      { path: 'chat/user/:userId/group/:groupId', component: ChatComponent },
       { path: 'groupchat', component: GroupchatComponent}
     ])
   ],

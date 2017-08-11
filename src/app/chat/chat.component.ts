@@ -33,12 +33,12 @@ export class ChatComponent implements OnInit {
     icon:''
   };
   private my = {
-    id: GlobalService.data.userId,
-    name: GlobalService.data.username,
-    icon: GlobalService.data.userImg
+    id: '',//GlobalService.data.userId,
+    name: '',// GlobalService.data.username,
+    icon: '', //GlobalService.data.userImg
   };
 
-  constructor(private http: HttpService, private router: Router, private g:GlobalService, private route: ActivatedRoute) {}
+  constructor(private http: HttpService, private router: Router, private g: GlobalService, private route: ActivatedRoute) {}
 
   updateConvList(){
     let m = this.getMessages();
@@ -112,58 +112,72 @@ export class ChatComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       // alert(params['userId']);
       // alert(params['groupId']);
-      this.target.id = params['userId'];
+      this.target.id = params['groupId'];
+      this.my.id = params['userId'];
+      this.http.getUserInfo(this.my.id).subscribe(
+        data => {
+          this.my.name = data.username;
+          this.my.icon = data.userPhoto;
+          console.log(this.my.name + this.my.icon);
+          // this.g.
+        },
+        error => {
+          console.error('Error on geting username an photo for chat'+ error);
+        }
+      );
       this.updateMessageWindow();
-      if(params['groupId']){
-        this.http.getActivityById(params['groupId']).subscribe(
-          data => {
-            console.log(data);
-            let info={
-              groupid:params['groupId'],
-              groupname:data.title
-            };
-            this.http.joinGroup(info).subscribe(
-              result => {
-                this.target={
-                  id:params['groupId'],
-                  name:data.title,
-                  icon:''
-                };
-                this.updateMessageWindow();
-              },
-              error => {
-                // alert(error);
-                console.log('Add to group failed'+error);
-              }
-            );
-          },
-          error => {
-            // alert(error);
-            console.log(error);
-          }
-        );
-      }
+      // if(params['groupId']){
+      //   this.http.getActivityById(params['groupId']).subscribe(
+      //     data => {
+      //       console.log(data);
+      //       let info={
+      //         groupid:params['groupId'],
+      //         groupname:data.title
+      //       };
+      //       this.http.joinGroup(info).subscribe(
+      //         result => {
+      //           this.target={
+      //             id:params['groupId'],
+      //             name:data.title,
+      //             icon:''
+      //           };
+      //           this.updateMessageWindow();
+      //         },
+      //         error => {
+      //           // alert(error);
+      //           console.log('Add to group failed'+error);
+      //         }
+      //       );
+      //     },
+      //     error => {
+      //       // alert(error);
+      //       console.log(error);
+      //     }
+      //   );
+      // }
     });
 
-    if(agent.toLowerCase().includes('iphone') || agent.toLowerCase().includes('android')){
+    if (agent.toLowerCase().includes('iphone') || agent.toLowerCase().includes('android')){
       this.isMobile = true;
     }
 
-    this.g.dataChange.subscribe((value) => {
-      this.my = {
-        id:value.userId,
-        name:value.username,
-        icon:value.userImg
-      };
-    });
+    // this.g.dataChange.subscribe((value) => {
+    //   this.my = {
+    //     id:value.userId,
+    //     name:value.username,
+    //     icon:value.userImg
+    //   };
+    // });
+
 
     this.updateConvList();
     // fetch from node.js backend to get RongCloud token
-    this.rongTokenStr = localStorage.getItem('rongCloud_token');
-    if(this.rongTokenStr==null) {
+    // this.rongTokenStr = localStorage.getItem('rongCloud_token');
+    if (true) {
       this.http.getRongCloudToken().subscribe(
         data => {
           localStorage.setItem('rongCloud_token', data[0].message.toString());
+          console.log(localStorage.getItem('rongCloud_token'));
           this.rongTokenStr = data[0].message.toString();
           this.initRongIM();
         },
@@ -173,7 +187,7 @@ export class ChatComponent implements OnInit {
         }
       );
     }else{
-      this.initRongIM();
+      // this.initRongIM();
     }
 
 
