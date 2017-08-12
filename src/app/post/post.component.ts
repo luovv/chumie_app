@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpService } from "../http.service";
+import { GlobalService } from '../global.service'
 import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 
 declare var Stripe: any;
@@ -29,6 +30,9 @@ export class PostComponent implements OnInit {
   priceText: string;
   isFree: boolean;
 
+  // join group
+  private groupData = { groupid: '', groupname: ''};
+
   //payment
 
   form = {username:'', group:'', price:-1, orginalPrice:-1, seatIndex:-1, stripeEmail:'', stripeToken: '', Systemlanguage: ''};
@@ -52,7 +56,7 @@ export class PostComponent implements OnInit {
 
   //eventName = "event title";
 
-  constructor(private http: HttpService, private route: ActivatedRoute, private router: Router) { }
+  constructor( private g: GlobalService, private http: HttpService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -118,7 +122,7 @@ export class PostComponent implements OnInit {
       this.userLanguage = "English";
     }
 
-    var stripe = Stripe('pk_live_fv6E5eo1rKZdm2F22cBJTRIF');
+    var stripe = Stripe('pk_test_rOjv2jSQZRDSKTgc6pTan9jJ');
     var elements = stripe.elements();
 
     var card = elements.create('card', {
@@ -198,6 +202,9 @@ export class PostComponent implements OnInit {
       stripe.createToken(card, extraDetails).then(setOutcome);
     });
 
+    this.groupData.groupid = this.eventId;
+    this.groupData.groupname = this.title;
+
 
   }
 
@@ -244,6 +251,17 @@ export class PostComponent implements OnInit {
     $('.modal').modal('hide');
   }
 
+  joinGroup() {
+    this.http.joinGroup(this.groupData).subscribe(
+      data => {
+        console.log('join group successfully!');
+      },
+      error => {
+        console.log('Join group error');
+      }
+    );
+  }
+
   submitJoinFree() {
     this.freeForm['username'] = this.username;
     this.freeForm['stripeEmail'] = this.userEmail;
@@ -252,12 +270,17 @@ export class PostComponent implements OnInit {
     this.http.joinEventFree(this.freeForm).subscribe(
             data => {
                 console.log(data);
+                let userId = data.userId;
+                localStorage.setItem('id_token', userId);
                 this.closeAllModal();
-                let groupId = this.eventId;
-                this.router.navigateByUrl(`/group/${this.eventId}`);
+                this.g.getUserInfo();
+                GlobalService.data.userId = data.userId;
+                this.joinGroup();
+                this.router.navigateByUrl(`/chat/user/${userId}/group/${this.eventId}`);
             },
             error => {
-                alert(error);
+                // alert(error);
+                console.error('Error:' + error);
             }
         );
   }

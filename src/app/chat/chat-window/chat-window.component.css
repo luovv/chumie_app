@@ -1,5 +1,5 @@
 .chat-window-display{
-  height: 450px;
+  /*height: 450px;*/
   border-bottom: 1px solid #ddd;
   padding: 10px;
   overflow: scroll;
