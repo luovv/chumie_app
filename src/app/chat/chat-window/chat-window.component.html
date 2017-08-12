@@ -22,7 +22,10 @@
   </div>
 </div>
 <div class="chat-window-input">
-  <form>
-    <textarea [(ngModel)]="myMessage" (keydown)="pressKey($event)" name="myMessage"></textarea>
-  </form>
+  <button class="btn btn-success pull-left" (click)="onSentMsgBtnClick($event)">发送</button>
+    <form>
+      <textarea [(ngModel)]="myMessage" (keydown)="pressKey($event)" name="myMessage">
+      </textarea>
+    </form>
+
 </div>

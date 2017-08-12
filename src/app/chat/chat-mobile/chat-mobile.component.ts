@@ -20,6 +20,12 @@ export class ChatMobileComponent implements OnInit, AfterViewChecked {
       this.myMessage="";
     }
   }
+  onSentMsgBtnClick(event){
+
+    this.sendMessage.emit(this.myMessage);
+    this.myMessage="";
+    this.scrollDown();
+  }
   ngAfterViewChecked(){
     this.scrollDown();
   }

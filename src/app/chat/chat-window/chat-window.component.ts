@@ -69,6 +69,13 @@ export class ChatWindowComponent implements OnInit, AfterViewChecked{
       this.scrollDown();
     }
   }
+
+  onSentMsgBtnClick(event){
+
+      this.sendMessage.emit(this.myMessage);
+      this.myMessage="";
+      this.scrollDown();
+  }
   ngAfterViewChecked(){
     this.scrollDown();
   }
