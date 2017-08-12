@@ -1,4 +1,5 @@
 <app-nav></app-nav>
+<div class="container">
   <div class="chat-window-display" id="window">
       <div class="chat-window-msgs">
         <div *ngFor="let i of messages">
@@ -21,18 +22,13 @@
           </div>
         </div>
       </div>
-
-    <div class="chat-window-input container">
-      <div class="row">
-        <textarea class="col-lg-10 col-sm-10 col-xs-10" [(ngModel)]="myMessage" (keydown)="pressKey($event)" name="myMessage"></textarea>
-        <div class="col-lg-2 col-sm-2 col-xs-2">
-          <button class="btn btn-success pull-left" (click)="onSentMsgBtnClick($event)">发送</button>
-        </div>
-
-      </div>
-
-    </div>
-
   </div>
-
-
+  <div class="chat-window-input">
+  <form>
+    <textarea class="col-lg-10 col-sm-10 col-xs-10" [(ngModel)]="myMessage" (keydown)="pressKey($event)" name="myMessage"></textarea>
+    <div class="col-lg-2 col-sm-2 col-xs-2">
+      <button class="btn btn-success pull-left" (click)="onSentMsgBtnClick($event)">发送</button>
+    </div>
+  </form>
+</div>
+</div>
