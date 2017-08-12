@@ -48,7 +48,7 @@ export class PostComponent implements OnInit {
 
   eventId: string;
 
-  photoServerUrl = "http://dhjjgq45wu4ho.cloudfront.net/";
+  photoServerUrl = "https://dhjjgq45wu4ho.cloudfront.net/";
 
   //eventName = "event title";
 

@@ -9,7 +9,7 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 export class HttpService {
     // private host = 'http://127.0.0.1:8000/';
     host = 'https://www.chumi.co';
-    imghost = 'http://dhjjgq45wu4ho.cloudfront.net/';
+    imghost = 'https://dhjjgq45wu4ho.cloudfront.net/';
     options = new RequestOptions({ withCredentials: true });
     constructor(private http:Http) { }
 
