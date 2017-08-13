@@ -1,5 +1,5 @@
 .chat-window-display{
-  height: 100%;
+  /*height: 100%;*/
   padding: 10px 10px 80px 10px;
   overflow: scroll;
 }
@@ -66,3 +66,9 @@
 .chat-window-text img{
   max-width: 150px;
 }
+
+.nav-right {
+  display: block;
+}
+
+

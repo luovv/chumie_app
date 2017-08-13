@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit {
   private messages = [];
   private friendList = [];
 
+
   private target = {
     id:'',
     name:'',

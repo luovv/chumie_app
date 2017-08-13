@@ -6,6 +6,7 @@ import {Component, OnInit, Output, Input, EventEmitter, AfterViewChecked} from '
   styleUrls: ['./chat-mobile.component.css']
 })
 export class ChatMobileComponent implements OnInit, AfterViewChecked {
+  // @Input() target = '';
   @Input() messages = [];
   @Input() target = {};
   @Output() sendMessage = new EventEmitter();
@@ -20,6 +21,16 @@ export class ChatMobileComponent implements OnInit, AfterViewChecked {
       this.myMessage="";
     }
   }
+
+  adjustPage(event){
+    var inputTextBox = document.getElementById('chat-window-input-box');
+    setInterval(function(){
+      inputTextBox.scrollIntoView(false);
+      // inputTextBox.scrollIntoView(true);
+      // inputTextBox.scrollIntoViewIfNeeded();
+    },200);
+  }
+
   onSentMsgBtnClick(event){
 
     this.sendMessage.emit(this.myMessage);
