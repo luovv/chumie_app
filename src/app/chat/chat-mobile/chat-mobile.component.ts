@@ -12,24 +12,39 @@ export class ChatMobileComponent implements OnInit, AfterViewChecked {
   @Input() messages = [];
   @Input() target = {};
   @Output() sendMessage = new EventEmitter();
-  private myMessage="";
+  private myMessage = "";
+  private _setIntervalHandler: any;
 
   constructor() { }
 
   ngOnInit() {
     var bfscrolltop = document.body.scrollTop;
+    var that = this;
 
-    $("input-box.myMessage").focus(function(){
-      var interval = setInterval(function(){
-        document.body.scrollTop = document.body.scrollHeight;
-      },100)
-    }).blur(function(){
-       clearInterval(setInterval(function(){
-      document.body.scrollTop = document.body.scrollHeight;
-    },100));
+    $("input-box.myMessage").focus(
+    //   function(){
+    //   var interval = setInterval(function(){
+    //     document.body.scrollTop = document.body.scrollHeight;
+    //   },300);
+    // }
+      that.setInterval
+    );
+
+    $("input-box.myMessage").blur(function(){
+    //    clearInterval(setInterval(function(){
+    //   document.body.scrollTop = document.body.scrollHeight;
+    // },100));
+       clearInterval(that._setIntervalHandler);
       document.body.scrollTop = bfscrolltop;
     });
   }
+
+  setInterval() {
+    this._setIntervalHandler = setInterval(() => {
+      document.body.scrollTop = document.body.scrollHeight;
+    }, 200);
+  }
+
   pressKey(key){
     if(key.key=='Enter'){
       this.sendMessage.emit(this.myMessage);
