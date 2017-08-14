@@ -4,7 +4,7 @@ import {GlobalService} from "../global.service";
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
+  templateUrl: './redirect.html',
   styleUrls: ['./home.component.css'],
   providers: [HttpService]
 })
@@ -21,6 +21,9 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpService, private g:GlobalService) { }
 
   ngOnInit() {
+    //redirect to domain/app
+    window.location.href = "https://chumi.co/app";
+
     this.getExplore();
     this.g.dataChange.subscribe((value) => {
       this.userInfo = value;
