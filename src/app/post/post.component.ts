@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpService } from "../http.service";
 import { GlobalService } from '../global.service'
 import {ActivatedRoute, Params, Route, Router} from "@angular/router";
+import { Title }     from '@angular/platform-browser';
 
 declare var Stripe: any;
 declare var $: any;
@@ -56,7 +57,10 @@ export class PostComponent implements OnInit {
 
   //eventName = "event title";
 
-  constructor( private g: GlobalService, private http: HttpService, private route: ActivatedRoute, private router: Router) { }
+  constructor( private g: GlobalService, private http: HttpService, private route: ActivatedRoute, private router: Router, private titleService: Title) { }
+  setTitle( newTitle: string) {
+    this.titleService.setTitle( newTitle );
+  }
 
   ngOnInit() {
 
@@ -71,6 +75,7 @@ export class PostComponent implements OnInit {
           this.content = data.content;
           this.postDate = data.postDate;
           this.title = data.title;
+          this.setTitle(this.title);
           this.creatorIcon = this.photoServerUrl + data._creator.userPhoto;
           this.cover = this.photoServerUrl + data.cover;
           this.views = data.viewers;
