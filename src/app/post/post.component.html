@@ -94,20 +94,27 @@
                     <div class="form-group">
                       <label  for="inputEmailFree" class="control-label">电子邮箱：</label>
                       <div class="">
-                        <input type="email" (keyup)="onKeyEmail($event)" class="form-control" id="inputEmailFree" placeholder="Email">
+                        <input type="text" name="joinEmail" required [(ngModel)]="joinModel.email" #joinEmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" (keyup)="onKeyEmail($event)" class="form-control" id="inputEmailFree" placeholder="Email"/>
+                        <div *ngIf="joinEmail.errors && (joinEmail.dirty || joinEmail.touched)" class="alert alert-danger">
+                          <div [hidden]="!joinEmail.errors.required">电子邮箱不能为空</div>
+                          <div [hidden]="!joinEmail.errors.pattern">请输入有效邮箱</div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="inputUsernameFree" class="control-label">用户名: </label>
                       <div class="">
-                        <input type="text" (keyup)="onKeyUsername($event)" class="form-control" id="inputUsernameFree" placeholder="Username">
+                        <input type="text" (keyup)="onKeyUsername($event)" class="form-control" id="inputUsernameFree" placeholder="Username" required [(ngModel)]="joinModel.name" #joinName="ngModel" name="joinName">
+                        <div *ngIf="joinName.errors && (joinName.dirty || joinName.touched)" class="alert alert-danger">
+                          <div [hidden]="!joinName.errors.required">用户名不能为空</div>
+                        </div>
                       </div>
                     </div>
                     
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-default" (click)="submitJoinFree()">提交</button>
+                  <button *ngIf="!joinEmail.errors && !joinName.errors" type="submit" class="btn btn-default" (click)="submitJoinFree()">提交</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
               </div>
@@ -178,14 +185,22 @@
                       <div class="group">
                         <label>
                           <span class="hide-on-mobile">电子邮箱：</span>
-                          <input (keyup)="onKeyEmail($event)" name="user-email" class="field" placeholder="Email" type="email" />
+                          <input (keyup)="onKeyEmail($event)" name="user-email" class="field form-control" placeholder="Email" type="text" required [(ngModel)]="paymentModel.email" #paymentEmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
                         </label>
+
+                        <div *ngIf="paymentEmail.errors && (paymentEmail.dirty || paymentEmail.touched)" class="alert alert-danger">
+                          <div [hidden]="!paymentEmail.errors.required">电子邮箱不能为空</div>
+                          <div [hidden]="!paymentEmail.errors.pattern">请输入有效邮箱</div>
+                        </div>
                       </div>
                       <div class="group">
                         <label>
                           <span class="hide-on-mobile">持卡人姓名:</span>
-                          <input (keyup)="onKeyUsername($event)" name="cardholder-name" class="field" placeholder="Cardholder Name" />
+                          <input (keyup)="onKeyUsername($event)" name="cardholder-name" class="field form-control" placeholder="Cardholder Name" required [(ngModel)]="paymentModel.name" #paymentName="ngModel"/>
                         </label>
+                        <div *ngIf="paymentName.errors && (paymentName.dirty || paymentName.touched)" class="alert alert-danger">
+                          <div [hidden]="!paymentEmail.errors.required">持卡人姓名不能为空</div>
+                        </div>
                         <label>
                           <span class="hide-on-mobile">卡号:</span>
                           <div id="card-element" class="field"></div>
@@ -194,10 +209,8 @@
                       <button type="submit">确认支付</button>
                       <div class="outcome">
                         <div class="error" role="alert"></div>
-                        <div class="success">
-                          Success! Your Stripe token is <span class="token"></span>
-                        </div>
                       </div>
+                      <div></div>
                     </form>
                   </div>
                 </div>
