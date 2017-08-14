@@ -22,9 +22,11 @@ export class ChatMobileComponent implements OnInit, AfterViewChecked {
     $("input-box.myMessage").focus(function(){
       var interval = setInterval(function(){
         document.body.scrollTop = document.body.scrollHeight;
-      },200)
-    }).blur(function(){//设定输入框失去焦点时的事件
-      // clearInterval(interval);//清除计时器
+      },100)
+    }).blur(function(){
+       clearInterval(setInterval(function(){
+      document.body.scrollTop = document.body.scrollHeight;
+    },100));
       document.body.scrollTop = bfscrolltop;
     });
   }

@@ -36,11 +36,11 @@
 
 <!--Chat Input-->
 <div class="chat-window-input" id="input-box">
-  <div class="row">
-    <textarea id="input" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" [(ngModel)]="myMessage"
+  <div>
+    <textarea id="input" class="col-lg-6 col-md-5 col-sm-5 col-xs-5" [(ngModel)]="myMessage"
               (keydown)="pressKey($event)" name="myMessage">
     </textarea>
-    <button class="btn btn-success col-md-1 col-lg-1 col-sm-2 col-xs-2"
+    <button class="btn btn-success"
             (click)="onSentMsgBtnClick($event)">发送</button>
   </div>
 </div>
