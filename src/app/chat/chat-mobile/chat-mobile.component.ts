@@ -34,7 +34,7 @@ export class ChatMobileComponent implements OnInit, AfterViewChecked {
     //    clearInterval(setInterval(function(){
     //   document.body.scrollTop = document.body.scrollHeight;
     // },100));
-       clearInterval(that._setIntervalHandler);
+    //    clearInterval(that._setIntervalHandler);
       document.body.scrollTop = bfscrolltop;
     });
   }
