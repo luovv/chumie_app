@@ -31,6 +31,10 @@ export class PostComponent implements OnInit {
   priceText: string;
   isFree: boolean;
 
+  paymentModel = { email: '', name: ''};
+  joinModel = { email: '', name: ''};
+  
+
   // join group
   private groupData = { groupid: '', groupname: ''};
 
@@ -50,6 +54,7 @@ export class PostComponent implements OnInit {
   userLanguage: string;
   userEmail : string;
   username : string;
+  validCard: boolean;
 
   eventId: string;
 
@@ -63,6 +68,8 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.validCard = false;
 
     this.route.params.forEach((params: Params) => {
       this.eventId = params['postId'];
