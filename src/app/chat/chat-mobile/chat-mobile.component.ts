@@ -24,7 +24,7 @@ export class ChatMobileComponent implements OnInit {
 
     $("input-box.myMessage").focus(function(){
       this.interval = setInterval(function(){
-        document.body.scrollTop = document.body.scrollHeight*1.2;
+        document.body.scrollTop = document.body.scrollHeight*0.8;
       }, 500);
     });
     $("input-box.myMessage").blur(function(){
