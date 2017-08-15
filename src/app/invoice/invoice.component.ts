@@ -18,6 +18,10 @@ export class InvoiceComponent implements OnInit {
   private payTo: string;
   private title: string;
   private groupId: string;
+  private userId: string;
+
+  // join group
+  private groupData = { groupid: '', groupname: ''};
 
   private num: number;
   // const message on top
@@ -31,6 +35,7 @@ export class InvoiceComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       console.log(params);
       this.invoiceId = params['invoiceId'];
+      this.userId = params['userId'];
     });
     this.http.getInvoice(this.invoiceId).subscribe(
       data => {
@@ -40,12 +45,28 @@ export class InvoiceComponent implements OnInit {
         this.amount_due = data.invoice.amount_due;
         this.num = data.num;
         this.groupId = data.invoice.chargeItemId;
+        // for join group, later to chat
+        this.groupData.groupid = this.groupId;
+        this.groupData.groupname = this.title;
+        this.joinGroup();
         console.log('GroupId:' + this.groupId);
         console.log(this.num);
         console.log(this.payer);
       },
       error => {
         alert(error);
+      }
+    );
+  }
+
+
+  joinGroup() {
+    this.http.joinGroup(this.groupData).subscribe(
+      data => {
+        console.log('join group successfully!');
+      },
+      error => {
+        console.log('Join group error');
       }
     );
   }

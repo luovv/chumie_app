@@ -186,7 +186,14 @@ export class PostComponent implements OnInit {
                 console.log(data);
                 console.log(data.invoiceId);
                 //支付成功跳转 invoice/:invoiceId
-              this.router.navigateByUrl(`/invoice/${data.invoiceId}`);
+              let userId = data.userId;
+              localStorage.setItem('id_token', userId);
+              this.closeAllModal();
+              this.g.getUserInfo();
+              GlobalService.data.userId = data.userId;
+              this.joinGroup();
+              // this.router.navigateByUrl(`/chat/user/${userId}/group/${this.eventId}`);
+              this.router.navigateByUrl(`/invoice/${data.invoiceId}/user/${userId}`);
                 this.closeAllModal();
             },
             error => {
