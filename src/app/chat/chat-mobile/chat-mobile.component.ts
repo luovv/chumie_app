@@ -7,7 +7,7 @@ declare var $: any;
   templateUrl: './chat-mobile.component.html',
   styleUrls: ['./chat-mobile.component.css']
 })
-export class ChatMobileComponent implements OnInit, AfterViewChecked {
+export class ChatMobileComponent implements OnInit {
   // @Input() target = '';
   @Input() messages = [];
   @Input() target = {};
@@ -20,21 +20,15 @@ export class ChatMobileComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     var bfscrolltop = document.body.scrollTop;
     var that = this;
+    var interval: any;
 
-    $("input-box.myMessage").focus(
-      function(){
-      var timeoutFun = setTimeout(function(){
-        document.body.scrollTop = document.body.scrollHeight;
-      },600);
-    }
-      // that.setInterval
-    );
-
+    $("input-box.myMessage").focus(function(){
+      this.interval = setInterval(function(){
+        document.body.scrollTop = document.body.scrollHeight*1.2;
+      }, 500);
+    });
     $("input-box.myMessage").blur(function(){
-    //    clearInterval(setInterval(function(){
-    //   document.body.scrollTop = document.body.scrollHeight;
-    // },100));
-    //    clearInterval(that._setIntervalHandler);
+      clearInterval(interval);
       document.body.scrollTop = bfscrolltop;
     });
   }
@@ -61,15 +55,12 @@ export class ChatMobileComponent implements OnInit, AfterViewChecked {
   //   },200);
   // }
 
-  onSentMsgBtnClick(event){
-
+  onSentMsgBtnClick(event) {
     this.sendMessage.emit(this.myMessage);
-    this.myMessage="";
+    this.myMessage = ' ';
     this.scrollDown();
   }
-  ngAfterViewChecked(){
-    this.scrollDown();
-  }
+
   scrollDown(){
     document.getElementById('window').scrollIntoView(false);
   }
