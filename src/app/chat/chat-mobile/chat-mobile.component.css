@@ -58,6 +58,7 @@
 .chat-window-avatar img{
   width: 40px;
   height: 40px;
+  border-radius: 100%;
 }
 .chat-window-text{
   color: #444;
