@@ -59,9 +59,11 @@ export class ChatMobileComponent implements OnInit {
     this.sendMessage.emit(this.myMessage);
     this.myMessage = ' ';
     this.scrollDown();
+
   }
 
   scrollDown(){
     document.getElementById('window').scrollIntoView(false);
+    document.getElementById('window').scrollTop = document.getElementById('input-box').offsetHeight;
   }
 }
