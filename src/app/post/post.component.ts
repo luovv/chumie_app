@@ -33,7 +33,7 @@ export class PostComponent implements OnInit {
 
   paymentModel = { email: '', name: ''};
   joinModel = { email: '', name: ''};
-  
+
 
   // join group
   private groupData = { groupid: '', groupname: ''};
@@ -185,8 +185,8 @@ export class PostComponent implements OnInit {
             data => {
                 console.log(data);
                 console.log(data.invoiceId);
-                //支付成功跳转
-
+                //支付成功跳转 invoice/:invoiceId
+              this.router.navigateByUrl(`/invoice/${data.invoiceId}`);
                 this.closeAllModal();
             },
             error => {
