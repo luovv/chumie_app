@@ -35,6 +35,7 @@ export class InvoiceComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       console.log(params);
       this.invoiceId = params['invoiceId'];
+      localStorage.setItem('invoiceId', this.invoiceId);
       this.userId = params['userId'];
     });
     this.http.getInvoice(this.invoiceId).subscribe(

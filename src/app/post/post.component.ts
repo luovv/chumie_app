@@ -191,6 +191,8 @@ export class PostComponent implements OnInit {
               this.g.getUserInfo();
               GlobalService.data.userId = data.userId;
               this.joinGroup();
+              localStorage.setItem(GlobalService.data.isFreeEvent, 'No');
+              localStorage.setItem(GlobalService.data.invoiceId, data.invoiceId);
               // this.router.navigateByUrl(`/chat/user/${userId}/group/${this.eventId}`);
               this.router.navigateByUrl(`/invoice/${data.invoiceId}/user/${userId}`);
                 this.closeAllModal();
@@ -294,6 +296,7 @@ export class PostComponent implements OnInit {
                 this.g.getUserInfo();
                 GlobalService.data.userId = data.userId;
                 this.joinGroup();
+                localStorage.setItem(GlobalService.data.isFreeEvent, 'Yes' );
                 this.router.navigateByUrl(`/chat/user/${userId}/group/${this.eventId}`);
             },
             error => {

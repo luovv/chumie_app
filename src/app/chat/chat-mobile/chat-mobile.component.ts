@@ -11,13 +11,28 @@ export class ChatMobileComponent implements OnInit {
   // @Input() target = '';
   @Input() messages = [];
   @Input() target = {};
+  @Input() my = {};
   @Output() sendMessage = new EventEmitter();
   private myMessage = "";
   private _setIntervalHandler: any;
 
+  public invoicId = '';
+  public isFreeEvent = true;
+
+  private linkToInvoice = '';
+
   constructor() { }
 
   ngOnInit() {
+    if (localStorage.getItem('isFreeEvent') === 'No') {
+      this.isFreeEvent = false;
+      this.invoicId = localStorage.getItem('invoiceId');
+      this.linkToInvoice = '/invoice/'+ this.invoicId +'/user/' + this.my['id'];//{{my.id}}
+
+    } else {
+      this.linkToInvoice = '/group/'+ this.target['id'];
+    }
+    console.log(this.linkToInvoice);
     var bfscrolltop = document.body.scrollTop;
     var that = this;
     var interval: any;

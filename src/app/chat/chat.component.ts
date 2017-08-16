@@ -21,6 +21,9 @@ export class ChatComponent implements OnInit {
   private instance:any;
   private isMobile = true;
 
+  private imghost = this.http.imghost;
+
+
   private isChat = true;
 
   private userList = [];
@@ -36,7 +39,7 @@ export class ChatComponent implements OnInit {
   private my = {
     id: '',//GlobalService.data.userId,
     name: '',// GlobalService.data.username,
-    icon: '', //GlobalService.data.userImg
+    icon: GlobalService.data.userImg,
   };
 
   constructor(private http: HttpService, private router: Router, private g: GlobalService, private route: ActivatedRoute) {}
@@ -118,9 +121,9 @@ export class ChatComponent implements OnInit {
       this.http.getUserInfo(this.my.id).subscribe(
         data => {
           this.my.name = data.username;
-          this.my.icon = data.userPhoto;
-          console.log(this.my.name + this.my.icon);
-          // this.g.
+          this.my.icon = this.imghost + data.thumb;
+          console.log(this.my.icon);
+
         },
         error => {
           console.error('Error on geting username an photo for chat'+ error);

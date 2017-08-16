@@ -49,6 +49,7 @@ export class HttpService {
 
   getUserInfo(data){
     var url = this.host+'/uploadUserBasicInfo/u/' + data;
+    console.log(url);
     return this.http.get(url, this.options).map(
       res => res.json()
     );
