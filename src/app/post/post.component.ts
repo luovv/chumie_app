@@ -80,6 +80,7 @@ export class PostComponent implements OnInit {
     this.http.getEventInfo(this.eventId).subscribe(
         data => {
           this.content = data.content;
+          console.log(this.content);
           this.postDate = data.postDate;
           this.title = data.title;
           this.setTitle(this.title);
