@@ -1,23 +1,41 @@
 <!--<app-nav></app-nav>-->
-<div>
-  <div class="nav">
-    <div class="pull-left">
-      <a href="index.html"><img src="/assets/img/logo.png"></a>
-    </div>
-
-    <div class="pull-right card-avatar">
-      <a href="/group/{{target.id}}">群组成员</a>
-    </div>
+<!--Header Nav-->
+<!--<div class="nav">-->
+    <!--<div class="pull-left">-->
+      <!--<a href="index.html"><img src="/assets/img/logo.png"></a>-->
+    <!--</div>-->
+    <!--<div class="pull-right card-avatar">-->
+      <!--<a href="/group/{{target.id}}">群组成员</a>-->
+    <!--</div>-->
+<!--</div>-->
+<head>
+  <meta charset="utf-8">
+  <title>Chumi</title>
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="description" content="Site Description Here">
+  <link rel="icon" href="img/fav.png" type="image/x-icon">
+  <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../../assets/css/swiper.css" rel="stylesheet">
+  <link href="../../../assets/css/main.css" rel="stylesheet">
+  <link href="../../../assets/css/stack-interface.css" rel="stylesheet">
+  <!--<link href="../../../assets/css/mdi.css" rel="stylesheet">-->
+  <link href="../../../assets/css/chat.css" rel="stylesheet">
+</head>
+<div class="top-bar">
+  <a class="pull-left" href="#">账单</a>
+  <a class="top-bar-btn pull-right" href="#"><img src="../../../assets/img/member.png"></a>
+  <h1 class="top-bar-title">群聊</h1>
 </div>
-<div class="container">
-  <div class="chat-window-display" id="window">
-      <div class="chat-window-msgs">
+
+<!--Chat content-->
+<div class="chat-window-display" id="window">
+      <div class="chat-window-msgs ">
         <div *ngFor="let i of messages">
           <div class="chat-window-messages" *ngIf="i.messageDirection==2">
-            <div class="chat-window-avatar left">
-              <img src="{{i.content.user.icon}}">
+            <div class="chat-window-avatar   left">
+              <img src="{{i.content.user.icon}}" alt="Chumi">
             </div>
-            <div class="chat-window-text left white" *ngIf="i.messageType=='TextMessage'">{{i.content.content}}</div>
+            <div class="chat-window-text ctext-wrap left white" *ngIf="i.messageType=='TextMessage'">{{i.content.content}}</div>
             <div class="chat-window-text left white" *ngIf="i.messageType=='ImageMessage'">
               <img src="{{i.content.imageUri}}">
             </div>
@@ -33,15 +51,15 @@
         </div>
       </div>
   </div>
-  <div class="chat-window-input" id="chat-window-input-box">
-  <div class="row">
-    <textarea class="col-lg-6 col-md-6 col-sm-8 col-xs-8" [(ngModel)]="myMessage" (click)="adjustPage($event)" (keydown)="pressKey($event)" name="myMessage">
-    </textarea>
-    <button class="btn btn-success col-md-1 col-lg-1 col-sm-2 col-xs-2"
-            (click)="onSentMsgBtnClick($event)">发送</button>
-    <div class="col-lg-2 col-sm-8 col-xs-4">
 
-    </div>
+<!--Chat Input-->
+<div class="chat-window-input" id="input-box">
+  <div>
+    <textarea id="input" class="col-lg-6 col-md-5 col-sm-5 col-xs-5" [(ngModel)]="myMessage"
+               name="myMessage">
+    </textarea>
+    <button class="btn btn-success"
+            (click)="onSentMsgBtnClick($event)">发送</button>
   </div>
 </div>
-</div>
+

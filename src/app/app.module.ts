@@ -102,7 +102,7 @@ export function HttpLoaderFactory(http: Http) {
       { path: 'center/message', component: MessageComponent },
       { path: 'center/friend', component: FriendComponent },
       { path: 'create', component: CreateComponent },
-      { path: 'invoice/:invoiceId', component: InvoiceComponent },
+      { path: 'invoice/:invoiceId/user/:userId', component: InvoiceComponent },
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },
