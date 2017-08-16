@@ -157,9 +157,7 @@ export class PostComponent implements OnInit {
     card.mount('#card-element');
 
     var setOutcome = result => {
-      var successElement = document.querySelector('.success');
       var errorElement = document.querySelector('.error');
-      successElement.classList.remove('visible');
       errorElement.classList.remove('visible');
 
       if (result.token) {
