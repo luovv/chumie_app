@@ -30,6 +30,7 @@ export class PostComponent implements OnInit {
   price: number;
   priceText: string;
   isFree: boolean;
+  seatSelection:boolean;
 
   paymentModel = { email: '', name: ''};
   joinModel = { email: '', name: ''};
@@ -87,6 +88,7 @@ export class PostComponent implements OnInit {
           this.creatorIcon = this.photoServerUrl + data._creator.userPhoto;
           this.cover = this.photoServerUrl + data.cover;
           this.views = data.viewers;
+          this.seatSelection = data.seatSelection;
 
           this.creatorName = data._creator.username;
           this.images = data.image;
