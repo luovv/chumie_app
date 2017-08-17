@@ -770,6 +770,8 @@
 
 .modal-backgroud {
     background-color: #f5f5f5;
+    max-height: 50vh;
+    overflow-y: auto;
 }
 
 .event-start-time {
