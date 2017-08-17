@@ -84,6 +84,7 @@ export class PostComponent implements OnInit {
           console.log(this.content);
           this.postDate = data.postDate;
           this.title = data.title;
+          this.groupData.groupname = data.title;
           this.setTitle(this.title);
           this.creatorIcon = this.photoServerUrl + data._creator.userPhoto;
           this.cover = this.photoServerUrl + data.cover;
