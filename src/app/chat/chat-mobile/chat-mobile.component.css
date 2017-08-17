@@ -1,15 +1,15 @@
 .chat-window-display{
   height: 100%;
-  padding: 10px 10px 80px 10px;
+  padding: 10px 10px 180px 10px;
   overflow: scroll;
 
   display:block;
   /*position:absolute;*/
   top:50px;
-  bottom:50px;
+  bottom:80px;
   width:100%;
   /*height:auto;*/
-  background-color:#ebebeb;
+  /*background-color:#ebebeb;*/
   /*overflow-y:scroll;*/
   -webkit-overflow-scrolling:touch;
 }
@@ -28,7 +28,7 @@
   width: 95%;
   height:60px;
   position: fixed;
-  bottom: 5px;
+  bottom: 40px;
   border-top:1px solid #ccc;
   padding:10px 5px 10px 5px;
 
@@ -38,17 +38,17 @@
   /*bottom:0;*/
   /*width:100%;*/
   /*height:50px;*/
-  background-color:#f4f4f4;
+  /*background-color:#f4f4f4;*/
   /*border-top:1px solid #d8d8d8;*/
   /*z-index:99;*/
 }
 .chat-window-input textarea{
-  width: 60%;
-  border: 1px solid #bbb;
+  width: 75%;
+  border: 1px solid #e0e0e0;
   outline: none;
   padding: 5px;
   /*resize: none;*/
-  height:38px;
+  height: 45px;
 }
 
 .chat-window-avatar{

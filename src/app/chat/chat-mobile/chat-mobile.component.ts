@@ -29,18 +29,21 @@ export class ChatMobileComponent implements OnInit {
       this.invoicId = localStorage.getItem('invoiceId');
       this.linkToInvoice = '/invoice/'+ this.invoicId +'/user/' + this.my['id'];//{{my.id}}
 
-    } else {
-      this.linkToInvoice = '/group/'+ this.target['id'];
-    }
+    }; //else {
+    //   this.linkToInvoice = '/group/'+ this.target['id'];
+    // }
     console.log(this.linkToInvoice);
     var bfscrolltop = document.body.scrollTop;
     var that = this;
     var interval: any;
 
     $("input-box.myMessage").focus(function(){
+      // $('input-box').style.marginBottom = '300px';
       this.interval = setInterval(function(){
-        document.body.scrollTop = document.body.scrollHeight*0.72;
-      }, 500);
+        document.body.scrollTop = document.body.scrollHeight ;
+        // $('input-box').css({marginTop: '-=500px'});
+        // document.getElementById('input-box').scrollTop = document.body.scrollHeight + 400;
+      }, 80);
     });
     $("input-box.myMessage").blur(function(){
       clearInterval(interval);
@@ -79,6 +82,6 @@ export class ChatMobileComponent implements OnInit {
 
   scrollDown(){
     document.getElementById('window').scrollIntoView(false);
-    document.getElementById('window').scrollTop = document.getElementById('input-box').offsetHeight;
+    document.getElementById('window').scrollTop = document.getElementById('input-box').offsetHeight + 30;
   }
 }
