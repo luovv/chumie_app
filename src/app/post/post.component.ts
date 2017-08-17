@@ -32,6 +32,8 @@ export class PostComponent implements OnInit {
   isFree: boolean;
   seatSelection:boolean;
 
+  modalTarget: string;
+
   paymentModel = { email: '', name: ''};
   joinModel = { email: '', name: ''};
 
@@ -89,6 +91,10 @@ export class PostComponent implements OnInit {
           this.cover = this.photoServerUrl + data.cover;
           this.views = data.viewers;
           this.seatSelection = data.seatSelection;
+
+          console.log("seatSelection: " + this.seatSelection);
+
+          this.modalTarget = this.seatSelection ? "#seatSelect" : "#payment-modal";
 
           this.creatorName = data._creator.username;
           this.images = data.image;
@@ -234,6 +240,10 @@ export class PostComponent implements OnInit {
     this.selectedSeatList = this.seats[key];
     this.selectedListIndex = key;
     //this.selectedSeats = [];
+
+    if(!this.seatSelection) {
+      this.selectedSeat = 0;
+    }
   }
 
   buyTicket(key) {
