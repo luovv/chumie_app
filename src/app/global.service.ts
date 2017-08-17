@@ -9,6 +9,7 @@ import {Subject} from "rxjs";
 @Injectable()
 export class GlobalService{
   public static data = {
+    groupId: '',
     isSigned: false,
     userImg: '',
     userId:'',
@@ -21,8 +22,12 @@ export class GlobalService{
     location:{
       lat:0,
       long:0,
-    }
+    },
+    isFreeEvent: '',
+    invoiceId: '',
   };
+
+
   dataChange: Subject<any> = new Subject<any>();
 
   constructor(private http: HttpService) {
