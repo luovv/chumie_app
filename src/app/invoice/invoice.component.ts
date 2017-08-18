@@ -25,9 +25,9 @@ export class InvoiceComponent implements OnInit {
 
   private num: number;
   // const message on top
-  private message1 = 'Congratulations! You have paid your ticket successfully.';
-  private message2 = 'For next step, you can join the group chat for this event.' +
-  ' We will keep updating information in the chat, please make sure you stay connected.';
+  private message1 = 'Congratulations! You have paid your ticket successfully. For next step:';
+  private message2 = 'you can join the group chat for this event.' +
+  ' We will keep updating information in the chat, please make sure you stay connected. We send this receipt to your email please check your in/spam/trash box.';
 
   constructor(private router: Router, private http: HttpService, private route: ActivatedRoute) { }
 
