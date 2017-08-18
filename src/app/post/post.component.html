@@ -108,7 +108,7 @@
                     <div class="form-group">
                       <label  for="inputEmailFree" class="control-label">电子邮箱：</label>
                       <div class="">
-                        <input type="text" name="joinEmail" required [(ngModel)]="joinModel.email" #joinEmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" (keyup)="onKeyEmail($event)" class="form-control" id="inputEmailFree" placeholder="Email"/>
+                        <input type="text" name="joinEmail" required [(ngModel)]="joinModel.email" #joinEmail="ngModel" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,3}$" (keyup)="onKeyEmail($event)" class="form-control" id="inputEmailFree" placeholder="Email"/>
                         <div *ngIf="joinEmail.errors && (joinEmail.dirty || joinEmail.touched)" class="alert alert-danger">
                           <div [hidden]="!joinEmail.errors.required">电子邮箱不能为空</div>
                           <div [hidden]="!joinEmail.errors.pattern">请输入有效邮箱</div>
@@ -199,7 +199,7 @@
                       <div class="group">
                         <label>
                           <span class="hide-on-mobile">电子邮箱：</span>
-                          <input (keyup)="onKeyEmail($event)" name="user-email" class="field form-control" placeholder="Email" type="text" required [(ngModel)]="paymentModel.email" #paymentEmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+                          <input (keyup)="onKeyEmail($event)" name="user-email" class="field form-control" placeholder="Email" type="text" required [(ngModel)]="paymentModel.email" #paymentEmail="ngModel" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,3}$"/>
                         </label>
 
                         <div *ngIf="paymentEmail.errors && (paymentEmail.dirty || paymentEmail.touched)" class="alert alert-danger">
