@@ -316,7 +316,7 @@ export class ChatComponent implements OnInit {
     let t = {
       id:user._id,
       name:user.username,
-      icon:user.userPhoto
+      icon:user.thumb
     };
     this.target = t;
     this.setMessages(null,t);

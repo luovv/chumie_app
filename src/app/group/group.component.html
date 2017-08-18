@@ -1,35 +1,48 @@
-<div class="container">
-  <div class="row">
-    <h2 class="text-center">{{groupTitle}}</h2>
-  </div>
-  <div class="">
-    <h4 >
-      感谢你参加我们举办的活动，所有活动中的信息我们会在群聊中发出，为了方便，推荐你下载app，保证我们能互相联系。
-    </h4>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <a class="" href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www"><h4>Chumi App Link</h4></a>
+<div class="nav-container no-tab">
+  <div class="nav-bar">
+    <div class="logo">
+      <a href="index.html"><img src="img/logo.png"></a>
     </div>
-  </div>
-
-  <div class="row" style="align-content: flex-start">
-    <h3 class="text-center">Group Users: </h3>
-      <ul style="text-align: center" class="col-xs-12">
-        <li *ngFor="let user of groupUsers; let i = index" class=" col-lg-3 col-md-3 col-sm-3 col-xs-3" style="list-style-type: none; text-align: center">
-          <div class="row">
-            <img src="{{http.imghost}}{{user.avatarImg}}"
-                 onError="this.src='./assets/img/errorImg.jpg';" style="width: 80%;">
-          </div>
-          <div class="row"><span>{{user.userName.slice(0,10)}}</span></div>
-        </li>
+    <div class="logo-small">
+      <a href="index.html"><img src="img/logo-sigle.png"></a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">通知</a></li>
+        <li><a href="#">好友</a></li>
+        <li><a href="#">活动</a></li>
+        <li><a class="cd-popup-trigger" href="#">登录/注册</a></li>
+        <li><a href="#"><div class="avatar"><img src="img/tourism-3.jpg" width="30" height="30"></div></a></li>
       </ul>
+    </nav>
+    <div class="search">
+      <input class="form-control" type="text" placeholder="搜索">
+      <a class="search-btn" href="#"><i class="mdi mdi-magnify"></i></a>
     </div>
-
-
-
-
-
-
-
+    <div class="menu-btn side-overlay-menu">
+      <a href="javascript:;"><i class="mdi mdi-menu"></i></a>
+    </div>
+  </div>
+  <div class="top-bar">
+    <a class="pull-left" href="#">返回群聊</a>
+    <a class="pull-right" href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www" style="color: #f73057">下载初觅</a>
+    <h1 class="top-bar-title">群成员</h1>
+  </div>
 </div>
+<div class="group-container">
+  <div class="container">
+    <h1 class="group-title">{{groupTitle}}</h1>
+    <h4>感谢你参加我们举办的活动，所有活动中的信息我们会在群聊中发出，为了方便，推荐你下载app，保证我们能互相联系。</h4>
+    <hr style="margin-bottom: 25px">
+    <ul class="users-wrap row">
+      <li *ngFor="let user of groupUsers; let i = index" class="col-xs-3">
+        <div class="user-avatar">
+          <img src="{{http.imghost}}{{user.avatarImg}}"
+               onError="this.src='./assets/img/group01.png';">
+        </div>
+        <div class="user-name">{{user.userName.slice(0,10)}}</div>
+      </li>
+    </ul>
+  </div>
+</div>
+

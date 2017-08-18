@@ -41,7 +41,7 @@ export class TickettestComponent implements OnInit {
       this.userLanguage = "English";
     }
 
-    var stripe = Stripe('pk_test_rOjv2jSQZRDSKTgc6pTan9jJ');
+    var stripe = Stripe('pk_live_fv6E5eo1rKZdm2F22cBJTRIF');
     var elements = stripe.elements();
 
     var card = elements.create('card', {
@@ -130,7 +130,7 @@ export class TickettestComponent implements OnInit {
           this.selectedSeatList = this.seats[0];
 
           console.log(this.ticketPrices);
-          
+
         },
         error => {
             alert(error);

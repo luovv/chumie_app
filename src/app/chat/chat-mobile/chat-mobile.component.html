@@ -21,8 +21,9 @@
   <!--<link href="../../../assets/css/mdi.css" rel="stylesheet">-->
   <link href="../../../assets/css/chat.css" rel="stylesheet">
 </head>
+<body>
 <div class="top-bar">
-  <a class="pull-left" href="{{linkToInvoice}}">账单</a>
+  <a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">账单</a>
   <a class="top-bar-btn pull-right" href="/group/{{target.id}}"><img src="../../../assets/img/member.png"></a>
   <h1 class="top-bar-title">群聊</h1>
 </div>
@@ -33,7 +34,7 @@
         <div *ngFor="let i of messages">
           <div class="chat-window-messages" *ngIf="i.messageDirection==2">
             <div class="chat-window-avatar   left">
-              <img src="{{i.content.user.icon}}" alt="Chumi">
+              <img src="{{i.content.user.icon}}">
             </div>
             <div class="chat-window-text ctext-wrap left white" *ngIf="i.messageType=='TextMessage'">{{i.content.content}}</div>
             <div class="chat-window-text left white" *ngIf="i.messageType=='ImageMessage'">
@@ -56,10 +57,12 @@
 <div class="chat-window-input" id="input-box">
   <div>
     <textarea id="input" class="col-lg-6 col-md-5 col-sm-5 col-xs-5" [(ngModel)]="myMessage"
-               name="myMessage">
+               name="myMessage" placeholder="请输入内容">
     </textarea>
-    <button class="btn btn-success"
+    <button class="btn btn-lg btn-info"
             (click)="onSentMsgBtnClick($event)">发送</button>
   </div>
-</div>
+  <div ><label  style="margin-top: 8px"> 更好体验，请下载我们的app</label> </div>
 
+</div>
+</body>
