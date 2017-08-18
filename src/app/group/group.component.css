@@ -59,7 +59,7 @@
 
 
 .group-container{
-  margin-top: 50px;
+  margin-top: 60px;
   max-width: 540px;
 }
 .group-title{
@@ -114,5 +114,8 @@
   }
   .nav-container.no-tab {
     height: 50px;
+  }
+  .group-container{
+    margin-top: 50px;
   }
 }
