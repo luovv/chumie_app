@@ -1,3 +1,17 @@
+<head>
+  <meta charset="utf-8">
+  <title>Chumi</title>
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="description" content="Site Description Here">
+  <link rel="icon" href="../../../assets/img/fav.png" type="image/x-icon">
+  <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../../assets/css/swiper.css" rel="stylesheet">
+  <link href="../../../assets/css/main.css" rel="stylesheet">
+  <link href="../../../assets/css/stack-interface.css" rel="stylesheet">
+  <!--<link href="../../../assets/css/mdi.css" rel="stylesheet">-->
+  <link href="../../../assets/css/chat.css" rel="stylesheet">
+</head>
+<body>
 <app-nav hideNavTab = true></app-nav>
 
 <div class="main-container">
@@ -65,7 +79,7 @@
           <!--span>30人报名</span-->
         </div>
         <div class="clearfix">
-          
+
           <div class="signup" *ngIf="!isFree">
             <a data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()">
               <span>立即报名</span>
@@ -110,7 +124,7 @@
                         </div>
                       </div>
                     </div>
-                    
+
                   </form>
                 </div>
                 <div class="modal-footer">
@@ -386,3 +400,5 @@
   <a class="go-activity-btn" data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()"><span>免费参加</span>
   <i class="mdi mdi-arrow-right"></i></a>
 </div>
+</div>
+</body>
