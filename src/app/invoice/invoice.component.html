@@ -5,34 +5,34 @@
         <i class="iconfont icon-correct_big"></i>
       </div>
       <div class="ys_prompt_tips">
-        <h2 class="ys_pt_title">{{message1}}</h2>
-        <p class="ys_pt_desc">{{message2}}</p>
-        <p class="ys_pt_desc" style="color: #57c96d">{{num}} attendants are waiting for you</p>
+        <h2 class="ys_pt_title">{{'message1'|translate}}</h2>
+        <p class="ys_pt_desc">{{'message2'|translate}}</p>
+        <p class="ys_pt_desc" style="color: #57c96d">{{num}} {{'attendantswait'|translate}}</p>
       </div>
     </div>
     <div class="pay_preview">
       <div class="pay_ph_bd">
         <div class="pay_ph_item">
-          <label>Invoice Date</label>
+          <label>{{'invoiceDate'|translate}}</label>
           <span>{{date| date: 'dd-MM-yyyy'}}</span>
         </div>
         <div class="pay_ph_item">
-          <label>Invoice ID</label>
+          <label>{{'invoiceid'|translate}}</label>
           <span>{{invoiceId}}</span>
         </div>
         <div class="pay_ph_item">
-          <label>Item</label>
+          <label>{{'invoiceTitle'|translate}}</label>
           <span>{{title}}</span>
         </div>
         <div class="pay_ph_item">
-          <label>Total Price</label>
+          <label>{{'payamount'|translate}}</label>
           <span>{{amount_due| currency: 'CAD'}}</span>
         </div>
       </div>
     </div>
     <div class="flex_grow"></div>
     <div class="ys_btns">
-      <a class="ys_btn" href="/chat/user/{{userId}}/group/{{groupId}}">Join</a>
+      <a class="ys_btn" href="/chat/user/{{userId}}/group/{{groupId}}">{{'JoinGroupChat'|translate}}</a>
     </div>
   </div>
 </div>

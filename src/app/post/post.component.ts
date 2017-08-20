@@ -3,6 +3,7 @@ import { HttpService } from "../http.service";
 import { GlobalService } from '../global.service'
 import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 import { Title }     from '@angular/platform-browser';
+import {TranslateService} from '@ngx-translate/core';
 
 declare var Stripe: any;
 declare var $: any;
@@ -64,10 +65,12 @@ export class PostComponent implements OnInit {
   photoServerUrl = "https://dhjjgq45wu4ho.cloudfront.net/";
 
   //eventName = "event title";
+  constructor( private g: GlobalService,private translate:TranslateService, private http: HttpService, private route: ActivatedRoute, private router: Router, private titleService: Title) {
 
-  constructor( private g: GlobalService, private http: HttpService, private route: ActivatedRoute, private router: Router, private titleService: Title) { }
+  }
   setTitle( newTitle: string) {
     this.titleService.setTitle( newTitle );
+
   }
 
   ngOnInit() {

@@ -10,7 +10,13 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit{
   constructor(private g:GlobalService, private translate:TranslateService){
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('cn');
+    if(translate.getBrowserLang() == "zh-CN" || translate.getBrowserLang() == "zh-TW") {
+      translate.use("cn");
+    }
+    else {
+      translate.use("en");
+    }
   }
   ngOnInit() {
     // this.g.getUserInfo();
