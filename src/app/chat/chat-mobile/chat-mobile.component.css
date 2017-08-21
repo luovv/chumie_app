@@ -31,7 +31,7 @@
   bottom: 40px;
   border-top:1px solid #ccc;
   padding:10px 5px 10px 5px;
-
+  max-width: 1024px;
 
   /*display:block;*/
   /*position:absolute;*/
@@ -64,7 +64,7 @@
   color: #444;
   border: 1px solid #ccc;
   padding: 10px;
-  background-color: #dddddd;
+  border-radius: 7px;
   margin: 0 10px;
 }
 .clear{
@@ -77,7 +77,7 @@
   float: right;
 }
 .white{
-  background-color: #eee;
+  background-color: lightgreen;
 }
 .blue{
   background-color: #99cff4;
@@ -89,5 +89,6 @@
 .nav-right {
   display: block;
 }
+
 
 

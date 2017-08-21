@@ -22,11 +22,14 @@
   <link href="../../../assets/css/chat.css" rel="stylesheet">
 </head>
 <body>
-<div class="top-bar">
-  <a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">账单</a>
-  <a class="top-bar-btn pull-right" href="/group/{{target.id}}"><img src="../../../assets/img/member.png"></a>
-  <h1 class="top-bar-title">群聊</h1>
+<div class="nav-container no-tab">
+  <div class="top-bar">
+    <a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">账单</a>
+    <a class="top-bar-btn pull-right" href="/group/{{target.id}}"><img src="../../../assets/img/member.png"></a>
+    <h1 class="top-bar-title">群聊</h1>
+  </div>
 </div>
+
 
 <!--Chat content-->
 <div class="chat-window-display" id="window">
@@ -36,7 +39,11 @@
             <div class="chat-window-avatar   left">
               <img src="{{i.content.user.icon}}">
             </div>
-            <div class="chat-window-text ctext-wrap left white" *ngIf="i.messageType=='TextMessage'">{{i.content.content}}</div>
+
+              <div class="chat-window-text ctext-wrap left white" *ngIf="i.messageType=='TextMessage'">
+                <b>{{i.content.user.name}}:</b> <br>
+                {{i.content.content}}
+              </div>
             <div class="chat-window-text left white" *ngIf="i.messageType=='ImageMessage'">
               <img src="{{i.content.imageUri}}">
             </div>
@@ -46,7 +53,9 @@
             <div class="chat-window-avatar right">
               <img src="{{i.content.user.icon}}">
             </div>
-            <div class="chat-window-text right blue">{{i.content.content}}</div>
+            <div class="chat-window-text right blue">
+              <b>{{i.content.user.name}}:</b> <br>
+              {{i.content.content}}</div>
             <div class="clear"></div>
           </div>
         </div>
@@ -55,14 +64,19 @@
 
 <!--Chat Input-->
 <div class="chat-window-input" id="input-box">
-  <div>
-    <textarea id="input" class="col-lg-6 col-md-5 col-sm-5 col-xs-5" [(ngModel)]="myMessage"
-               name="myMessage" placeholder="请输入内容">
-    </textarea>
-    <button class="btn btn-lg btn-info"
-            (click)="onSentMsgBtnClick($event)">发送</button>
+  <div class="container">
+    <div class="">
+      <textarea id="input" class="col-lg-6 col-md-5 col-sm-5 col-xs-5" [(ngModel)]="myMessage"
+                 name="myMessage" placeholder="请输入内容">
+      </textarea>
+      <button class="right btn btn-lg btn-info"
+              (click)="onSentMsgBtnClick($event)">发送</button>
+    </div>
+    <div class="pull-left" >
+      <label  style="margin-top: 8px"> 更好体验，请下载我们的app</label>
+    </div>
   </div>
-  <div ><label  style="margin-top: 8px"> 更好体验，请下载我们的app</label> </div>
+
 
 </div>
 </body>
