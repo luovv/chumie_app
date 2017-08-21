@@ -53,12 +53,33 @@
       <div class="loveit">
         <!--button class="loveit-btn"><i class="mdi mdi-heart-outline"></i>喜欢</button>
         <button class="loveit-btn active"><i class="mdi mdi-heart"></i>喜欢</button-->
-        <span class="share-t">{{'share'|translate}}：</span>
+        <!--span class="share-t">{{'share'|translate}}：</span>
         <ul class="share">
           <li><a class="wechat"><i class="mdi mdi-wechat" style="font-size: 23px"></i></a></li>
           <li><a class="facebook"><i class="mdi mdi-facebook"></i></a></li>
           <li><a class="twitter"><i class="mdi mdi-twitter"></i></a></li>
-        </ul>
+        </ul>-->
+
+        <div class="share-button" data-toggle="modal" data-target="#showShare">把活动分享到社交网络</div>
+        <div class="modal fade" id="showShare" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content" >
+                  <div class="modal-header">
+                      <h4 class="modal-title">分享此活动</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div class="social-share" [attr.data-title]="shareTitle" [attr.data-description]="des"></div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+
+              </div>
+          </div>
+
       </div>
       <div class="signedup">
         <div class="setop">

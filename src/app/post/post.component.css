@@ -985,3 +985,25 @@
 .post-content {
   white-space: pre-line;
 }
+
+.share-button {
+    margin-bottom: 30px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 35px;
+    background-color: #f73057;
+    color: #fff;
+    font-weight: 600;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+}
+.share-button:hover {
+    background-color: #e0254a;
+    color: #fff;
+    text-decoration: none;
+}

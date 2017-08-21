@@ -17,6 +17,7 @@ export class AppComponent implements OnInit{
     else {
       translate.use("en");
     }
+
   }
   ngOnInit() {
     // this.g.getUserInfo();
