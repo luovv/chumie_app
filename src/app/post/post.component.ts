@@ -3,6 +3,7 @@ import { HttpService } from "../http.service";
 import { GlobalService } from '../global.service'
 import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 import { Title }     from '@angular/platform-browser';
+import {TranslateService} from '@ngx-translate/core';
 
 declare var Stripe: any;
 declare var $: any;
@@ -64,14 +65,16 @@ export class PostComponent implements OnInit {
   validCard: boolean;
 
   eventId: string;
-
+  trans:TranslateService;
   photoServerUrl = "https://dhjjgq45wu4ho.cloudfront.net/";
 
   //eventName = "event title";
-
-  constructor( private g: GlobalService, private http: HttpService, private route: ActivatedRoute, private router: Router, private titleService: Title) { }
+  constructor( private g: GlobalService,private translate:TranslateService, private http: HttpService, private route: ActivatedRoute, private router: Router, private titleService: Title) {
+    this.trans = translate;
+  }
   setTitle( newTitle: string) {
     this.titleService.setTitle( newTitle );
+
   }
 
   ngOnInit() {
@@ -115,12 +118,18 @@ export class PostComponent implements OnInit {
           this.eventStartTime = data.DeadTime;
           this.price = data.price;
 
+
           if (this.price > 0) {
-            this.priceText = "参与价格： $" + this.price;
-            this.isFree = false;
+            this.trans.get('参与价格： $').subscribe((res: string) => {
+              this.priceText = res + this.price;
+              this.isFree = false;
+            });
+
           } else {
-            this.priceText = "本活动免费";
-            this.isFree = true;
+            this.trans.get('本活动免费').subscribe((res: string) => {
+              this.priceText = res;
+              this.isFree = true;
+            });
           }
 
           console.log(data);

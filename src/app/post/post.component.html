@@ -11,10 +11,10 @@
             <!--a href="javascript:;" class="btn-follow"><i class="mdi mdi-plus"></i> 关注</a>
             <a href="javascript:;" class="btn-follow following"><i class="mdi mdi-check"></i> 已关注</a-->
             <div class="authormeta">
-              <span class="publish-time">时间 {{postDate | displayDate}}</span>
-              <span class="views-count">浏览 {{views}}</span>
-              <span class="comments-count">评论 {{commentsCount}}</span>
-              <span class="likes-count">喜欢 {{liksCount}}</span>
+              <span class="publish-time">{{'time'|translate}} {{postDate | displayDate}}</span>
+              <span class="views-count">{{'view'|translate}} {{views}}</span>
+              <span class="comments-count">{{'comment'|translate}} {{commentsCount}}</span>
+              <span class="likes-count">{{'likes'|translate}} {{liksCount}}</span>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="event-start-time">
-          <h1> 活动开始时间：{{eventStartTime | displayDate}}  </h1>
+          <h1> {{'startTime'|translate}}：{{eventStartTime | displayDate}}  </h1>
         </div>
 
         <div class="img-box clearfix">
@@ -53,8 +53,8 @@
       <div class="loveit">
         <!--button class="loveit-btn"><i class="mdi mdi-heart-outline"></i>喜欢</button>
         <button class="loveit-btn active"><i class="mdi mdi-heart"></i>喜欢</button-->
-        <span class="share-t">分享：</span>
-        <!--<ul class="share">
+        <!--span class="share-t">{{'share'|translate}}：</span>
+        <ul class="share">
           <li><a class="wechat"><i class="mdi mdi-wechat" style="font-size: 23px"></i></a></li>
           <li><a class="facebook"><i class="mdi mdi-facebook"></i></a></li>
           <li><a class="twitter"><i class="mdi mdi-twitter"></i></a></li>
@@ -86,17 +86,17 @@
           <!--span>30人报名</span-->
         </div>
         <div class="clearfix">
-          
+
           <div class="signup" *ngIf="!isFree">
             <a data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()">
-              <span>立即报名</span>
+              <span>{{'register'|translate}}</span>
               <i class="mdi mdi-arrow-right"></i>
             </a>
           </div>
 
           <div class="signup" *ngIf="isFree">
             <a data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()">
-              <span>免费参加</span>
+              <span>{{'freeTojoin'|translate}}</span>
               <i class="mdi mdi-arrow-right"></i>
             </a>
           </div>
@@ -108,35 +108,35 @@
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">填写个人信息</h4>
+                  <h4 class="modal-title">{{'fillForm'|translate}}</h4>
                 </div>
                 <div class="modal-body modal-backgroud">
                   <form class="form-horizontal">
                     <div class="form-group">
-                      <label  for="inputEmailFree" class="control-label">电子邮箱：</label>
+                      <label  for="inputEmailFree" class="control-label">{{'email'|translate}}：</label>
                       <div class="">
                         <input type="text" name="joinEmail" required [(ngModel)]="joinModel.email" #joinEmail="ngModel" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,3}$" (keyup)="onKeyEmail($event)" class="form-control" id="inputEmailFree" placeholder="Email"/>
                         <div *ngIf="joinEmail.errors && (joinEmail.dirty || joinEmail.touched)" class="alert alert-danger">
-                          <div [hidden]="!joinEmail.errors.required">电子邮箱不能为空</div>
-                          <div [hidden]="!joinEmail.errors.pattern">请输入有效邮箱</div>
+                          <div [hidden]="!joinEmail.errors.required">{{'emailCannotBeBlank'|translate}}</div>
+                          <div [hidden]="!joinEmail.errors.pattern">{{'emailCannotBeBlank'|translate}}</div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputUsernameFree" class="control-label">用户名: </label>
+                      <label for="inputUsernameFree" class="control-label">{{'username'|translate}}: </label>
                       <div class="">
                         <input type="text" (keyup)="onKeyUsername($event)" class="form-control" id="inputUsernameFree" placeholder="Username" required [(ngModel)]="joinModel.name" #joinName="ngModel" name="joinName">
                         <div *ngIf="joinName.errors && (joinName.dirty || joinName.touched)" class="alert alert-danger">
-                          <div [hidden]="!joinName.errors.required">用户名不能为空</div>
+                          <div [hidden]="!joinName.errors.required">{{'usernameCanotbeBlank'|translate}}</div>
                         </div>
                       </div>
                     </div>
-                    
+
                   </form>
                 </div>
                 <div class="modal-footer">
                   <button *ngIf="!joinEmail.errors && !joinName.errors" type="submit" class="btn btn-default" (click)="submitJoinFree()">提交</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{{'cancel'|translate}}</button>
                 </div>
               </div>
             </div>
@@ -149,7 +149,7 @@
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">选择票种</h4>
+                  <h4 class="modal-title">{{'chooseTicketType'|translate}}</h4>
                 </div>
                 <div class="modal-body modal-backgroud">
                   <div>
@@ -162,7 +162,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{{'cancel'|translate}}</button>
                 </div>
               </div>
             </div>
@@ -175,7 +175,7 @@
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">选择座位</h4>
+                  <h4 class="modal-title">{{'seatSelection'|translate}}</h4>
                 </div>
                 <div class="modal-body modal-backgroud">
                   <div class="seat-row">
@@ -185,7 +185,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{{'cancel'|translate}}</button>
                 </div>
               </div>
             </div>
@@ -198,36 +198,36 @@
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">支付信息</h4>
+                  <h4 class="modal-title">{{'payment'|translate}}</h4>
                 </div>
                 <div class="modal-body modal-backgroud">
                   <div class="stripe-form">
                     <form class="payform">
                       <div class="group">
                         <label>
-                          <span class="hide-on-mobile">电子邮箱：</span>
+                          <span class="hide-on-mobile">{{'email'|translate}}：</span>
                           <input (keyup)="onKeyEmail($event)" name="user-email" class="field form-control" placeholder="Email" type="text" required [(ngModel)]="paymentModel.email" #paymentEmail="ngModel" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,3}$"/>
                         </label>
 
                         <div *ngIf="paymentEmail.errors && (paymentEmail.dirty || paymentEmail.touched)" class="alert alert-danger">
-                          <div [hidden]="!paymentEmail.errors.required">电子邮箱不能为空</div>
-                          <div [hidden]="!paymentEmail.errors.pattern">请输入有效邮箱</div>
+                          <div [hidden]="!paymentEmail.errors.required">{{'emailCannotBeBlank'|translate}}</div>
+                          <div [hidden]="!paymentEmail.errors.pattern">{{'emailCannotBeBlank'|translate}}</div>
                         </div>
                       </div>
                       <div class="group">
                         <label>
-                          <span class="hide-on-mobile">持卡人姓名:</span>
+                          <span class="hide-on-mobile">{{'nameOnCreditCard'|translate}}:</span>
                           <input (keyup)="onKeyUsername($event)" name="cardholder-name" class="field form-control" placeholder="Cardholder Name" required [(ngModel)]="paymentModel.name" #paymentName="ngModel"/>
                         </label>
                         <div *ngIf="paymentName.errors && (paymentName.dirty || paymentName.touched)" class="alert alert-danger">
-                          <div [hidden]="!paymentEmail.errors.required">持卡人姓名不能为空</div>
+                          <div [hidden]="!paymentEmail.errors.required">{{'nameOnCreditCardTip'|translate}}</div>
                         </div>
                         <label>
-                          <span class="hide-on-mobile">卡号:</span>
+                          <span class="hide-on-mobile">{{'cardNumber'|translate}}:</span>
                           <div id="card-element" class="field"></div>
                         </label>
                       </div>
-                      <button type="submit">确认支付</button>
+                      <button type="submit">{{'pay'|translate}}</button>
                       <div class="outcome">
                         <div class="error" role="alert"></div>
                       </div>
@@ -237,7 +237,7 @@
                 </div>
                 <div class="modal-footer">
                   <!--button type="button" class="btn btn-default" (click)="closeAllModal()">关闭全部</button-->
-                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{{'cancel'|translate}}</button>
                 </div>
               </div>
             </div>
@@ -247,7 +247,7 @@
       </div>
       <div class="comment-list">
         <div class="setop">
-          <span>{{commentsCount}}条评论</span>
+          <span>{{commentsCount}} {{'comment'|translate}}</span>
         </div>
         <div class="comment-body">
           <!--form class="reviews">
@@ -265,7 +265,7 @@
               <div class="co-bd">{{comment.content}}</div>
               <div class="co-ft">
                 <span>{{comment.postDate | displayDate}}</span>
-                <button><i class="mdi mdi-message-outline"></i> 回复</button>
+                <button><i class="mdi mdi-message-outline"></i> {{'comment'|translate}}</button>
               </div>
             </div>
           </div>
@@ -399,11 +399,12 @@
 
 <div class="fixed-height"></div>
 <div class="go-activity" *ngIf="!isFree">
-  <a class="go-activity-btn" data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()"><span>立即报名</span>
+  <a class="go-activity-btn" data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()"><span>{{'register'|translate}}</span>
   <i class="mdi mdi-arrow-right"></i></a>
 </div>
 
 <div class="go-activity" *ngIf="isFree">
-  <a class="go-activity-btn" data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()"><span>免费参加</span>
+  <a class="go-activity-btn" data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()"><span>{{'freeTojoin'|translate}}</span>
   <i class="mdi mdi-arrow-right"></i></a>
+</div>
 </div>
