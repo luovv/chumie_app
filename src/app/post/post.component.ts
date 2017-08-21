@@ -6,6 +6,7 @@ import { Title }     from '@angular/platform-browser';
 
 declare var Stripe: any;
 declare var $: any;
+declare var run: any;
 
 @Component({
   selector: 'app-post',
@@ -34,6 +35,8 @@ export class PostComponent implements OnInit {
 
   modalTarget: string;
 
+  shareTitle = "分享小密圈 - ";
+
   paymentModel = { email: '', name: ''};
   joinModel = { email: '', name: ''};
 
@@ -51,6 +54,7 @@ export class PostComponent implements OnInit {
   ticketQuantities: number[];
   seats: any[];
   selectedSeatList: number[];
+  des: string;
 
   selectedListIndex: number;
   selectedSeat: number;
@@ -92,6 +96,9 @@ export class PostComponent implements OnInit {
           this.cover = this.photoServerUrl + data.cover;
           this.views = data.viewers;
           this.seatSelection = data.seatSelection;
+
+          this.shareTitle += this.title;
+          this.des = this.content;
 
           console.log("seatSelection: " + this.seatSelection);
 
@@ -233,6 +240,8 @@ export class PostComponent implements OnInit {
 
     this.groupData.groupid = this.eventId;
     this.groupData.groupname = this.title;
+
+    new run();
 
 
   }
