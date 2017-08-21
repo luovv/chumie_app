@@ -36,7 +36,7 @@ export class PostComponent implements OnInit {
 
   modalTarget: string;
 
-  shareTitle = "分享小密圈 - ";
+  shareTitle = "分享活动 - ";
 
   paymentModel = { email: '', name: ''};
   joinModel = { email: '', name: ''};
