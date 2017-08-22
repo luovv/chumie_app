@@ -1,4 +1,6 @@
 <!--<app-nav></app-nav>-->
+<div class="container" style="background-color: white">
+
 <div class="container" *ngIf="!isMobile">
   <div class="chat-box">
     <div class="chat-side">
@@ -27,3 +29,5 @@
   </div>
 </div>
 <app-chat-mobile [messages]="messages" [target]="target" (sendMessage)="sendMessage($event)" *ngIf="isMobile"></app-chat-mobile>
+
+</div>

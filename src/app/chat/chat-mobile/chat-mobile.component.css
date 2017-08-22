@@ -90,5 +90,12 @@
   display: block;
 }
 
+@media (min-width: 1200px) {
+  chat-window-display {
+    width: 1024px;
+    background-color: white;
+  }
+}
+
 
 
