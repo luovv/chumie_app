@@ -1,17 +1,20 @@
 .chat-window-display{
   height: 100%;
-  padding: 10px 10px 180px 10px;
+  padding: 90px 10px 180px 10px;
   overflow: scroll;
 
   display:block;
   /*position:absolute;*/
-  top:50px;
+  top:100px;
   bottom:80px;
   width:100%;
   /*height:auto;*/
   /*background-color:#ebebeb;*/
   /*overflow-y:scroll;*/
   -webkit-overflow-scrolling:touch;
+}
+.chat-window-msgs {
+  margin: 60px auto;
 }
 .cw-head {
   height: 40px;

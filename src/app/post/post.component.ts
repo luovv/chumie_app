@@ -34,6 +34,8 @@ export class PostComponent implements OnInit {
   isFree: boolean;
   seatSelection:boolean;
 
+  deadtimeInvalid: boolean;
+
   modalTarget: string;
 
   shareTitle = "分享活动 - ";
@@ -75,59 +77,72 @@ export class PostComponent implements OnInit {
       this.eventId = params['postId'];
 
       console.log("id: " + this.eventId);
+
       this.http.getEventInfo(this.eventId).subscribe(
-        data => {
-          this.content = data.content;
-          console.log(this.content);
-          this.postDate = data.postDate;
-          this.title = data.title;
-          this.groupData.groupname = data.title;
-          this.setTitle(this.title);
-          this.creatorIcon = this.photoServerUrl + data._creator.userPhoto;
-          this.cover = this.photoServerUrl + data.cover;
-          this.views = data.viewers;
-          this.seatSelection = data.seatSelection;
+          data => {
+            console.log(data);
 
-          this.shareTitle += this.title;
-          this.des = this.content;
+            if(data.length === 0) {
+              window.location.href = "https://chumi.co/app";
+            }
 
-          console.log("seatSelection: " + this.seatSelection);
+            this.content = data.content;
+            console.log(this.content);
+            this.postDate = data.postDate;
+            this.title = data.title;
+            this.groupData.groupname = data.title;
+            this.setTitle(this.title);
+            this.creatorIcon = this.photoServerUrl + data._creator.userPhoto;
+            this.cover = this.photoServerUrl + data.cover;
+            this.views = data.viewers;
+            this.seatSelection = data.seatSelection;
 
-          this.modalTarget = this.seatSelection ? "#seatSelect" : "#payment-modal";
+            this.shareTitle += this.title;
+            this.des = this.content;
 
-          this.creatorName = data._creator.username;
-          this.images = data.image;
-          if (this.images.length > 8) {
-            this.images = this.images.slice(0, 8);
+            this.deadtimeInvalid = data.DeadTime === "2100-10-13T11:13:00.000Z";
+
+            console.log("seatSelection: " + this.seatSelection);
+
+            this.modalTarget = this.seatSelection ? "#seatSelect" : "#payment-modal";
+
+            this.creatorName = data._creator.username;
+            this.images = data.image;
+            if (this.images.length > 8) {
+              this.images = this.images.slice(0, 8);
+            }
+            this.tags = data.tags;
+
+            this.liksCount = data.likes.length;
+            this.eventStartTime = data.DeadTime;
+            this.price = data.price;
+
+
+            if (this.price > 0) {
+              this.trans.get('参与价格： $').subscribe((res: string) => {
+                this.priceText = res + this.price;
+                this.isFree = false;
+              });
+
+            } else {
+              this.trans.get('本活动免费').subscribe((res: string) => {
+                this.priceText = res;
+                this.isFree = true;
+              });
+            }
+
+            console.log(data);
+            console.log(this.images);
+
+            new run();
+
+
+          },
+          error => {
+              alert(error);
           }
-          this.tags = data.tags;
-
-          this.liksCount = data.likes.length;
-          this.eventStartTime = data.DeadTime;
-          this.price = data.price;
-
-
-          if (this.price > 0) {
-            this.trans.get('参与价格： $').subscribe((res: string) => {
-              this.priceText = res + this.price;
-              this.isFree = false;
-            });
-
-          } else {
-            this.trans.get('本活动免费').subscribe((res: string) => {
-              this.priceText = res;
-              this.isFree = true;
-            });
-          }
-
-          console.log(data);
-          console.log(this.images);
-
-        },
-        error => {
-          alert(error);
-        }
       );
+
     });
   }
   setTitle( newTitle: string) {
@@ -138,9 +153,6 @@ export class PostComponent implements OnInit {
   ngOnInit() {
 
     this.validCard = false;
-
-
-
 
     this.http.getComments(this.eventId).subscribe(
         data => {
@@ -251,9 +263,6 @@ export class PostComponent implements OnInit {
     this.groupData.groupid = this.eventId;
     this.groupData.groupname = this.title;
 
-    new run();
-
-
   }
 
   clickTicket(key) {
@@ -327,6 +336,7 @@ export class PostComponent implements OnInit {
                 this.closeAllModal();
                 this.g.getUserInfo();
                 GlobalService.data.userId = data.userId;
+                GlobalService.data.groupId = this.eventId;
                 this.joinGroup();
                 localStorage.setItem(GlobalService.data.isFreeEvent, 'Yes' );
                 this.router.navigateByUrl(`/chat/user/${userId}/group/${this.eventId}`);

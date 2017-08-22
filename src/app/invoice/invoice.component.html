@@ -10,6 +10,13 @@
         <p class="ys_pt_desc" style="color: #57c96d">{{num}} {{'attendantswait'|translate}}</p>
       </div>
     </div>
+    <div class="users-list">
+      <ul class="people-list">
+        <li *ngFor="let user of groupUsers; let i = index">
+          <a href="#"><img src="{{http.imghost}}{{user.avatarImg}}" onError="this.src='./assets/img/group01.png';"></a><p>{{user.userName.slice(0,10)}}</p>
+        </li>
+      </ul>
+    </div>
     <div class="pay_preview">
       <div class="pay_ph_bd">
         <div class="pay_ph_item">

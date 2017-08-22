@@ -24,6 +24,8 @@ export class InvoiceComponent implements OnInit {
   private groupData = { groupid: '', groupname: ''};
 
   private num: number;
+
+  groupUsers: any[] = [];
   // const message on top
   private message1 = 'Congratulations! You have paid your ticket successfully. For next step:';
   private message2 = 'you can join the group chat for this event.' +
@@ -47,6 +49,15 @@ export class InvoiceComponent implements OnInit {
         this.num = data.num;
         this.groupId = data.invoice.chargeItemId;
         // for join group, later to chat
+        //
+        const n = data.users.length;
+        alert("sdsada" + n);
+        for (let i = 0; i < n; i++) {
+          this.groupUsers.push(
+            { 'userName': data.users[i].username,
+              'avatarImg': data.users[i].thumb
+            });
+        }
         this.groupData.groupid = this.groupId;
         this.groupData.groupname = this.title;
         this.joinGroup();
