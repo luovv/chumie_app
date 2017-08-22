@@ -81,6 +81,11 @@ export class PostComponent implements OnInit {
       this.http.getEventInfo(this.eventId).subscribe(
           data => {
             console.log(data);
+
+            if(data.length === 0) {
+              window.location.href = "https://chumi.co/app";
+            }
+
             this.content = data.content;
             console.log(this.content);
             this.postDate = data.postDate;
