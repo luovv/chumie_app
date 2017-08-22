@@ -14,6 +14,7 @@ declare var $: any;
     providers: [HttpService]
 })
 export class NavComponent implements OnInit {
+    groupId = GlobalService.data.groupId;
     userInfo=GlobalService.data;
     switch:boolean = true;
     img:string;

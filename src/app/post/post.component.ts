@@ -326,6 +326,7 @@ export class PostComponent implements OnInit {
                 this.closeAllModal();
                 this.g.getUserInfo();
                 GlobalService.data.userId = data.userId;
+                GlobalService.data.groupId = this.eventId;
                 this.joinGroup();
                 localStorage.setItem(GlobalService.data.isFreeEvent, 'Yes' );
                 this.router.navigateByUrl(`/chat/user/${userId}/group/${this.eventId}`);

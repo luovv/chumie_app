@@ -21,19 +21,32 @@
   <!--<link href="../../../assets/css/mdi.css" rel="stylesheet">-->
   <link href="../../../assets/css/chat.css" rel="stylesheet">
 </head>
+<app-nav hideNavTab = true></app-nav>
 <body class="container">
+
 <div class="nav-container no-tab">
   <div class="top-bar">
     <a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">账单</a>
-    <a class="top-bar-btn pull-right" href="/group/{{target.id}}"><img src="../../../assets/img/member.png"></a>
-    <h1 class="top-bar-title">群聊</h1>
+    <a class="top-bar-title" href="/group/{{target.id}}"><img src="../../../assets/img/member.png"></a>
+    <h1 class="top-bar-title"></h1>
   </div>
 </div>
 
 
 <!--Chat content-->
+    <!--<div class="top-bar">-->
+      <!--<a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">账单</a>-->
+      <!--<a class="top-bar-btn pull-right" href="/group/{{target.id}}"><img src="../../../assets/img/member.png"></a>-->
+      <!--<h1 class="top-bar-title">群聊</h1>-->
+    <!--</div>-->
 <div class="chat-window-display" id="window">
-      <div class="chat-window-msgs ">
+
+  <!--<div class="top-bar">-->
+    <!--<a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">账单</a>-->
+    <!--<a class="label pull-right" href="/group/{{target.id}}">Group Members</a>-->
+    <!--<h1 class="top-bar-title">{{target.name}}</h1>-->
+  <!--</div>-->
+      <div class="chat-window-msgs">
         <div *ngFor="let i of messages">
           <div class="chat-window-messages" *ngIf="i.messageDirection==2">
             <div class="chat-window-avatar   left">

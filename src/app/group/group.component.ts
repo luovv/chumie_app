@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params} from '@angular/router';
 import { HttpService } from "../http.service";
+import {GlobalService} from "../global.service";
 
 @Component({
   selector: 'app-group',
@@ -12,6 +13,7 @@ export class GroupComponent implements OnInit {
 
   private imghost = this.http.imghost;
   groupId = ''; //'58d485f570fe95565487d9e0'; // hardcode for now
+  userId = GlobalService.data.userId;
   groupTitle = '';
   groupData: any = {};
   userList: any = [];
