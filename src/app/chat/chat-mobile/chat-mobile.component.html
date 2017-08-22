@@ -65,15 +65,16 @@
 <!--Chat Input-->
 <div class="chat-window-input" id="input-box">
   <div class="container">
-    <div class="">
-      <textarea id="input" class="col-lg-6 col-md-5 col-sm-5 col-xs-5" [(ngModel)]="myMessage"
+    <div>
+      <textarea id="input" class="col-lg-11 col-md-5 col-sm-5 col-xs-5" [(ngModel)]="myMessage"
                  name="myMessage" placeholder="请输入内容">
       </textarea>
-      <button class="right btn btn-lg btn-info"
+      <button class="btn btn-lg btn-info"
               (click)="onSentMsgBtnClick($event)">发送</button>
     </div>
-    <div class="pull-left" >
-      <label  style="margin-top: 8px"> 更好体验，请下载我们的app</label>
+    <div class="card pull-left">
+      <label  style="margin-top: 8px">
+        更好体验，请下载我们的app</label>
     </div>
   </div>
 
