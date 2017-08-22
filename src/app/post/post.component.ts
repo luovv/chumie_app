@@ -71,23 +71,11 @@ export class PostComponent implements OnInit {
   //eventName = "event title";
   constructor( private g: GlobalService,private translate:TranslateService, private http: HttpService, private route: ActivatedRoute, private router: Router, private titleService: Title) {
     this.trans = translate;
-  }
-  setTitle( newTitle: string) {
-    this.titleService.setTitle( newTitle );
-
-  }
-
-  ngOnInit() {
-
-    this.validCard = false;
-
     this.route.params.forEach((params: Params) => {
       this.eventId = params['postId'];
 
       console.log("id: " + this.eventId);
-    });
-
-    this.http.getEventInfo(this.eventId).subscribe(
+      this.http.getEventInfo(this.eventId).subscribe(
         data => {
           this.content = data.content;
           console.log(this.content);
@@ -137,9 +125,22 @@ export class PostComponent implements OnInit {
 
         },
         error => {
-            alert(error);
+          alert(error);
         }
-    );
+      );
+    });
+  }
+  setTitle( newTitle: string) {
+    this.titleService.setTitle( newTitle );
+
+  }
+
+  ngOnInit() {
+
+    this.validCard = false;
+
+
+
 
     this.http.getComments(this.eventId).subscribe(
         data => {
