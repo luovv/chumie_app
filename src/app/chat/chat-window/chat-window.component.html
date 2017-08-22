@@ -13,6 +13,7 @@
       </div>
       <div class="chat-window-messages" *ngIf="i.messageDirection==1">
         <div class="chat-window-avatar right">
+          <span>{{i.content.user.name}}</span>
           <img src="{{i.content.user.icon}}">
         </div>
         <div class="chat-window-text right blue">{{i.content.content}}</div>
