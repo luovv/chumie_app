@@ -257,7 +257,7 @@
   margin-right: -6px;
 }
 .img-box .col-md-3{
-  height: 150px;
+  height: 120px;
   padding-left: 6px;
   padding-right: 6px;
   margin-bottom: 10px;
@@ -571,21 +571,30 @@
 
 
 @media (max-width:480px){
+  .nav-bar,
+  .signup,
+  .page-btn,
+  .footer-container{
+    display: none;
+  }
+  .top-bar,
+  .fixed-height,
+  .go-activity{
+    display: block;
+  }
   .nav-container.no-tab {
-      height: 50px;
+    height: 50px;
   }
   .nav-container.no-tab + .main-container{
-    padding: 70px 0 0;
+    padding: 50px 0 0;
   }
-  .title-head{
+  .title-head,
+  .title-tags,
+  .author{
     text-align: center;
   }
   .title-head h1{
     font-size: 20px;
-  }
-  .author{
-    text-align: center;
-    margin: 60px 0;
   }
   .author-info{
     display: block;
@@ -623,21 +632,9 @@
   .tags li a{
     padding: 3px 12px;
   }
-  .signup{
-    display: none;
-  }
-  .page-btn{
-    display: none;
-  }
   .page-prev.page-btn,
   .page-next.page-btn{
     display: inline-block;
-  }
-  .fixed-height{
-    display: block;
-  }
-  .go-activity{
-    display: block;
   }
 }
 
