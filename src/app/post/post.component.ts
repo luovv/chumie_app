@@ -339,7 +339,8 @@ export class PostComponent implements OnInit {
                 GlobalService.data.groupId = this.eventId;
                 this.joinGroup();
                 localStorage.setItem(GlobalService.data.isFreeEvent, 'Yes' );
-                this.router.navigateByUrl(`/chat/user/${userId}/group/${this.eventId}`);
+                // this.router.navigateByUrl(`/chat/user/${userId}/group/${this.eventId}`);
+                this.router.navigateByUrl(`/invoice/${this.eventId}`);
             },
             error => {
                 // alert(error);

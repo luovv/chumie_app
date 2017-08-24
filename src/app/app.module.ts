@@ -41,6 +41,7 @@ import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ChatMobileComponent } from './chat/chat-mobile/chat-mobile.component';
 import { GroupchatComponent } from './groupchat/groupchat.component';
+import { InvoiceFreeComponent } from './invoice-free/invoice-free.component';
 // import { MobileNavComponent } from './mobile-nav/mobile-nav.component';
 //import { ShareComponent } from './circle/share/share.component';
 export function HttpLoaderFactory(http: Http) {
@@ -78,7 +79,8 @@ export function HttpLoaderFactory(http: Http) {
     GroupComponent,
     InvoiceComponent,
     ChatMobileComponent,
-    GroupchatComponent
+    GroupchatComponent,
+    InvoiceFreeComponent
     //ShareComponent
   ],
   imports: [
@@ -103,6 +105,7 @@ export function HttpLoaderFactory(http: Http) {
       { path: 'center/friend', component: FriendComponent },
       { path: 'create', component: CreateComponent },
       { path: 'invoice/:invoiceId/user/:userId', component: InvoiceComponent },
+      { path: 'invoice/:groupId', component: InvoiceFreeComponent },
       // { path: 'home/:search', component: HomeComponent },
       // { path: 'user/:userId/:albumId', component: UserComponent },
       // { path: 'user/:userId', component: UserComponent },
