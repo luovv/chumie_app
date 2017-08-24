@@ -18,11 +18,10 @@ export class HomeComponent implements OnInit {
     upcoming:[],
     circles:[]
   };
-  constructor(private http: HttpService, private g:GlobalService) { }
+  constructor(private http: HttpService, private g:GlobalService) {  window.location.href = "https://chumi.co/app"; }
 
   ngOnInit() {
     //redirect to domain/app
-    window.location.href = "https://chumi.co/app";
 
     this.getExplore();
     this.g.dataChange.subscribe((value) => {

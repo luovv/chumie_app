@@ -135,7 +135,7 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button *ngIf="!joinEmail.errors && !joinName.errors" type="submit" class="btn btn-default" (click)="submitJoinFree()">提交</button>
+                  <button *ngIf="!joinEmail.errors && !joinName.errors" type="submit" class="btn btn-default" (click)="submitJoinFree()">{{'confirm'|translate}}</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">{{'cancel'|translate}}</button>
                 </div>
               </div>

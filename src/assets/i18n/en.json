@@ -33,5 +33,6 @@
   "message2":"you can join the group chat for this event. Organizers will keep updating information in the chat. Please make sure you save the event link or download app so that you can access to chat again. We send this receipt to your email please check your in/spam/trash box.",
   "message2_free":"you can access the group chat for this event. Organizers will keep updating information in the chat. Please make sure you save the event link or download app so that you can access to chat again. We send your account information to your email please check your in/spam/trash box.",
   "本活动免费":"This event is free to attend",
-  "参与价格： $":"Ticket price $"
+  "参与价格： $":"Ticket price $",
+  "confirm":"confirm"
 }
