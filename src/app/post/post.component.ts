@@ -74,6 +74,7 @@ export class PostComponent implements OnInit {
   constructor( private g: GlobalService,private translate:TranslateService, private http: HttpService, private route: ActivatedRoute, private router: Router, private titleService: Title) {
     this.trans = translate;
     this.eventStartTime = "2100-10-13T11:13:00.000Z";
+    this.creatorIcon = this.photoServerUrl + "group08.png";
     this.route.params.forEach((params: Params) => {
       this.eventId = params['postId'];
 
