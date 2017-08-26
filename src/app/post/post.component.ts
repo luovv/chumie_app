@@ -267,6 +267,10 @@ export class PostComponent implements OnInit {
 
   }
 
+  calculateFee(originalPrice) {
+    return Math.floor((originalPrice * 0.029 + 30)/(1-0.029));
+  }
+
   clickTicket(key) {
     this.selectedSeatList = this.seats[key];
     this.selectedListIndex = key;
