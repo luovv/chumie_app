@@ -1,6 +1,6 @@
 {
   "friend": "好友",
-  "downloadApp": "下载应用",
+  "downloadApp": "APP >",
   "time":"时间",
   "view":"热度",
   "comment":"comment",
@@ -34,5 +34,11 @@
   "GoupInfo": "群好友",
   "message1_free":"恭喜! 你已经成功报名本活动. \n下一步:",
   "message2_free":"请直接加入我们的活动群聊. 组织者会不断更新活动信息在群聊内. 大家可以储存本链接或者下载APP以便后续加入群聊. 我们已经发送你的账号及临时密码到你的邮箱",
-  "confirm":"确认"
+  "confirm":"确认",
+  "eventgroupchat":"活动群聊",
+  "welcomeJoinChat1":"欢迎加入群聊","welcomeJoinChat2":"你也可以下载app获得完整体验！",
+  "downloadappToSendpic":"点击下载chumi app, 即可发图片及语音",
+  "send":"发送",
+  "pleaseEnterMessage":"输入消息 ..."
+
 }

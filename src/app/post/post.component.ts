@@ -199,6 +199,7 @@ export class PostComponent implements OnInit {
 
     var setOutcome = result => {
       var errorElement = document.querySelector('.error');
+      var paybutton = document.querySelector('.paybutton');
       errorElement.classList.remove('visible');
 
       if (result.token) {
@@ -208,7 +209,7 @@ export class PostComponent implements OnInit {
         // successElement.classList.add('visible');
 
         //console.log(this.form);
-
+        paybutton.textContent = "Paying, please wait.";
         var originalPrice = this.ticketPrices[this.selectedListIndex] * 100;
 
         this.form['group'] = this.eventId;
@@ -222,7 +223,7 @@ export class PostComponent implements OnInit {
 
         this.http.chargeCard(this.form).subscribe(
             data => {
-                console.log(data);
+                console.log("TYITIT"+data);
                 console.log(data.invoiceId);
                 //支付成功跳转 invoice/:invoiceId
               let userId = data.userId;
@@ -235,10 +236,10 @@ export class PostComponent implements OnInit {
               localStorage.setItem(GlobalService.data.invoiceId, data.invoiceId);
               // this.router.navigateByUrl(`/chat/user/${userId}/group/${this.eventId}`);
               this.router.navigateByUrl(`/invoice/${data.invoiceId}/user/${userId}`);
-                this.closeAllModal();
+                //this.closeAllModal();
             },
             error => {
-                alert(error);
+                alert("Something wrong with payment, please try again.");
             }
         );
 

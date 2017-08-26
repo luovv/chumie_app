@@ -58,6 +58,11 @@
 
 .conversation-list {
   padding: 0px 30px;
+  height: 93%;
+  overflow-y: auto;
+  outline: none;
+  top: 10px;
+  position: relative;
 }
 
 .conversation-list li {
@@ -254,5 +259,17 @@
   }
   .container {
     padding: 0;
+  }
+}
+
+@media(max-width:960px) {
+  .conversation-list {
+    height: 92%;
+  }
+}
+
+@media(max-width:667px) {
+  .conversation-list {
+    height: 91%;
   }
 }

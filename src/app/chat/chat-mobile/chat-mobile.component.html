@@ -28,10 +28,10 @@
 
 <div class="nav-container no-tab">
   <div class="top-bar">
-    <a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">账单</a>
-    <a class="top-bar-title" href="/group/{{target.id}}" style="font-weight:600">
+    <a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">{{'invoice'|translate}}</a>
+    <a class="top-bar-title" style="font-weight:600">
       <!-- <img src="../../../assets/img/member.png">  -->
-      活动群聊
+      {{'eventgroupchat'|translate}}
     </a>
     <h1 class="top-bar-title"></h1>
   </div>
@@ -52,10 +52,16 @@
     <!--<h1 class="top-bar-title">{{target.name}}</h1>-->
   </div>
   <div class="container" style="background-color:#fff;height:100%">
-    <ul class="conversation-list nicescroll" tabindex="5000" style="height: 100%; overflow-y:auto; outline: none;    bottom: 50px;position: relative;">
+    <ul class="conversation-list nicescroll" tabindex="5000">
+      <li class="clearfix data-time">
+        <a href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www">{{'welcomeJoinChat1'|translate}}</a>
+      </li>
+      <li class="clearfix data-time">
+        <a href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www">{{'welcomeJoinChat2'|translate}}</a>
+      </li>
       <li class="chat-window-msgs" *ngFor="let i of messages">
         <div class="clearfix data-time" *ngIf="i.messageType=='ImageMessage'">
-          <a href="/group/{{target.id}}">点击下载chumi app即可发图片</a>
+          <a href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www">{{'downloadappToSendpic'|translate}}</a>
         </div>
         <div class="clearfix chat-window-messages" *ngIf="i.messageDirection==2">
           <div class="chat-avatar">
@@ -103,15 +109,15 @@
         </div>
         <div class="card pull-left">
             <label style="margin-top: 8px">
-    更好体验，请下载我们的app</label>
+         更好体验，请下载我们的app</label>
         </div>
     </div> -->
 <div class="chat-foot container" id="input-box">
   <div class="chat-inputbar">
-    <input type="text" class="chat-input" placeholder="请输入内容" [(ngModel)]="myMessage" name="myMessage">
+    <input type="text" class="chat-input" placeholder="{{'pleaseEnterMessage'|translate}}" [(ngModel)]="myMessage" name="myMessage">
   </div>
   <div class="chat-send">
-    <button type="submit" class="send-btn " (click)="onSentMsgBtnClick($event)">发送</button>
+    <button type="submit" class="send-btn " (click)="onSentMsgBtnClick($event)">{{'send'|translate}}</button>
   </div>
 </div>
 </body>

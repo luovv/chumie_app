@@ -35,23 +35,23 @@ export class InvoiceComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      console.log(params);
+      console.log("ajdasljdaskdla"+params);
       this.invoiceId = params['invoiceId'];
       localStorage.setItem('invoiceId', this.invoiceId);
       this.userId = params['userId'];
     });
+    this.num = 1;
     this.http.getInvoice(this.invoiceId).subscribe(
       data => {
         this.payer = data.invoice.payer;
         this.date = data.invoice.date;
         this.title = data.invoice.title;
-        this.amount_due = data.invoice.amount_due;
+        this.amount_due = data.invoice.amount_due/100;
         this.num = data.num;
         this.groupId = data.invoice.chargeItemId;
         // for join group, later to chat
         //
         const n = data.users.length;
-        alert("sdsada" + n);
         for (let i = 0; i < n; i++) {
           this.groupUsers.push(
             { 'userName': data.users[i].username,
@@ -66,7 +66,7 @@ export class InvoiceComponent implements OnInit {
         console.log(this.payer);
       },
       error => {
-        alert(error);
+        console.log(error);
       }
     );
   }
