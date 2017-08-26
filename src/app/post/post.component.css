@@ -824,7 +824,6 @@
 }
 
 .stripe-form label > span {
-  width: 20%;
   text-align: right;
   float: left;
 }
@@ -1003,4 +1002,15 @@
     background-color: #e0254a;
     color: #fff;
     text-decoration: none;
+}
+.payment-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto 
+}
+
+.payment-notice{
+    margin-top: 90px;
+    font-size: 13px;
+    color: #909497;
 }
