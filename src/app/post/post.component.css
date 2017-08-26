@@ -714,7 +714,7 @@
 
 .ticket-card {
     width: 300px;
-    height: 50px;
+    height: 70px;
     margin-top: 5px;
     margin-bottom: 5px;
     position: relative;
@@ -724,7 +724,7 @@
 
 .ticket-card-name {
     position: absolute;
-    top: 12px;
+    top: 21px;
     left: 10px;
 
 }
@@ -732,6 +732,14 @@
 .ticket-card-price {
     position: absolute;
     top: 10px;
+    right: 10px;
+}
+
+.ticket-card-fee {
+    position: absolute;
+    top: 38px;
+    font-size: 12px;
+    color: #999999;
     right: 10px;
 }
 
@@ -824,7 +832,6 @@
 }
 
 .stripe-form label > span {
-  width: 20%;
   text-align: right;
   float: left;
 }
@@ -1003,4 +1010,15 @@
     background-color: #e0254a;
     color: #fff;
     text-decoration: none;
+}
+.payment-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto 
+}
+
+.payment-notice{
+    margin-top: 90px;
+    font-size: 13px;
+    color: #909497;
 }

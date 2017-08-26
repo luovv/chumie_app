@@ -42,6 +42,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ChatMobileComponent } from './chat/chat-mobile/chat-mobile.component';
 import { GroupchatComponent } from './groupchat/groupchat.component';
 import { InvoiceFreeComponent } from './invoice-free/invoice-free.component';
+import { CalculateFeePipe } from './pipe/calculate-fee.pipe';
 // import { MobileNavComponent } from './mobile-nav/mobile-nav.component';
 //import { ShareComponent } from './circle/share/share.component';
 export function HttpLoaderFactory(http: Http) {
@@ -80,7 +81,8 @@ export function HttpLoaderFactory(http: Http) {
     InvoiceComponent,
     ChatMobileComponent,
     GroupchatComponent,
-    InvoiceFreeComponent
+    InvoiceFreeComponent,
+    CalculateFeePipe
     //ShareComponent
   ],
   imports: [

@@ -157,6 +157,7 @@
                       <div class="ticket-card hvr-shutter-out-horizontal" data-toggle="modal" [attr.data-target]="modalTarget" (click)="clickTicket(i)">
                         <div class="ticket-card-name">{{name}}</div>
                         <div class="ticket-card-price">${{ticketPrices[i]}}</div>
+                        <div class="ticket-card-fee">Fee: ${{ticketPrices[i] | calculateFee}}</div>
                       </div>
                     </div>
                   </div>
@@ -201,6 +202,7 @@
                   <h4 class="modal-title">{{'payment'|translate}}</h4>
                 </div>
                 <div class="modal-body modal-backgroud">
+                  <img src="./assets/img/paymentMethod.png" class="payment-image"/>
                   <div class="stripe-form">
                     <form class="payform">
                       <div class="group">
@@ -227,7 +229,13 @@
                           <div id="card-element" class="field"></div>
                         </label>
                       </div>
-                      <button type="submit" class="paybutton">{{'pay'|translate}}</button>
+
+                      <button type="submit">{{'pay'|translate}}</button>
+                      <div class="payment-notice">
+                        <span>
+                          I accept the terms of service and have read the privacy policy. I agree that Chumi may share my information with the event organizer
+                        </span>
+                      </div>
                       <div class="outcome">
                         <div class="error" role="alert"></div>
                       </div>
