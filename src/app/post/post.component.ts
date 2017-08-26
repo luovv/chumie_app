@@ -220,6 +220,7 @@ export class PostComponent implements OnInit {
         this.form['stripeEmail'] = this.userEmail;
         this.form['stripeToken'] = result.token.id;
         this.form['Systemlanguage'] = this.userLanguage;
+        this.form["acWebId"] = this.eventId;
 
         this.http.chargeCard(this.form).subscribe(
             data => {
@@ -334,7 +335,7 @@ export class PostComponent implements OnInit {
     this.freeForm['username'] = this.username;
     this.freeForm['stripeEmail'] = this.userEmail;
     this.freeForm['Systemlanguage'] = this.userLanguage;
-
+    this.freeForm["acWebId"] = this.eventId;
     this.http.joinEventFree(this.freeForm).subscribe(
             data => {
                 console.log(data);
