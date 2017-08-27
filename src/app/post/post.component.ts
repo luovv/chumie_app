@@ -32,6 +32,7 @@ export class PostComponent implements OnInit {
   price: number;
   priceText: string;
   isFree: boolean;
+  isAlreadyJoin:boolean;
   seatSelection:boolean;
 
   deadtimeInvalid: boolean;
@@ -65,6 +66,8 @@ export class PostComponent implements OnInit {
   userEmail : string;
   username : string;
   validCard: boolean;
+  type: boolean;
+  link: string;
 
   eventId: string;
   trans:TranslateService;
@@ -77,6 +80,7 @@ export class PostComponent implements OnInit {
     this.creatorIcon = this.photoServerUrl + "group08.png";
     this.route.params.forEach((params: Params) => {
       this.eventId = params['postId'];
+      this.isAlreadyJoin = false;
 
       console.log("id: " + this.eventId);
 
@@ -87,7 +91,8 @@ export class PostComponent implements OnInit {
             if(data.length === 0) {
               window.location.href = "https://chumi.co/app";
             }
-
+            this.type = data.type;
+            this.link = data.link;
             this.content = data.content;
             console.log(this.content);
             this.postDate = data.postDate;
@@ -132,6 +137,11 @@ export class PostComponent implements OnInit {
                 this.isFree = true;
               });
             }
+
+            if(this.type && this.link != ""){
+              this.isAlreadyJoin = true;
+            }
+
 
             console.log(data);
             console.log(this.images);
@@ -296,7 +306,12 @@ export class PostComponent implements OnInit {
     this.username = event.target.value;
   }
 
+  alreadyJoin(){
+    this.router.navigateByUrl(`/chat/user/${this.link}/group/${this.eventId}`);
+  }
+
   joinEvent() {
+    //
     this.http.getTicketInfo(this.eventId).subscribe(
         data => {
           this.ticketNames = data.name;
@@ -332,6 +347,7 @@ export class PostComponent implements OnInit {
   }
 
   submitJoinFree() {
+
     this.freeForm['username'] = this.username;
     this.freeForm['stripeEmail'] = this.userEmail;
     this.freeForm['Systemlanguage'] = this.userLanguage;

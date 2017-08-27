@@ -87,16 +87,23 @@
         </div>
         <div class="clearfix">
 
-          <div class="signup" *ngIf="!isFree && !deadtimeInvalid">
+          <div class="signup" *ngIf="!isFree && !deadtimeInvalid && !isAlreadyJoin">
             <a data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()">
               <span>{{'register'|translate}}</span>
               <i class="mdi mdi-arrow-right"></i>
             </a>
           </div>
 
-          <div class="signup" *ngIf="isFree  && !deadtimeInvalid">
+          <div class="signup" *ngIf="isFree  && !deadtimeInvalid && !isAlreadyJoin">
             <a data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()">
               <span>{{'freeTojoin'|translate}}</span>
+              <i class="mdi mdi-arrow-right"></i>
+            </a>
+          </div>
+
+          <div class="signup" *ngIf="isAlreadyJoin">
+            <a data-toggle="modal" data-target="#joinFree" (click)="alreadyJoin()">
+              <span>{{'JoinGroupChat'|translate}}</span>
               <i class="mdi mdi-arrow-right"></i>
             </a>
           </div>
@@ -406,13 +413,18 @@
 </div>
 
 <div class="fixed-height"></div>
-<div class="go-activity" *ngIf="!isFree && !deadtimeInvalid">
+<div class="go-activity" *ngIf="!isFree && !deadtimeInvalid && !isAlreadyJoin">
   <a class="go-activity-btn" data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()"><span>{{'register'|translate}}</span>
   <i class="mdi mdi-arrow-right"></i></a>
 </div>
 
-<div class="go-activity" *ngIf="isFree && !deadtimeInvalid">
+<div class="go-activity" *ngIf="isFree && !deadtimeInvalid && !isAlreadyJoin">
   <a class="go-activity-btn" data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()"><span>{{'freeTojoin'|translate}}</span>
   <i class="mdi mdi-arrow-right"></i></a>
 </div>
+
+  <div class="go-activity" *ngIf="isAlreadyJoin">
+    <a class="go-activity-btn" data-toggle="modal" data-target="#joinFree" (click)="alreadyJoin()"><span>{{'JoinGroupChat'|translate}}</span>
+      <i class="mdi mdi-arrow-right"></i></a>
+  </div>
 </div>
