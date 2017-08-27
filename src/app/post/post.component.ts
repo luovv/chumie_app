@@ -47,9 +47,9 @@ export class PostComponent implements OnInit {
   // join group
   private groupData = { groupid: '', groupname: ''};
 
-  // joined  before
-  joined: boolean = false;
-  userId_link = '';
+  // // joined  before
+  // joined: boolean = false;
+  // userId_link = '';
 
   //payment
 
@@ -88,12 +88,12 @@ export class PostComponent implements OnInit {
           data => {
             console.log(data);
 
-            // For user login again
-            console.log('userId is: ' + data.link);
-            console.log("Has joined:" + data.type);
-            this.joined = data.type;
-            this.userId_link = data.link;
-
+            // // For user login again
+            // console.log('userId is: ' + data.link);
+            // console.log("Has joined:" + data.type);
+            // this.joined = data.type;
+            // this.userId_link = data.link;
+            //
 
             if(data.length === 0) {
               window.location.href = "https://chumi.co/app";
