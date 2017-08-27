@@ -48,6 +48,10 @@ export class PostComponent implements OnInit {
   // join group
   private groupData = { groupid: '', groupname: ''};
 
+  // // joined  before
+  // joined: boolean = false;
+  // userId_link = '';
+
   //payment
 
   form = {username:'', group:'', price:-1, orginalPrice:-1, seatIndex:-1, stripeEmail:'', stripeToken: '', Systemlanguage: ''};
@@ -87,6 +91,13 @@ export class PostComponent implements OnInit {
       this.http.getEventInfo(this.eventId).subscribe(
           data => {
             console.log(data);
+
+            // // For user login again
+            // console.log('userId is: ' + data.link);
+            // console.log("Has joined:" + data.type);
+            // this.joined = data.type;
+            // this.userId_link = data.link;
+            //
 
             if(data.length === 0) {
               window.location.href = "https://chumi.co/app";
